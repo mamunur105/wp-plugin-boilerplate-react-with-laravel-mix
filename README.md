@@ -1,4 +1,4 @@
-# Wp Plugin Boilerplate React Js With Laravel Mix and Composer Autoload Php
+# Wp Plugin Boilerplate React Js With Mix And Composer Autoload Php
 
 * Js Compiler Laravel mix
 * **Yarn install** OR **npm run install**  To install package 
