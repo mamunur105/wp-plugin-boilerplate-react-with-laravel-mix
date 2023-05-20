@@ -1,0 +1,1 @@
+# wp-plugin-boilerplate-react-with-laravel-mix
