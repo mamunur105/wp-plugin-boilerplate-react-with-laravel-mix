@@ -13,6 +13,8 @@ import * as Types from "../Utils/actionType";
 
 import Settings from "./Settings";
 
+import NeedSupport from "./NeedSupport";
+
 import MainHeader from "./MainHeader";
 
 import { useStateValue } from "../Utils/StateProvider";
@@ -73,6 +75,7 @@ function App() {
                 </Sider>
                 <Layout className="layout" style={{ padding: '10px', overflowY: 'auto' }} >
                     { 'settings' === stateValue.generalData.selectedMenu && <Settings/>  }
+                    { 'needsupport' === stateValue.generalData.selectedMenu && <NeedSupport/> }
                 </Layout>
             </Layout>
     );

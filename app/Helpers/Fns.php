@@ -18,6 +18,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Fns {
 
 	/**
+	 *  Verify nonce.
+	 *
+	 * @return bool
+	 */
+	public static function verify_nonce() {
+		$nonce     = isset( $_REQUEST[ boilerplate()->nonceId ] ) ? $_REQUEST[ boilerplate()->nonceId ] : null;
+		if ( wp_verify_nonce( $nonce, boilerplate()->nonceId ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * @param $plugin_file_path
 	 *
 	 * @return bool

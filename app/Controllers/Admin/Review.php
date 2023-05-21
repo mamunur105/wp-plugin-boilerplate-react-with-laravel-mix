@@ -52,7 +52,7 @@ class Review {
         $remind_due  = strtotime( '+15 days', $remind_time );
 
         if ( ! $now > $past_date || $now < $remind_due ) {
-            return;
+//            return;
         }
 
         add_action( 'admin_notices', [ __CLASS__, 'boilerplate_display_admin_notice' ] );
@@ -146,7 +146,8 @@ class Review {
 						<a href="<?php echo esc_url( $rated ); ?>" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--outline"><span>😀 Already Rated!</span></a>
 						<a href="<?php echo esc_url( $remind_me ); ?>" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--outline"><span>🔔 Remind Me Later</span></a>
 						<a href="<?php echo esc_url( $dont_disturb ); ?>" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--error boilerplate-review-button--outline"><span>😐 No Thanks </span></a>
-					</div>
+                        <a href="<?php echo esc_url( '#' ); ?>" target="_blank" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--error boilerplate-review-button--outline"><span> Contact our support </span></a>
+                    </div>
 				</div> 
 			</div>
 			<style> 

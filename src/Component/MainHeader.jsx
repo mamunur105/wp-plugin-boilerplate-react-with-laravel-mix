@@ -2,7 +2,7 @@ import React from "react";
 
 import { Menu, Layout } from 'antd';
 
-import { SettingOutlined } from '@ant-design/icons';
+import { SettingOutlined, ContactsOutlined } from '@ant-design/icons';
 
 import {useStateValue} from "../Utils/StateProvider";
 
@@ -42,6 +42,12 @@ function MainHeader() {
                         label: 'Media Settings',
                         icon: <SettingOutlined />,
                         style: menuItemStyle
+                    },
+                    {
+                        key: 'needsupport',
+                        label: 'Need Support',
+                        icon: <ContactsOutlined />,
+                        style: menuItemStyle,
                     }
                 ]}
                 onSelect={ ({ item, key, keyPath, selectedKeys, domEvent }) => {
