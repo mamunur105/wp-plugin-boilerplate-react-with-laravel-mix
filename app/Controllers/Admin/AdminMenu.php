@@ -34,8 +34,8 @@ class AdminMenu {
      */
     public function register_sub_menu() {
 	    add_menu_page(
-			'WC Init',
-			'WC Init',
+			'CPT Init',
+			'CPT Init',
 			'manage_options',
 			'boilerplate-admin',
 			[$this, 'wp_media_page_callback'],
