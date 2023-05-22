@@ -1,6 +1,7 @@
 # Wp Plugin Boilerplate React Js With Mix And Composer Autoload Php
 
 * Composer Command
+* 
 * ```composer install``` 
 * ```composer dumpautoload -o ```
 
