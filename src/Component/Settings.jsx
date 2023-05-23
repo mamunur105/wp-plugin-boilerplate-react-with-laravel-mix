@@ -8,9 +8,16 @@ import {
     Form,
     Layout,
     Button,
+    Input,
+    Divider,
+    Typography
 } from 'antd';
 
+const { TextArea } = Input;
+
 const { Content } = Layout;
+
+const { Title, Text } = Typography;
 
 import * as Types from "../Utils/actionType";
 
@@ -44,8 +51,29 @@ function Settings() {
                         borderRadius: '5px',
                         boxShadow: 'rgb(0 0 0 / 1%) 0px 0 20px',
                     }}>
-                        antdesign settings.
-                         Added text
+                        <>
+                            <Divider />
+                            <TextArea
+                                type="primary"
+                                size="large"
+                                onChange={
+                                    (event) => dispatch({
+                                        type: Types.UPDATE_OPTIONS,
+                                        options : {
+                                            ...stateValue.options,
+                                            default_demo_text: event.target.value,
+                                        }
+                                    })
+                                }
+                                value={stateValue.options.default_demo_text}
+                            />
+                            <Text
+                                type="secondary"
+                            >
+                                Alt Text Will add automatically when upload Media file
+                            </Text>
+                        </>
+
                     </Content>
                 }
 

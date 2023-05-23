@@ -50,15 +50,24 @@ class Api {
 	 * @return false|string
 	 */
 	public function update_option( $request_data ) {
-
 		$result = [
 			'updated' => false,
 			'message' => esc_html__( 'Update failed. Maybe change not found. ', 'boilerplate-media-tools' )
 		];
-
+		$the_settings = [];
 		$parameters = $request_data->get_params();
-		$boilerplate_media = get_option( 'boilerplate_settings', [] );
-		$options = update_option( 'boilerplate_settings', $boilerplate_media );
+
+		$the_settings = get_option( 'boilerplate_settings', [] );
+
+		$the_settings['default_demo_text'] = ! empty( $parameters['default_demo_text'] ) ? $parameters['default_demo_text'] : '';
+
+		$options = update_option( 'boilerplate_settings', $the_settings );
+
+		$result['updated'] =  boolval( $options );
+
+		if( $result['updated'] ){
+			$result['message'] =  esc_html__( 'Updated.', 'boilerplate-media-tools' );
+		}
 		return $result;
 	}
 
