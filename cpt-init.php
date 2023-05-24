@@ -2,11 +2,11 @@
 /**
  * @wordpress-plugin
  * Plugin Name:       Cpt Boilerplate
- * Plugin URI:        https://wordpress.org/support/plugin/media-library-tools
+ * Plugin URI:        https://wordpress.org/support/plugin/wp-plugin-boilerplate-react-with-mix
  * Description:       Cpt int
  * Version:           0.0.1
- * Author:            Tiny Solutions
- * Author URI:        https://wptinysolutions.com/
+ * Author:            Boilerplate
+ * Author URI:        https://boilerplate.com/
  * Text Domain:       boilerplate
  * Domain Path:       /languages
  *
