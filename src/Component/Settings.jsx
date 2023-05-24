@@ -70,7 +70,7 @@ function Settings() {
                             <Text
                                 type="secondary"
                             >
-                                Alt Text Will add automatically when upload Media file
+                                This is example field
                             </Text>
                         </>
 

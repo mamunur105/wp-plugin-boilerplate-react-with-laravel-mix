@@ -22,7 +22,6 @@ import { useStateValue } from "../Utils/StateProvider";
 function App() {
 
     const [ stateValue, dispatch ] = useStateValue();
-
     const getTheOptins = async () => {
         const response = await getOptions();
         const preparedData =  await JSON.parse( response.data );
