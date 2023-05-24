@@ -54,7 +54,7 @@ class Api {
 			'updated' => false,
 			'message' => esc_html__( 'Update failed. Maybe change not found. ', 'boilerplate-media-tools' )
 		];
-		$the_settings = [];
+
 		$parameters = $request_data->get_params();
 
 		$the_settings = get_option( 'boilerplate_settings', [] );
