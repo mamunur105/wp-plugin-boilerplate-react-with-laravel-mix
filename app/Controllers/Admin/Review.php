@@ -238,7 +238,7 @@ class Review {
 				box-shadow: 0 0 0 2px var(--e-focus-color);
 			} 
 			.boilerplate-review-button--error {
-				--e-button-context-color: #d72b3f;
+				--e-button-context-color: #682e36;
 				--e-button-context-color-dark: #ae2131;
 				--e-button-context-tint: rgba(215,43,63,0.04);
 				--e-focus-color: rgba(215,43,63,0.4);
