@@ -22,10 +22,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Define media edit Constant.
  */
 define( 'CPTINIT_VERSION', '0.0.1' );
+
 define( 'CPTINIT_FILE', __FILE__ );
+
 define( 'CPTINIT_BASENAME', plugin_basename( CPTINIT_FILE ) );
-define( 'CPTINIT_URL', plugins_url('', CPTINIT_FILE ));
-define( 'CPTINIT_ABSPATH', dirname(CPTINIT_FILE ) );
+
+define( 'CPTINIT_URL', plugins_url( '', CPTINIT_FILE ) );
+
+define( 'CPTINIT_ABSPATH', dirname( CPTINIT_FILE ) );
 
 /**
  * App Init.
