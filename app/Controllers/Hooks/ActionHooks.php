@@ -34,10 +34,28 @@ class ActionHooks {
 		<div id="deactivation-dialog" title="Quick Feedback">
             <!-- Modal content -->
             <div class="modal-content">
-                
+                <div id="feedback-form-body">
+                    <div class="feedback-input-wrapper">
+                        <input id="feedback-deactivate-feedback-no_longer_needed" class="feedback-input" type="radio" name="reason_key" value="no_longer_needed">
+                        <label for="feedback-deactivate-feedback-no_longer_needed" class="feedback-label">I no longer need the plugin</label>
+                    </div>
+                    <div class="feedback-input-wrapper">
+                        <input id="feedback-deactivate-feedback-found_a_better_plugin" class="feedback-input" type="radio" name="reason_key" value="found_a_better_plugin">
+                        <label for="feedback-deactivate-feedback-found_a_better_plugin" class="feedback-label">I found a better plugin</label>
+                        <input class="feedback-feedback-text" type="text" name="reason_found_a_better_plugin" placeholder="Please share which plugin">
+                    </div>
+                    <div class="feedback-input-wrapper">
+                        <input id="feedback-deactivate-feedback-couldnt_get_the_plugin_to_work" class="feedback-input" type="radio" name="reason_key" value="couldnt_get_the_plugin_to_work">
+                        <label for="feedback-deactivate-feedback-couldnt_get_the_plugin_to_work" class="feedback-label">I couldn't get the plugin to work</label>
+                    </div>
+                    <div class="feedback-input-wrapper">
+                        <input id="feedback-deactivate-feedback-temporary_deactivation" class="feedback-input" type="radio" name="reason_key" value="temporary_deactivation">
+                        <label for="feedback-deactivate-feedback-temporary_deactivation" class="feedback-label">It's a temporary deactivation</label>
+                    </div>
+
+                </div>
                 <p style="margin: 0 0 20px 0;font-size: 16px;">
-                    Please provide us with some guidance. How can we improve the plugin?
-                    Additionally, let us know about any issues you are facing with the plugin.
+                    Please let us know about any issues you are facing with the plugin. How can we improve the plugin?
                 </p>
                 <textarea id="deactivation-feedback" rows="4" cols="40" placeholder=" Write something"></textarea>
             </div>
@@ -90,16 +108,18 @@ class ActionHooks {
                 margin: auto;
                 padding: 0;
             }
-            #deactivation-dialog .modal-content * {
+            #deactivation-dialog .modal-content > * {
                 width: 100%;
             }
-            #deactivation-dialog .modal-content :is( input, textarea ){
+            #deactivation-dialog .modal-content textarea {
                 border: 1px solid rgba(0, 0, 0, 0.1);
                 padding: 15px;
             }
 
             /* The Close Button */
-
+            #deactivation-dialog input[type="radio"] {
+                margin: 0;
+            }
             .ui-dialog-title {
                 font-size: 18px;
                 font-weight: 600;
@@ -148,6 +168,14 @@ class ActionHooks {
                 padding: 18px 15px;
                 box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
                 text-align: left;
+            }
+            
+            .modal-content .feedback-input-wrapper {
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                line-height: 2;
             }
 
         </style>
