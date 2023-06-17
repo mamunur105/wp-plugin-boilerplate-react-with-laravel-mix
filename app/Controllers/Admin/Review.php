@@ -48,9 +48,13 @@ class Review {
 
 		$remind_time = get_option( 'boilerplate_remind_me' );
 
+		if( ! $remind_time ){
+			$remind_time = $install_date;
+		}
+
 		$remind_time = $remind_time ? $remind_time : $past_date;
 
-		$remind_due = strtotime( '+15 days', $remind_time );
+		$remind_due = strtotime( '+10 days', $remind_time );
 
 		if ( ! $now > $past_date || $now < $remind_due ) {
 			return;
@@ -147,26 +151,18 @@ class Review {
 			$remind_me    = add_query_arg( $args + [ 'boilerplate_remind_me' => '1' ], self::boilerplate_current_admin_url() );
 			$rated        = add_query_arg( $args + [ 'boilerplate_rated' => '1' ], self::boilerplate_current_admin_url() );
 			$reviewurl    = 'https://wordpress.org/support/plugin/media-library-tools/reviews/?filter=5#new-post';
+            $plugin_name = 'Our Plugin';
 			?>
             <div class="notice boilerplate-review-notice boilerplate-review-notice--extended">
                 <div class="boilerplate-review-notice_content">
-                    <h3>Enjoying "Custom Post Type Woocommerce Integration"? </h3>
-                    <p>Thank you for choosing "
-                        <string>Custom Post Type Woocommerce Integration</string>
-                        ". If you found our plugin useful, please consider giving us a 5-star rating on WordPress.org.
-                        Your feedback will motivate us to grow.
-                    </p>
+                    <h3>Enjoying "<?php echo $plugin_name; ?>"? </h3>
+                    <p>Thank you for choosing "<string><?php echo $plugin_name; ?></string>". If you found our plugin useful, please consider giving us a 5-star rating on WordPress.org. Your feedback will motivate us to grow.</p>
                     <div class="boilerplate-review-notice_actions">
-                        <a href="<?php echo esc_url( $reviewurl ); ?>"
-                           class="boilerplate-review-button boilerplate-review-button--cta" target="_blank"><span>⭐ Yes, You Deserve It!</span></a>
-                        <a href="<?php echo esc_url( $rated ); ?>"
-                           class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--outline"><span>😀 Already Rated!</span></a>
-                        <a href="<?php echo esc_url( $remind_me ); ?>"
-                           class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--outline"><span>🔔 Remind Me Later</span></a>
-                        <a href="<?php echo esc_url( $dont_disturb ); ?>"
-                           class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--error boilerplate-review-button--outline"><span>😐 No Thanks </span></a>
-                        <a href="<?php echo esc_url( '#' ); ?>" target="_blank"
-                           class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--error boilerplate-review-button--outline"><span> Contact our support </span></a>
+                        <a href="<?php echo esc_url( $reviewurl ); ?>" class="boilerplate-review-button boilerplate-review-button--cta" target="_blank"><span>⭐ Yes, You Deserve It!</span></a>
+                        <a href="<?php echo esc_url( $rated ); ?>" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--outline"><span>😀 Already Rated!</span></a>
+                        <a href="<?php echo esc_url( $remind_me ); ?>" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--outline"><span>🔔 Remind Me Later</span></a>
+                        <a href="<?php echo esc_url( $dont_disturb ); ?>" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--error boilerplate-review-button--outline"><span>😐 No Thanks </span></a>
+                        <a href="<?php echo esc_url( '#' ); ?>" target="_blank" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--error boilerplate-review-button--outline"><span> Contact our support </span></a>
                     </div>
                 </div>
             </div>
@@ -546,8 +542,9 @@ class Review {
                     var better_plugin = $('#deactivation-dialog .modal-content input[name="reason_found_a_better_plugin"]').val();
                     // Perform AJAX request to submit feedback
                     $.ajax({
-                        type: 'POST',
-                        url: ajaxurl,
+                        url: 'https://api.example.com/endpoint',
+                        method: 'GET',
+                        dataType: 'json',
                         data: {
                             action: 'submit_deactivation_feedback',
                             reasons: reasons,

@@ -37,6 +37,11 @@ class Api {
 			'callback'            => [ $this, 'update_option' ],
 			'permission_callback' => [ $this, 'login_permission_callback' ],
 		) );
+		register_rest_route( $this->namespace, $this->resource_name . '/sendFeedback', array(
+			'methods'             => 'POST',
+			'callback'            => [ $this, 'send_feedback' ],
+			'permission_callback' => [ $this, 'login_permission_callback' ],
+		) );
 	}
 
 	/**
@@ -76,6 +81,14 @@ class Api {
 	 */
 	public function get_options() {
 		return wp_json_encode( Fns::get_options() );
+	}
+	/**
+	 * @return false|string
+	 */
+	public function send_feedback() {
+		return ''; //wp_json_encode( Fns::get_options() );
+		// 'Client ID' : '967599686219-fdoerevf5jb4luvb40k85aemg680ufno.apps.googleusercontent.com'
+		// 'Client secrets' : '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'
 	}
 
 }
