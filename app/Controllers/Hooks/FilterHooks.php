@@ -32,7 +32,7 @@ class FilterHooks {
      * @return array [array] plugin action link
      */
     public static function plugins_setting_links( $links ) {
-        $links['mediaedit_settings'] = '<a href="' . admin_url( 'upload.php?page=boilerplate-settings' ) . '">' . esc_html__( 'Start Editing', 'boilerplate' ) . '</a>';
+        $links['mediaedit_settings'] = '<a href="' . admin_url( 'admin.php?page=boilerplate-admin' ) . '">' . esc_html__( 'Start Editing', 'boilerplate' ) . '</a>';
         /*
          * TODO:: Next Version
          *
