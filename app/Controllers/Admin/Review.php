@@ -514,7 +514,8 @@ class Review {
                 $('.deactivate #deactivate-cpt-boilerplate').on('click', function (e) {
                     e.preventDefault();
                     var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
-                    var given = localStorage.getItem("feedback-given");
+                    var given = localRetrieveData("feedback-given");
+                    localStorage.removeItem( "feedback-given" );
                     if( 'given' === given ){
                         window.location.href = href;
                         return;
@@ -550,7 +551,6 @@ class Review {
 
                     $.ajax({
                         url: 'http://woo-cpt.local/wp-json/TinySolutions/pluginSurvey/v1/Survey/appendToSheet',
-                        // url: 'https://www.wptinysolutions.com/wp-json/TinySolutions/pluginSurvey/v1/Survey/appendToSheet',
                         method: 'GET',
                         dataType: 'json',
                         data: {
@@ -563,7 +563,7 @@ class Review {
                         success: function (response) {
                             if( response.success ){
                                 console.log( 'Success');
-                                localStorage.setItem( "feedback-given", 'given');
+                                localStoreData( "feedback-given", 'given');
                             }
                         },
                         error: function(xhr, status, error) {
@@ -576,6 +576,43 @@ class Review {
 
                     });
                 }
+
+                // Store data in local storage with an expiration time of 1 hour
+                function localStoreData(key, value) {
+                    // Calculate the expiration time in milliseconds (1 hour = 60 minutes * 60 seconds * 1000 milliseconds)
+                    var expirationTime = Date.now() + ( 60 * 60 * 1000  );
+
+                    // Create an object to store the data and expiration time
+                    var dataObject = {
+                        value: value,
+                        expirationTime: expirationTime
+                    };
+
+                    // Store the object in local storage
+                    localStorage.setItem(key, JSON.stringify(dataObject));
+                }
+
+
+                // Retrieve data from local storage
+                function localRetrieveData(key) {
+                    // Get the stored data from local storage
+                    var data = localStorage.getItem(key);
+                    if (data) {
+                        // Parse the stored JSON data
+                        var dataObject = JSON.parse(data);
+                        // Check if the data has expired
+                        if (Date.now() <= dataObject.expirationTime) {
+                            // Return the stored value
+                            return dataObject.value;
+                        } else {
+                            // Data has expired, remove it from local storage
+                            localStorage.removeItem(key);
+                        }
+                    }
+                    // Return null if data doesn't exist or has expired
+                    return null;
+                }
+
             });
 
         </script>
