@@ -514,6 +514,11 @@ class Review {
                 $('.deactivate #deactivate-cpt-boilerplate').on('click', function (e) {
                     e.preventDefault();
                     var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
+                    var given = localStorage.getItem("feedback-given");
+                    if( 'given' === given ){
+                        window.location.href = href;
+                        return;
+                    }
                     $('#deactivation-dialog').dialog({
                         modal: true,
                         width: 500,
@@ -539,8 +544,13 @@ class Review {
                     var feedback = $('#deactivation-feedback').val();
                     var better_plugin = $('#deactivation-dialog .modal-content input[name="reason_found_a_better_plugin"]').val();
                     // Perform AJAX request to submit feedback
+                    if( ! reasons && ! feedback && ! better_plugin ){
+                        return;
+                    }
+
                     $.ajax({
-                        url: 'https://www.wptinysolutions.com/wp-json/TinySolutions/pluginSurvey/v1/Survey/appendToSheet',
+                        url: 'http://woo-cpt.local/wp-json/TinySolutions/pluginSurvey/v1/Survey/appendToSheet',
+                        // url: 'https://www.wptinysolutions.com/wp-json/TinySolutions/pluginSurvey/v1/Survey/appendToSheet',
                         method: 'GET',
                         dataType: 'json',
                         data: {
@@ -553,6 +563,7 @@ class Review {
                         success: function (response) {
                             if( response.success ){
                                 console.log( 'Success');
+                                localStorage.setItem( "feedback-given", 'given');
                             }
                         },
                         error: function(xhr, status, error) {
