@@ -520,8 +520,8 @@ class Review {
                     var given = localRetrieveData("feedback-given");
                     localStorage.removeItem( "feedback-given" );
                     if( 'given' === given ){
-                        window.location.href = href;
-                        return;
+                       window.location.href = href;
+                       return;
                     }
                     $('#deactivation-dialog').dialog({
                         modal: true,
@@ -529,7 +529,6 @@ class Review {
                         buttons: {
                             Submit: function () {
                                 submitFeedback();
-                                window.location.href = href;
                             },
                             Cancel: function () {
                                 $(this).dialog('close');
@@ -551,6 +550,7 @@ class Review {
                     if( ! reasons && ! feedback && ! better_plugin ){
                         return;
                     }
+                    var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
 
                     $.ajax({
                         url: 'http://woo-cpt.local/wp-json/TinySolutions/pluginSurvey/v1/Survey/appendToSheet',
@@ -575,6 +575,7 @@ class Review {
                         },
                         complete: function(xhr, status) {
                             $('#deactivation-dialog').dialog('close');
+                            window.location.href = href;
                         }
 
                     });
