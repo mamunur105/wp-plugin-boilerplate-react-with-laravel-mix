@@ -299,7 +299,6 @@ class Review {
 
 
 	// Servay
-
 	/***
 	 * @param $mimes
 	 *
