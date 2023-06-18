@@ -21,7 +21,9 @@ class Review {
 	private function __construct() {
 		add_action( 'admin_init', [ __CLASS__, 'boilerplate_check_installation_time' ] );
 		add_action( 'admin_init', [ __CLASS__, 'boilerplate_spare_me' ], 5 );
-		add_action( 'admin_footer', [ __CLASS__, 'deactivation_popup' ], 99 );
+        if( false ){ // Remove the functionality if no longer need.
+		    add_action( 'admin_footer', [ __CLASS__, 'deactivation_popup' ], 99 );
+        }
 	}
 
 	/**
@@ -317,29 +319,29 @@ class Review {
             <div class="modal-content">
                 <div id="feedback-form-body">
                     <div class="feedback-input-wrapper">
-                        <input id="feedback-deactivate-feedback-no_longer_needed" class="feedback-input" type="radio"
+                        <input id="feedback-deactivate-boilerplate-no_longer_needed" class="feedback-input" type="radio"
                                name="reason_key" value="no_longer_needed">
-                        <label for="feedback-deactivate-feedback-no_longer_needed" class="feedback-label">I no longer
+                        <label for="feedback-deactivate-boilerplate-no_longer_needed" class="feedback-label">I no longer
                             need the plugin</label>
                     </div>
                     <div class="feedback-input-wrapper">
-                        <input id="feedback-deactivate-feedback-found_a_better_plugin" class="feedback-input"
+                        <input id="feedback-deactivate-boilerplate-found_a_better_plugin" class="feedback-input"
                                type="radio" name="reason_key" value="found_a_better_plugin">
-                        <label for="feedback-deactivate-feedback-found_a_better_plugin" class="feedback-label">I found a
+                        <label for="feedback-deactivate-boilerplate-found_a_better_plugin" class="feedback-label">I found a
                             better plugin</label>
                         <input class="feedback-feedback-text" type="text" name="reason_found_a_better_plugin"
                                placeholder="Please share which plugin">
                     </div>
                     <div class="feedback-input-wrapper">
-                        <input id="feedback-deactivate-feedback-couldnt_get_the_plugin_to_work" class="feedback-input"
+                        <input id="feedback-deactivate-boilerplate-couldnt_get_the_plugin_to_work" class="feedback-input"
                                type="radio" name="reason_key" value="couldnt_get_the_plugin_to_work">
-                        <label for="feedback-deactivate-feedback-couldnt_get_the_plugin_to_work" class="feedback-label">I
+                        <label for="feedback-deactivate-boilerplate-couldnt_get_the_plugin_to_work" class="feedback-label">I
                             couldn't get the plugin to work</label>
                     </div>
                     <div class="feedback-input-wrapper">
-                        <input id="feedback-deactivate-feedback-temporary_deactivation" class="feedback-input"
+                        <input id="feedback-deactivate-boilerplate-temporary_deactivation" class="feedback-input"
                                type="radio" name="reason_key" value="temporary_deactivation">
-                        <label for="feedback-deactivate-feedback-temporary_deactivation" class="feedback-label">It's a
+                        <label for="feedback-deactivate-boilerplate-temporary_deactivation" class="feedback-label">It's a
                             temporary deactivation</label>
                     </div>
 
