@@ -3,7 +3,7 @@
  * @wordpress-plugin
  * Plugin Name:       Cpt Boilerplate
  * Plugin URI:        https://wordpress.org/support/plugin/wp-plugin-boilerplate-react-with-mix
- * Description:       Cpt int
+ * Description:       Cpt Boilerplate
  * Version:           0.0.1
  * Author:            Boilerplate
  * Author URI:        https://boilerplate.com/

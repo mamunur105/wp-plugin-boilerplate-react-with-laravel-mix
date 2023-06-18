@@ -352,7 +352,7 @@ class Review {
                 </p>
                 <textarea id="deactivation-feedback" rows="4" cols="40"
                           placeholder=" Write something here. How can we improve the plugin?"></textarea>
-                <p style="margin: 0 0 15px 0;font-size: 16px;">Your suggestion is important to us.</p>
+                <p style="margin: 0;font-size: 16px;">Your suggestion is important to us.</p>
             </div>
         </div>
 		<?php
@@ -509,56 +509,60 @@ class Review {
 		?>
         <script>
             jQuery(document).ready(function ($) {
-                // Open the deactivation dialog when the 'Deactivate' link is clicked
-                $('.deactivate a').on('click', function (e) {
-                    e.preventDefault();
-                    openDeactivationDialog();
-                });
 
-                // Open the deactivation dialog
-                function openDeactivationDialog() {
+                // Open the deactivation dialog when the 'Deactivate' link is clicked
+                $('.deactivate #deactivate-cpt-boilerplate').on('click', function (e) {
+                    e.preventDefault();
+                    var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
                     $('#deactivation-dialog').dialog({
                         modal: true,
                         width: 500,
                         buttons: {
                             Submit: function () {
                                 submitFeedback();
+                                window.location.href = href;
                             },
                             Cancel: function () {
                                 $(this).dialog('close');
+                                window.location.href = href;
                             }
                         }
                     });
                     // Customize the button text
                     $('.ui-dialog-buttonpane button:contains("Submit")').text('Submit & Deactivate');
                     $('.ui-dialog-buttonpane button:contains("Cancel")').text('Skip & Deactivate');
-                }
+                });
 
                 // Submit the feedback
                 function submitFeedback() {
                     var reasons = $('#deactivation-dialog input[type="radio"]:checked').val();
                     var feedback = $('#deactivation-feedback').val();
-
                     var better_plugin = $('#deactivation-dialog .modal-content input[name="reason_found_a_better_plugin"]').val();
                     // Perform AJAX request to submit feedback
                     $.ajax({
-                        url: 'https://api.example.com/endpoint',
+                        url: 'https://www.wptinysolutions.com/wp-json/TinySolutions/pluginSurvey/v1/Survey/appendToSheet',
                         method: 'GET',
                         dataType: 'json',
                         data: {
-                            action: 'submit_deactivation_feedback',
-                            reasons: reasons,
-                            feedback: feedback,
+                            website: '<?php echo esc_url( home_url() )?>',
+                            reasons: reasons ? reasons : '',
                             better_plugin: better_plugin,
+                            feedback: feedback,
+                            wpplugin: 'plugin-boilerplate',
                         },
                         success: function (response) {
-                            // Handle the response
-                            // You can show a success message or perform any additional actions
-                            // For example:
-                            alert('Thank you for your feedback!');
+                            if( response.success ){
+                                console.log( 'Success');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle the error response
+                            console.error( 'Error', error);
+                        },
+                        complete: function(xhr, status) {
                             $('#deactivation-dialog').dialog('close');
-                            location.reload();
                         }
+
                     });
                 }
             });
