@@ -316,6 +316,13 @@ class Review {
             <!-- Modal content -->
             <div class="modal-content">
                 <div id="feedback-form-body-<?php echo CPTINIT_TEXT_DOMAIN; ?>">
+
+                    <div class="feedback-input-wrapper">
+                        <input id="feedback-deactivate-<?php echo CPTINIT_TEXT_DOMAIN; ?>-bug_issue_detected" class="feedback-input"
+                               type="radio" name="reason_key" value="bug_issue_detected">
+                        <label for="feedback-deactivate-<?php echo CPTINIT_TEXT_DOMAIN; ?>-bug_issue_detected" class="feedback-label">Bug Or Issue detected.</label>
+                    </div>
+
                     <div class="feedback-input-wrapper">
                         <input id="feedback-deactivate-<?php echo CPTINIT_TEXT_DOMAIN; ?>-no_longer_needed" class="feedback-input" type="radio"
                                name="reason_key" value="no_longer_needed">
@@ -342,12 +349,6 @@ class Review {
                                type="radio" name="reason_key" value="temporary_deactivation">
                         <label for="feedback-deactivate-<?php echo CPTINIT_TEXT_DOMAIN; ?>-temporary_deactivation" class="feedback-label">It's a
                             temporary deactivation</label>
-                    </div>
-
-                    <div class="feedback-input-wrapper">
-                        <input id="feedback-deactivate-<?php echo CPTINIT_TEXT_DOMAIN; ?>-bug_issue_detected" class="feedback-input"
-                               type="radio" name="reason_key" value="bug_issue_detected">
-                        <label for="feedback-deactivate-<?php echo CPTINIT_TEXT_DOMAIN; ?>-bug_issue_detected" class="feedback-label">Bug Or Issue detected.</label>
                     </div>
 
                 </div>
@@ -424,14 +425,17 @@ class Review {
                 padding: 0;
             }
 
-            div#deactivation-dialog-<?php echo CPTINIT_TEXT_DOMAIN; ?> .feedback-label {
+            #deactivation-dialog-<?php echo CPTINIT_TEXT_DOMAIN ; ?> .feedback-label,
+            div#deactivation-dialog-<?php echo CPTINIT_TEXT_DOMAIN ; ?> p{
+                font-weight: 500;
+            }
+            #deactivation-dialog-<?php echo CPTINIT_TEXT_DOMAIN ; ?> .feedback-label {
                 font-size: 15px;
-                font-weight: 500;
             }
-            div#deactivation-dialog-<?php echo CPTINIT_TEXT_DOMAIN; ?> p{
+            div#deactivation-dialog-<?php echo CPTINIT_TEXT_DOMAIN ; ?> p{
                 font-size: 16px;
-                font-weight: 500;
             }
+
             #deactivation-dialog-<?php echo CPTINIT_TEXT_DOMAIN; ?> .modal-content > * {
                 width: 100%;
                 padding: 10px 0 2px;
