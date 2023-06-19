@@ -356,7 +356,7 @@ class Review {
                     Please let us know about any issues you are facing with the plugin.
                     How can we improve the plugin?
                 </p>
-                <textarea id="deactivation-feedback" rows="4" cols="40"
+                <textarea id="deactivation-feedback-<?php echo $text_domain; ?>" rows="4" cols="40"
                           placeholder=" Write something here. How can we improve the plugin?"></textarea>
                 <p style="margin: 0;">
                     Your satisfaction is our utmost inspiration. Thank you for your feedback.
@@ -561,7 +561,7 @@ class Review {
                 function submitFeedback() {
                     var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
                     var reasons = $('#deactivation-dialog-<?php echo $text_domain; ?> input[type="radio"]:checked').val();
-                    var feedback = $('#deactivation-feedback').val();
+                    var feedback = $('#deactivation-feedback-<?php echo $text_domain; ?>').val();
                     var better_plugin = $('#deactivation-dialog-<?php echo $text_domain; ?> .modal-content input[name="reason_found_a_better_plugin"]').val();
                     // Perform AJAX request to submit feedback
                     if( ! reasons && ! feedback && ! better_plugin ){
