@@ -21,8 +21,8 @@ class Review {
 	private function __construct() {
 		add_action( 'admin_init', [ __CLASS__, 'boilerplate_check_installation_time' ] );
 		add_action( 'admin_init', [ __CLASS__, 'boilerplate_spare_me' ], 5 );
-        if( false ){ // Remove the functionality if no longer need.
-		    add_action( 'admin_footer', [ __CLASS__, 'deactivation_popup' ], 99 );
+        if( false ){
+		    add_action( 'admin_footer', [ __CLASS__, 'deactivation_popup' ], 99 ); // Remove the hooks if no longer need.
         }
 	}
 
@@ -297,7 +297,6 @@ class Review {
 		}
 	}
 
-
 	// Servay
 	/***
 	 * @param $mimes
@@ -338,6 +337,7 @@ class Review {
                         <label for="feedback-deactivate-<?php echo $text_domain; ?>-couldnt_get_the_plugin_to_work" class="feedback-label">I
                             couldn't get the plugin to work</label>
                     </div>
+
                     <div class="feedback-input-wrapper">
                         <input id="feedback-deactivate-<?php echo $text_domain; ?>-temporary_deactivation" class="feedback-input"
                                type="radio" name="reason_key" value="temporary_deactivation">
@@ -345,16 +345,22 @@ class Review {
                             temporary deactivation</label>
                     </div>
 
+                    <div class="feedback-input-wrapper">
+                        <input id="feedback-deactivate-<?php echo $text_domain; ?>-bug_issue_detected" class="feedback-input"
+                               type="radio" name="reason_key" value="bug_issue_detected">
+                        <label for="feedback-deactivate-<?php echo $text_domain; ?>-bug_issue_detected" class="feedback-label">Bug Or Issue detected.</label>
+                    </div>
+
                 </div>
-                <p style="margin: 0; font-size: 16px;">
+                <p style="margin: 0 0 15px 0;">
                     Please let us know about any issues you are facing with the plugin.
-                </p>
-                <p style="margin: 0 0 15px 0;font-size: 16px;">
                     How can we improve the plugin?
                 </p>
                 <textarea id="deactivation-feedback" rows="4" cols="40"
                           placeholder=" Write something here. How can we improve the plugin?"></textarea>
-                <p style="margin: 0;font-size: 16px;">Your suggestion is important to us.</p>
+                <p style="margin: 0;">
+                    Your satisfaction is our utmost inspiration. Thank you for your feedback.
+                </p>
             </div>
         </div>
 		<?php
@@ -418,6 +424,14 @@ class Review {
                 padding: 0;
             }
 
+            div#deactivation-dialog .feedback-label {
+                font-size: 15px;
+                font-weight: 500;
+            }
+            div#deactivation-dialog p{
+                font-size: 16px;
+                font-weight: 500;
+            }
             #deactivation-dialog .modal-content > * {
                 width: 100%;
                 padding: 10px 0 2px;
@@ -519,8 +533,8 @@ class Review {
                     var given = localRetrieveData("feedback-given");
                     localStorage.removeItem( "feedback-given" );
                     if( 'given' === given ){
-                       window.location.href = href;
-                       return;
+                      // window.location.href = href;
+                      // return;
                     }
                     $('#deactivation-dialog').dialog({
                         modal: true,
@@ -536,12 +550,13 @@ class Review {
                         }
                     });
                     // Customize the button text
-                    $('.ui-dialog-buttonpane button:contains("Submit")').text('Submit & Deactivate');
+                    $('.ui-dialog-buttonpane button:contains("Submit")').text('Send Feedback & Deactivate');
                     $('.ui-dialog-buttonpane button:contains("Cancel")').text('Skip & Deactivate');
                 });
 
                 // Submit the feedback
                 function submitFeedback() {
+                    var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
                     var reasons = $('#deactivation-dialog input[type="radio"]:checked').val();
                     var feedback = $('#deactivation-feedback').val();
                     var better_plugin = $('#deactivation-dialog .modal-content input[name="reason_found_a_better_plugin"]').val();
@@ -549,7 +564,11 @@ class Review {
                     if( ! reasons && ! feedback && ! better_plugin ){
                         return;
                     }
-                    var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
+
+                    if( 'temporary_deactivation' == reasons && ! feedback ){
+                        window.location.href = href;
+                    }
+
 
                     $.ajax({
                         url: 'http://woo-cpt.local/wp-json/TinySolutions/pluginSurvey/v1/Survey/appendToSheet',
@@ -574,7 +593,7 @@ class Review {
                         },
                         complete: function(xhr, status) {
                             $('#deactivation-dialog').dialog('close');
-                            window.location.href = href;
+                           window.location.href = href;
                         }
 
                     });
