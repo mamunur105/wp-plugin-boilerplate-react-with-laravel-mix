@@ -31,6 +31,8 @@ define( 'CPTINIT_URL', plugins_url( '', CPTINIT_FILE ) );
 
 define( 'CPTINIT_ABSPATH', dirname( CPTINIT_FILE ) );
 
+define( 'CPTINIT_TEXT_DOMAIN', 'boilerplate' );
+
 /**
  * App Init.
  */
