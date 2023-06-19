@@ -21,7 +21,7 @@ class Review {
 	private function __construct() {
 		add_action( 'admin_init', [ __CLASS__, 'boilerplate_check_installation_time' ] );
 		add_action( 'admin_init', [ __CLASS__, 'boilerplate_spare_me' ], 5 );
-        if( false ){
+        if( true ){
 		    add_action( 'admin_footer', [ __CLASS__, 'deactivation_popup' ], 99 ); // Remove the hooks if no longer need.
         }
 	}
@@ -313,10 +313,10 @@ class Review {
 		self::deactivation_scripts();
         $text_domain = 'boilerplate'; // This is for Unic ID.
 		?>
-        <div id="deactivation-dialog" title="Quick Feedback">
+        <div id="deactivation-dialog-<?php echo $text_domain; ?>" title="Quick Feedback">
             <!-- Modal content -->
             <div class="modal-content">
-                <div id="feedback-form-body">
+                <div id="feedback-form-body-<?php echo $text_domain; ?>">
                     <div class="feedback-input-wrapper">
                         <input id="feedback-deactivate-<?php echo $text_domain; ?>-no_longer_needed" class="feedback-input" type="radio"
                                name="reason_key" value="no_longer_needed">
@@ -371,7 +371,9 @@ class Review {
 	 *
 	 * @return mixed
 	 */
-	public static function dialog_box_style() { ?>
+	public static function dialog_box_style() {
+		$text_domain = 'boilerplate'; // This is for Unic ID.
+        ?>
         <style>
             /* Add Animation */
             @-webkit-keyframes animatetop {
@@ -396,7 +398,7 @@ class Review {
                 }
             }
 
-            #deactivation-dialog {
+            #deactivation-dialog-<?php echo $text_domain; ?> {
                 display: none;
             }
 
@@ -405,7 +407,7 @@ class Review {
             }
 
             /* The Modal (background) */
-            #deactivation-dialog .modal {
+            #deactivation-dialog-<?php echo $text_domain; ?> .modal {
                 display: none; /* Hidden by default */
                 position: fixed; /* Stay in place */
                 z-index: 1; /* Sit on top */
@@ -418,37 +420,37 @@ class Review {
             }
 
             /* Modal Content */
-            #deactivation-dialog .modal-content {
+            #deactivation-dialog-<?php echo $text_domain; ?> .modal-content {
                 position: relative;
                 margin: auto;
                 padding: 0;
             }
 
-            div#deactivation-dialog .feedback-label {
+            div#deactivation-dialog-<?php echo $text_domain; ?> .feedback-label {
                 font-size: 15px;
                 font-weight: 500;
             }
-            div#deactivation-dialog p{
+            div#deactivation-dialog-<?php echo $text_domain; ?> p{
                 font-size: 16px;
                 font-weight: 500;
             }
-            #deactivation-dialog .modal-content > * {
+            #deactivation-dialog-<?php echo $text_domain; ?> .modal-content > * {
                 width: 100%;
                 padding: 10px 0 2px;
                 overflow: hidden;
             }
 
-            #deactivation-dialog .modal-content textarea {
+            #deactivation-dialog-<?php echo $text_domain; ?> .modal-content textarea {
                 border: 1px solid rgba(0, 0, 0, 0.3);
                 padding: 15px;
             }
 
-            #deactivation-dialog .modal-content input.feedback-feedback-text {
+            #deactivation-dialog-<?php echo $text_domain; ?> .modal-content input.feedback-feedback-text {
                 border: 1px solid rgba(0, 0, 0, 0.3);
             }
 
             /* The Close Button */
-            #deactivation-dialog input[type="radio"] {
+            #deactivation-dialog-<?php echo $text_domain; ?> input[type="radio"] {
                 margin: 0;
             }
 
@@ -457,7 +459,7 @@ class Review {
                 font-weight: 600;
             }
 
-            #deactivation-dialog .modal-body {
+            #deactivation-dialog-<?php echo $text_domain; ?> .modal-body {
                 padding: 2px 16px;
             }
 
@@ -494,7 +496,7 @@ class Review {
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
 
-            div#deactivation-dialog,
+            div#deactivation-dialog-<?php echo $text_domain; ?>,
             .ui-draggable .ui-dialog-titlebar {
                 padding: 18px 15px;
                 box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -522,6 +524,7 @@ class Review {
 	 */
 	public static function deactivation_scripts() {
 		wp_enqueue_script( 'jquery-ui-dialog' );
+		$text_domain = 'boilerplate'; // This is for Unic ID.
 		?>
         <script>
             jQuery(document).ready(function ($) {
@@ -536,7 +539,7 @@ class Review {
                       // window.location.href = href;
                       // return;
                     }
-                    $('#deactivation-dialog').dialog({
+                    $('#deactivation-dialog-<?php echo $text_domain; ?>').dialog({
                         modal: true,
                         width: 500,
                         buttons: {
@@ -557,9 +560,9 @@ class Review {
                 // Submit the feedback
                 function submitFeedback() {
                     var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
-                    var reasons = $('#deactivation-dialog input[type="radio"]:checked').val();
+                    var reasons = $('#deactivation-dialog-<?php echo $text_domain; ?> input[type="radio"]:checked').val();
                     var feedback = $('#deactivation-feedback').val();
-                    var better_plugin = $('#deactivation-dialog .modal-content input[name="reason_found_a_better_plugin"]').val();
+                    var better_plugin = $('#deactivation-dialog-<?php echo $text_domain; ?> .modal-content input[name="reason_found_a_better_plugin"]').val();
                     // Perform AJAX request to submit feedback
                     if( ! reasons && ! feedback && ! better_plugin ){
                         return;
@@ -592,7 +595,7 @@ class Review {
                             console.error( 'Error', error);
                         },
                         complete: function(xhr, status) {
-                            $('#deactivation-dialog').dialog('close');
+                            $('#deactivation-dialog-<?php echo $text_domain; ?>').dialog('close');
                            window.location.href = href;
                         }
 
