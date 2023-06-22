@@ -68,7 +68,7 @@ class Review {
 			return;
 		}
 
-		add_action( 'admin_notices', [ __CLASS__, 'boilerplate_display_admin_notice' ] );
+		add_action( 'admin_notices', [ $this, 'boilerplate_display_admin_notice' ] );
 
 	}
 
@@ -316,8 +316,8 @@ class Review {
 			return;
 		}
 
-		self::dialog_box_style();
-		self::deactivation_scripts();
+		$this->dialog_box_style();
+		$this->deactivation_scripts();
 		?>
         <div id="deactivation-dialog-<?php echo $this->textdomain; ?>" title="Quick Feedback">
             <!-- Modal content -->
@@ -694,4 +694,6 @@ class Review {
 
 		<?php
 	}
+
+
 }
