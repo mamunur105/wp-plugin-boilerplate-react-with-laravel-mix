@@ -155,9 +155,9 @@ class Review {
 
 			$args = [ '_wpnonce' => wp_create_nonce( 'boilerplate_notice_nonce' ) ];
 
-			$dont_disturb = add_query_arg( $args + [ 'boilerplate_spare_me' => '1' ], self::boilerplate_current_admin_url() );
-			$remind_me    = add_query_arg( $args + [ 'boilerplate_remind_me' => '1' ], self::boilerplate_current_admin_url() );
-			$rated        = add_query_arg( $args + [ 'boilerplate_rated' => '1' ], self::boilerplate_current_admin_url() );
+			$dont_disturb = add_query_arg( $args + [ 'boilerplate_spare_me' => '1' ], $this->boilerplate_current_admin_url() );
+			$remind_me    = add_query_arg( $args + [ 'boilerplate_remind_me' => '1' ], $this->boilerplate_current_admin_url() );
+			$rated        = add_query_arg( $args + [ 'boilerplate_rated' => '1' ], $this->boilerplate_current_admin_url() );
 			$reviewurl    = 'https://wordpress.org/support/plugin/media-library-tools/reviews/?filter=5#new-post';
             $plugin_name = 'Our Plugin';
 			?>
