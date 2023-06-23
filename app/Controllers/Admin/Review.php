@@ -519,11 +519,21 @@ class Review {
                 color: #fff;
             }
 
-            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] {
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-dialog-buttonset{
                 background-color: #fefefe;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                box-shadow: none;
                 z-index: 99;
             }
+
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-dialog-buttonpane ,
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-widget-content {
+                border: 0;
+            }
+
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-resizable-handle {
+                display: none;
+            }
+
 
             div#deactivation-dialog-<?php echo $this->textdomain; ?>,
             .ui-draggable .ui-dialog-titlebar {
