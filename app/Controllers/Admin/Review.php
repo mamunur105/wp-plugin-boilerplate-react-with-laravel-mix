@@ -560,6 +560,26 @@ class Review {
                 z-index: 9;
                 background-color: rgba(0, 0, 0, 0.5);
             }
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] {
+                background-color: #fefefe;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                z-index: 99;
+            }
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-dialog-buttonset{
+                background-color: #fefefe;
+                box-shadow: none;
+                z-index: 99;
+            }
+
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-dialog-buttonpane ,
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-widget-content {
+                border: 0;
+            }
+
+            .ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-resizable-handle {
+                display: none !important;
+            }
+
 
         </style>
 
