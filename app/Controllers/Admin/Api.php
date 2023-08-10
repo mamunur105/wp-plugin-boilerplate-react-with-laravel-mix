@@ -14,11 +14,17 @@ class Api {
 	use SingletonTrait;
 
 	/**
+	 * @var string
+	 */
+	private $namespacev1     = 'TinySolutions/boilerplate/v1';
+	/**
+	 * @var string
+	 */
+	private $resource_name = '/boilerplate';
+	/**
 	 * Construct
 	 */
 	private function __construct() {
-		$this->namespacev1     = 'TinySolutions/boilerplate/v1';
-		$this->resource_name = '/boilerplate';
 		add_action( 'rest_api_init', [ $this, 'register_routes' ] );
 	}
 
