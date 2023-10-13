@@ -591,9 +591,8 @@ class Review {
                 $('.deactivate #deactivate-cpt-boilerplate').on('click', function (e) {
                     e.preventDefault();
                     var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
-
-
-                    $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?>').dialog({
+                    $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?> .modal-content input[name="reason_found_a_better_plugin"]').hide();
+                    var dialogbox = $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?>').dialog({
                         modal: true,
                         width: 500,
                         show: {
@@ -615,6 +614,24 @@ class Review {
                             }
                         }
                     });
+
+                    // Close the dialog when clicking outside of it
+                    dialogbox.on('change', 'input[type="radio"]', function (event) {
+                        var reasons = $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?> input[type="radio"]:checked').val();
+                        if( 'found_a_better_plugin' === reasons ){
+                            $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?> .modal-content input[name="reason_found_a_better_plugin"]').show();
+                        } else {
+                            $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?> .modal-content input[name="reason_found_a_better_plugin"]').hide();
+                        }
+                    });
+
+                    // Close the dialog when clicking outside of it
+                    $(document).on('click', '.ui-widget-overlay.ui-front', function (event) {
+                        if ($(event.target).closest(dialogbox.parent()).length === 0) {
+                            dialogbox.dialog('close');
+                        }
+                    });
+
                     // Customize the button text
                     $('.ui-dialog-buttonpane button:contains("Submit")').text('Send Feedback & Deactivate');
                     $('.ui-dialog-buttonpane button:contains("Cancel")').text('Skip & Deactivate');
