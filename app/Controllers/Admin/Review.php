@@ -159,7 +159,7 @@ class Review {
 			$remind_me    = add_query_arg( $args + [ 'boilerplate_remind_me' => '1' ], $this->boilerplate_current_admin_url() );
 			$rated        = add_query_arg( $args + [ 'boilerplate_rated' => '1' ], $this->boilerplate_current_admin_url() );
 			$reviewurl    = 'https://wordpress.org/support/plugin/boilerplate/reviews/?filter=5#new-post';
-            $plugin_name = 'Our Plugin';
+            $plugin_name = 'Cpt Boilerplate';
 			?>
             <div class="notice boilerplate-review-notice boilerplate-review-notice--extended">
                 <div class="boilerplate-review-notice_content">
@@ -591,13 +591,8 @@ class Review {
                 $('.deactivate #deactivate-cpt-boilerplate').on('click', function (e) {
                     e.preventDefault();
                     var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
-                    var given = localRetrieveData("feedback-given");
 
-                    // If set for limited time.
-                    if ('given' === given) {
-                        // window.location.href = href;
-                        // return;
-                    }
+
                     $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?>').dialog({
                         modal: true,
                         width: 500,
@@ -656,10 +651,6 @@ class Review {
                             wpplugin: 'plugin-boilerplate',
                         },
                         success: function (response) {
-                            if (response.success) {
-                                console.log('Success');
-                                localStoreData("feedback-given", 'given');
-                            }
                         },
                         error: function (xhr, status, error) {
                             // Handle the error response
@@ -671,41 +662,6 @@ class Review {
                         }
 
                     });
-                }
-
-                // Store data in local storage with an expiration time of 1 hour
-                function localStoreData(key, value) {
-                    // Calculate the expiration time in milliseconds (1 hour = 60 minutes * 60 seconds * 1000 milliseconds)
-                    var expirationTime = Date.now() + (60 * 60 * 1000);
-
-                    // Create an object to store the data and expiration time
-                    var dataObject = {
-                        value: value,
-                        expirationTime: expirationTime
-                    };
-
-                    // Store the object in local storage
-                    localStorage.setItem(key, JSON.stringify(dataObject));
-                }
-
-                // Retrieve data from local storage
-                function localRetrieveData(key) {
-                    // Get the stored data from local storage
-                    var data = localStorage.getItem(key);
-                    if (data) {
-                        // Parse the stored JSON data
-                        var dataObject = JSON.parse(data);
-                        // Check if the data has expired
-                        if (Date.now() <= dataObject.expirationTime) {
-                            // Return the stored value
-                            return dataObject.value;
-                        } else {
-                            // Data has expired, remove it from local storage
-                            localStorage.removeItem(key);
-                        }
-                    }
-                    // Return null if data doesn't exist or has expired
-                    return null;
                 }
 
             });
