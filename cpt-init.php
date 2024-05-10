@@ -1,8 +1,8 @@
 <?php
 /**
  * @wordpress-plugin
- * Plugin Name:       Cpt Boilerplate
- * Plugin URI:        https://wordpress.org/support/plugin/wp-plugin-boilerplate-react-with-mix
+ * Plugin Name:       Wp Plugin Boilerplate React With MIX
+ * Plugin URI:        https://wordpress.org/plugin/wp-plugin-boilerplate-react-with-mix
  * Description:       Cpt Boilerplate
  * Version:           0.0.1
  * Author:            Boilerplate
