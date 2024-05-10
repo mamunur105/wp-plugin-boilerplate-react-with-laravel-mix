@@ -4,7 +4,7 @@ import { Menu, Layout } from 'antd';
 
 import { SettingOutlined, ContactsOutlined } from '@ant-design/icons';
 
-import {useStateValue} from "../Utils/StateProvider";
+import useStore from "../Utils/StateProvider";
 
 import * as Types from "../Utils/actionType";
 
@@ -12,7 +12,12 @@ const { Header } = Layout;
 
 function MainHeader() {
 
-    const [stateValue, dispatch] = useStateValue();
+    const {
+        options,
+        generalData,
+        saveType,
+        dispatch
+    } = useStore(state => state);
 
     const menuItemStyle = {
         borderRadius: 0,
@@ -35,7 +40,7 @@ function MainHeader() {
                 }}
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={[stateValue.generalData.selectedMenu]}
+                defaultSelectedKeys={[generalData.selectedMenu]}
                 items={[
                     {
                         key: 'settings',
@@ -54,7 +59,7 @@ function MainHeader() {
                     dispatch({
                         type: Types.GENERAL_DATA,
                         generalData:{
-                            ...stateValue.generalData,
+                            ...generalData,
                             selectedMenu : key
                         }
                     });

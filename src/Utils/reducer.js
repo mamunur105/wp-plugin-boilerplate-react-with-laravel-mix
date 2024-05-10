@@ -16,17 +16,17 @@ export const initialState = {
 const reducer = (state, action) => {
 	switch (action.type) {
 		case Types.UPDATE_OPTIONS:
-			return {
-				...state,
-				saveType: action.saveType,
-				options: action.options,
-			};
+            return {
+                ...state,
+                saveType: action.saveType,
+                options: action.options,
+            };
 		case Types.GENERAL_DATA:
-			return {
-				...state,
-				generalData : action.generalData,
-			};
-		default:
+            return {
+                ...state,
+                generalData : action.generalData,
+            };
+        default:
 			return state;
 	}
 };

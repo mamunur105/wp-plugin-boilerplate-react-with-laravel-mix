@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useStateValue } from '../Utils/StateProvider';
+import useStore from '../Utils/StateProvider';
 
 import Loader from '../Utils/Loader';
 
@@ -23,7 +23,12 @@ import * as Types from "../Utils/actionType";
 
 function Settings() {
 
-    const [stateValue, dispatch] = useStateValue();
+    const {
+        options,
+        generalData,
+        saveType,
+        dispatch
+    } = useStore(state => state);
 
     return (
         <Layout style={{ position: 'relative' }}>
@@ -44,7 +49,7 @@ function Settings() {
                 }}
             >
 
-                { stateValue.options.isLoading ? <Loader/> :
+                { options.isLoading ? <Loader/> :
                     <Content style={{
                         padding: '15px',
                         background: 'rgb(255 255 255 / 35%)',
@@ -60,12 +65,12 @@ function Settings() {
                                     (event) => dispatch({
                                         type: Types.UPDATE_OPTIONS,
                                         options : {
-                                            ...stateValue.options,
+                                            ...options,
                                             default_demo_text: event.target.value,
                                         }
                                     })
                                 }
-                                value={stateValue.options.default_demo_text}
+                                value={options.default_demo_text}
                             />
                             <Text
                                 type="secondary"
@@ -87,9 +92,9 @@ function Settings() {
                     right: '100px'
                 }}
                 onClick={ () => dispatch({
-                    ...stateValue,
                     type: Types.UPDATE_OPTIONS,
                     saveType: Types.UPDATE_OPTIONS,
+                    options
                 }) } >
                 Save Settings
             </Button>

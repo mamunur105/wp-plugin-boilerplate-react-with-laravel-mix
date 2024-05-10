@@ -1,11 +1,8 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import { create } from 'zustand'
+import { redux } from 'zustand/middleware'
+import reducer, { initialState } from './reducer';
 
-export const StateContext = createContext();
+export default create( redux( reducer, initialState ) );
 
-export const StateProvider = ({ reducer, initialState, children }) => (
-	<StateContext.Provider value={useReducer(reducer, initialState)}>
-		{children}
-	</StateContext.Provider>
-);
 
-export const useStateValue = () => useContext(StateContext);
+

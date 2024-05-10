@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useStateValue } from '../Utils/StateProvider';
+import useStore from '../Utils/StateProvider';
 
 import Loader from '../Utils/Loader';
 
@@ -20,7 +20,12 @@ const { Title, Paragraph  } = Typography;
 
 function NeedSupport() {
 
-    const [stateValue, dispatch] = useStateValue();
+    const {
+        options,
+        generalData,
+        saveType,
+        dispatch
+    } = useStore(state => state);
 
     return (
         <Layout style={{ position: 'relative' }}>
