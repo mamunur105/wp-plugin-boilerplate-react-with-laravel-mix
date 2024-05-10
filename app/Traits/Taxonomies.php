@@ -2,7 +2,7 @@
 namespace TinySolutions\boilerplate\Traits;
 
 trait Taxonomies {
-	
+
 	/**
 	 * init $post_type_name
 	 *
@@ -59,14 +59,14 @@ trait Taxonomies {
 				];
 				$labels          = wp_parse_args( $taxonomy_labels, $defaults_labels );
 				// Default arguments, overwritten with the given arguments.
-				$defaults_args = [
+				$defaults_args  = [
 					'public'            => true,
 					'show_ui'           => true,
 					'show_in_nav_menus' => true,
 					'hierarchical'      => true,
 					'_builtin'          => false,
 				];
-				$args          = wp_parse_args( $taxonomy_args, $defaults_args );
+				$args           = wp_parse_args( $taxonomy_args, $defaults_args );
 				$args['labels'] = $labels;
 				register_taxonomy( $taxonomy_name, $post_type_name, $args );
 			}

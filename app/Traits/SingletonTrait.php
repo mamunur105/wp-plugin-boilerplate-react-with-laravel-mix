@@ -36,7 +36,7 @@ trait SingletonTrait {
 	final public function __clone() {
 	}
 
-	// Prevent serialization of the instance
+	// Prevent serialization of the instance.
 	public function __sleep() {
 		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'boilerplate' ), '1.0' );
 		die();

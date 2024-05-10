@@ -131,6 +131,7 @@ abstract class ElementorWidgetBase extends Widget_Base {
 	 */
 	public function get_name() {
 		return $this->rtsb_base;
+        
 	}
 
 	/**
