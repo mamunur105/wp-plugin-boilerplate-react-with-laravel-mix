@@ -1,9 +1,9 @@
 <?php
 
-namespace TinySolutions\boilerplate\Register;
+namespace TinySolutions\MFWOO\Register;
 
-use TinySolutions\boilerplate\Abs\CustomPostType;
-use TinySolutions\boilerplate\Traits\Taxonomies;
+use TinySolutions\MFWOO\Abs\CustomPostType;
+use TinySolutions\MFWOO\Traits\Taxonomies;
 
 class Ninjagallery extends CustomPostType {
 
@@ -12,7 +12,7 @@ class Ninjagallery extends CustomPostType {
 	/**
 	 * Run post type and taxonomy
 	 *
-	 * @return Post type name And taxonomy init.
+	 * @return Post type name And taxonomy init
 	 */
 	public function initposttype() {
 		$this->register_post_type();

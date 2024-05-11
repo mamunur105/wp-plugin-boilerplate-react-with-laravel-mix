@@ -1,9 +1,9 @@
 <?php
 
-namespace TinySolutions\boilerplate\Controllers\Admin;
+namespace TinySolutions\MFWOO\Admin;
 
-use TinySolutions\boilerplate\Helpers\Fns;
-use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\MFWOO\Helpers\Fns;
+use TinySolutions\MFWOO\Traits\SingletonTrait;
 use WP_Error;
 
 class Api {

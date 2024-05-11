@@ -1,7 +1,8 @@
 <?php
-
-namespace TinySolutions\boilerplate\Abs;
-
+/**
+ *
+ */
+namespace TinySolutions\MFWOO\Abs;
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );

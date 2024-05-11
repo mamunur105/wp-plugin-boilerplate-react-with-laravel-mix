@@ -1,13 +1,13 @@
 <?php
 
-namespace TinySolutions\boilerplate\Controllers\Admin;
+namespace TinySolutions\MFWOO\Admin;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
     exit( 'This script cannot be accessed directly.' );
 }
 
-use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\MFWOO\Traits\SingletonTrait;
 
 /**
  * Sub menu class

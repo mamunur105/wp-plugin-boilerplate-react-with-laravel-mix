@@ -1,8 +1,8 @@
 <?php
 
-namespace TinySolutions\boilerplate\Controllers;
+namespace TinySolutions\MFWOO\Common;
 
-use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\MFWOO\Traits\SingletonTrait;
 
 // Do not allow directly accessing this file.
 if (!defined('ABSPATH')) {
@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 /**
  * AssetsController
  */
-class AssetsController
+class Assets
 {
     /**
      * Singleton
@@ -37,7 +37,7 @@ class AssetsController
      * Class Constructor
      */
     public function __construct() {
-        $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : CPTINIT_VERSION;
+        $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : MFWOO_VERSION;
         /**
          * Admin scripts.
          */
@@ -55,7 +55,7 @@ class AssetsController
         $scripts = [
             [
                 'handle' => 'boilerplate-settings',
-                'src' => boilerplate()->get_assets_uri('js/backend/admin-settings.js'),
+                'src' => mfwoo_main()->get_assets_uri('js/backend/admin-settings.js'),
                 'deps' => [],
                 'footer' => true,
             ]
@@ -81,7 +81,7 @@ class AssetsController
                     'adminUrl' => esc_url(admin_url()),
                     'restApiUrl' => esc_url_raw(rest_url()), // site_url(rest_get_url_prefix()),
                     'rest_nonce' => wp_create_nonce( 'wp_rest' ),
-                    boilerplate()->nonceId => wp_create_nonce(boilerplate()->nonceId),
+					mfwoo_main()->nonceId => wp_create_nonce(mfwoo_main()->nonceId),
                 ]
             );
 

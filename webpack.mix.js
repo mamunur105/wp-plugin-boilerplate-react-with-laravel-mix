@@ -23,7 +23,7 @@ if (process.env.npm_config_package) {
 		const copyTo = path.resolve(`${temDirectory}/${package_slug}`);
 		// Select All file then paste on list
 		let includes = [
-			"app",
+			"main",
 			"assets",
 			"languages",
 			"vendor",
@@ -66,10 +66,10 @@ if (
 		fs.ensureDir(languages, function (err) {
 			if (err) return console.error(err); // if file or folder does not exist
 			wpPot({
-				package: "WP Media Tools",
+				package: "Modules For Woocommerce",
 				bugReport: "",
 				src: "**/*.php",
-				domain: "tsmlt-media-tools",
+				domain: "mfwoo",
 				destFile: `languages/${package_slug}.pot`,
 			});
 		});

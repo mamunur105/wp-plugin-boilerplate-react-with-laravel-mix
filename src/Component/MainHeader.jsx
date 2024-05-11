@@ -17,7 +17,7 @@ function MainHeader() {
         generalData,
         saveType,
         dispatch
-    } = useStore(state => state);
+    } = useStore();
 
     const menuItemStyle = {
         borderRadius: 0,

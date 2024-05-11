@@ -5,19 +5,19 @@
  * @package TinySolutions\boilerplate
  */
 
-namespace TinySolutions\boilerplate\Controllers\Hooks;
+namespace TinySolutions\MFWOO\Hooks;
 
 defined( 'ABSPATH' ) || exit();
 
 /**
  * Main ActionHooks class.
  */
-class ActionHooks {
+class Ajax {
 	/**
 	 * Init Hooks.
 	 *
 	 * @return void
 	 */
-	public static function init_hooks() {}
-
+	public static function trigger() {}
+	
 }

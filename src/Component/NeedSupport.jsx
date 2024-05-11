@@ -25,7 +25,7 @@ function NeedSupport() {
         generalData,
         saveType,
         dispatch
-    } = useStore(state => state);
+    } = useStore();
 
     return (
         <Layout style={{ position: 'relative' }}>

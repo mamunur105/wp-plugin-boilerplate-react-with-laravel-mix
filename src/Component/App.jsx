@@ -20,7 +20,7 @@ function App() {
         generalData,
         saveType,
         dispatch
-    } = useStore(state => state);
+    } = useStore();
 
     const getTheOptins = async () => {
         const response = await getOptions();
