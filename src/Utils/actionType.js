@@ -1,3 +1,5 @@
 export const GENERAL_DATA = 'GENERAL_DATA';
 export const UPDATE_OPTIONS = 'UPDATE_OPTIONS';
 
+export const UPDATE_MODULES = 'UPDATE_MODULES';
+

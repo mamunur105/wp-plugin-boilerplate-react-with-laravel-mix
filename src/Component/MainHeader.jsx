@@ -43,14 +43,14 @@ function MainHeader() {
                 defaultSelectedKeys={[generalData.selectedMenu]}
                 items={[
                     {
-                        key: 'settings',
-                        label: 'Media Settings',
+                        key: 'modules',
+                        label: 'Modules',
                         icon: <SettingOutlined />,
                         style: menuItemStyle
                     },
                     {
                         key: 'needsupport',
-                        label: 'Need Support',
+                        label: 'Support',
                         icon: <ContactsOutlined />,
                         style: menuItemStyle,
                     }
@@ -63,7 +63,7 @@ function MainHeader() {
                             selectedMenu : key
                         }
                     });
-                    localStorage.setItem( "current_menu", key );
+                    localStorage.setItem( "mfwoo_current_menu", key );
                 } }
             />
         </Header>

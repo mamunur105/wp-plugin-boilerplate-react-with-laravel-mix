@@ -10,9 +10,10 @@ import {
 
 const { Sider } = Layout;
 
-import Settings from "./Settings";
+import Modules from "./Modules";
 import NeedSupport from "./NeedSupport";
 import MainHeader from "./MainHeader";
+import SettingsDrawer from "./SettingsDrawer";
 
 function App() {
     const {
@@ -72,9 +73,10 @@ function App() {
                 <MainHeader/>
             </Sider>
             <Layout className="layout" style={{ padding: '10px', overflowY: 'auto' }} >
-                { 'settings' === generalData.selectedMenu && <Settings/>  }
+                { 'modules' === generalData.selectedMenu && <Modules/>  }
                 { 'needsupport' === generalData.selectedMenu && <NeedSupport/> }
             </Layout>
+            <SettingsDrawer/>
         </Layout>
     );
 }

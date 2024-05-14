@@ -6,10 +6,11 @@ export const initialState = {
 	saveType: null,
 	options: {
 		isLoading: true,
+        modules: {},
 	},
 	generalData:{
 		isLoading: true,
-		selectedMenu: localStorage.getItem("current_menu") || 'settings',
+		selectedMenu: localStorage.getItem("mfwoo_current_menu") || 'modules',
 	},
 };
 
@@ -18,8 +19,15 @@ const reducer = (state, action) => {
 		case Types.UPDATE_OPTIONS:
             return {
                 ...state,
-                saveType: action.saveType,
                 options: action.options,
+            };
+        case Types.UPDATE_MODULES:
+            return {
+                ...state,
+                options: {
+                    ...state.options,
+                    modules: action.modules,
+                },
             };
 		case Types.GENERAL_DATA:
             return {
