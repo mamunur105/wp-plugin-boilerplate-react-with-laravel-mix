@@ -5,7 +5,7 @@
 import Axios from 'axios';
 import { notification } from 'antd';
 
-const apibaseUrl = `${mfwooParams.restApiUrl}TinySolutions/mfwoo/v1/mfwoo`;
+const apibaseUrl = `${boilerplateParams.restApiUrl}TinySolutions/boilerplate/v1/boilerplate`;
 
 /*
  * Create a Api object with Axios and
@@ -14,7 +14,7 @@ const apibaseUrl = `${mfwooParams.restApiUrl}TinySolutions/mfwoo/v1/mfwoo`;
 const Api = Axios.create({
     baseURL: apibaseUrl,
     headers: {
-        'X-WP-Nonce': mfwooParams.rest_nonce
+        'X-WP-Nonce': boilerplateParams.rest_nonce
     }
 });
 

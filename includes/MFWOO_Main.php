@@ -18,7 +18,7 @@ use TinySolutions\MFWOO\Admin\Dependencies;
 use TinySolutions\MFWOO\Common\Assets;
 use TinySolutions\MFWOO\Hooks\MainHooks;
 use TinySolutions\MFWOO\Admin\AdminMenu;
-use TinySolutions\MFWOO\Admin\Api;
+use TinySolutions\MFWOO\Common\Api;
 use TinySolutions\MFWOO\Admin\Review;
 
 

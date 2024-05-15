@@ -1,6 +1,6 @@
 <?php
 
-namespace TinySolutions\MFWOO\Admin;
+namespace TinySolutions\MFWOO\Common;
 
 use TinySolutions\MFWOO\Helpers\Fns;
 use TinySolutions\MFWOO\Traits\SingletonTrait;

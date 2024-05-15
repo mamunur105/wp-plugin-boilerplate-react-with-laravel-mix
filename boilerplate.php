@@ -1,8 +1,8 @@
 <?php
 /**
  * @wordpress-plugin
- * Plugin Name:       Modules For Woocommerce
- * Plugin URI:        https://wordpress.org/plugins/modules-for-woocommerce
+ * Plugin Name:       BoilerPlate
+ * Plugin URI:        #
  * Description:       Modules For Woocommerce
  * Version:           0.0.1
  * Author:            Boilerplate
