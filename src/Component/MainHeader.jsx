@@ -49,6 +49,12 @@ function MainHeader() {
                         style: menuItemStyle
                     },
                     {
+                        key: 'usefulPlugins',
+                        label: 'Useful Plugins',
+                        icon: <ContactsOutlined />,
+                        style: menuItemStyle,
+                    },
+                    {
                         key: 'needsupport',
                         label: 'Support',
                         icon: <ContactsOutlined />,

@@ -12,6 +12,7 @@ const { Sider } = Layout;
 
 import Modules from "./Modules";
 import NeedSupport from "./NeedSupport";
+import PluginList from "./PluginList";
 import MainHeader from "./MainHeader";
 import SettingsDrawer from "./SettingsDrawer";
 
@@ -74,7 +75,9 @@ function App() {
             </Sider>
             <Layout className="layout" style={{ padding: '10px', overflowY: 'auto' }} >
                 { 'modules' === generalData.selectedMenu && <Modules/>  }
+                { 'usefulPlugins' === generalData.selectedMenu && <PluginList/> }
                 { 'needsupport' === generalData.selectedMenu && <NeedSupport/> }
+
             </Layout>
             <SettingsDrawer/>
         </Layout>
