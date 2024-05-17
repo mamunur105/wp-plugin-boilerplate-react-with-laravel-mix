@@ -42,7 +42,7 @@ require_once MFWOO_PATH . 'vendor/autoload.php';
 /**
  * @return \TinySolutions\MFWOO\MFWOO_Main
  */
-function mfwoo_main() {
+function boilerplate_main() {
 	return TinySolutions\MFWOO\MFWOO_Main::instance();
 }
-mfwoo_main();
+boilerplate_main();

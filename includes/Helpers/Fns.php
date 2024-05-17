@@ -23,8 +23,8 @@ class Fns {
 	 * @return bool
 	 */
 	public static function verify_nonce() {
-		$nonce = isset( $_REQUEST[ mfwoo_main()->nonceId ] ) ? $_REQUEST[ mfwoo_main()->nonceId ] : null;
-		if ( wp_verify_nonce( $nonce, mfwoo_main()->nonceId ) ) {
+		$nonce = isset( $_REQUEST[ boilerplate_main()->nonceId ] ) ? $_REQUEST[ boilerplate_main()->nonceId ] : null;
+		if ( wp_verify_nonce( $nonce, boilerplate_main()->nonceId ) ) {
 			return true;
 		}
 

@@ -217,7 +217,7 @@ class Dependencies {
 								action: 'boilerplate_plugin_activation',
 								plugin_slug: plugin.slug ? plugin.slug : null,
 								activation_file: plugin.file_name,
-								boilerplate_wpnonce: '<?php echo wp_create_nonce( mfwoo_main()->nonceId ); ?>',
+								boilerplate_wpnonce: '<?php echo wp_create_nonce( boilerplate_main()->nonceId ); ?>',
 							},
 							type: 'POST',
 							beforeSend() {
