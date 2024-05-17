@@ -43,3 +43,6 @@ export const getOptions = async () => {
     return await Api.get(`/getoptions`);
 }
 
+export const getPluginList = async () => {
+    return await Api.get(`/getPluginList`);
+}
