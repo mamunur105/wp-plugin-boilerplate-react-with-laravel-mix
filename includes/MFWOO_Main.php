@@ -5,21 +5,21 @@
  * @package TinySolutions\boilerplate
  */
 
-namespace TinySolutions\MFWOO;
+namespace TinySolutions\boilerplate;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }
 
-use TinySolutions\MFWOO\Traits\SingletonTrait;
-use TinySolutions\MFWOO\Admin\Installation;
-use TinySolutions\MFWOO\Admin\Dependencies;
-use TinySolutions\MFWOO\Common\Assets;
-use TinySolutions\MFWOO\Hooks\MainHooks;
-use TinySolutions\MFWOO\Admin\AdminMenu;
-use TinySolutions\MFWOO\Common\Api;
-use TinySolutions\MFWOO\Admin\Review;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Admin\Installation;
+use TinySolutions\boilerplate\Admin\Dependencies;
+use TinySolutions\boilerplate\Common\Assets;
+use TinySolutions\boilerplate\Hooks\MainHooks;
+use TinySolutions\boilerplate\Admin\AdminMenu;
+use TinySolutions\boilerplate\Common\Api;
+use TinySolutions\boilerplate\Admin\Review;
 
 
 /**

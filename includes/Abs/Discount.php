@@ -2,7 +2,7 @@
 /**
  * Discount
  */
-namespace TinySolutions\MFWOO\Abs;
+namespace TinySolutions\boilerplate\Abs;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {

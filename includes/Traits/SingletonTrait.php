@@ -3,7 +3,7 @@
  *
  */
 
-namespace TinySolutions\MFWOO\Traits;
+namespace TinySolutions\boilerplate\Traits;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {

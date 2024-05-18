@@ -1,8 +1,8 @@
 <?php
 
-namespace TinySolutions\MFWOO\Admin;
+namespace TinySolutions\boilerplate\Admin;
 
-use TinySolutions\MFWOO\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 /**
  * Review class

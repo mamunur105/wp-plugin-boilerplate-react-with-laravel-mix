@@ -1,8 +1,8 @@
 <?php
 
-namespace TinySolutions\MFWOO\Common;
+namespace TinySolutions\boilerplate\Common;
 
-use TinySolutions\MFWOO\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 // Do not allow directly accessing this file.
 if (!defined('ABSPATH')) {

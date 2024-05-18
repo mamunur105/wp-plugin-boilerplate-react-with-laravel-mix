@@ -1,9 +1,9 @@
 <?php
 
-namespace TinySolutions\MFWOO\Admin;
+namespace TinySolutions\boilerplate\Admin;
 
-use TinySolutions\MFWOO\Traits\SingletonTrait;
-use TinySolutions\MFWOO\Helpers\Fns;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Helpers\Fns;
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );

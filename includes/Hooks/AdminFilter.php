@@ -5,9 +5,9 @@
  * @package TinySolutions\WM
  */
 
-namespace TinySolutions\MFWOO\Hooks;
+namespace TinySolutions\boilerplate\Hooks;
 
-use TinySolutions\MFWOO\Helpers\Fns;
+use TinySolutions\boilerplate\Helpers\Fns;
 
 defined( 'ABSPATH' ) || exit();
 

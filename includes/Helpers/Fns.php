@@ -5,7 +5,7 @@
  * @package  TinySolutions\boilerplate
  */
 
-namespace TinySolutions\MFWOO\Helpers;
+namespace TinySolutions\boilerplate\Helpers;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {

@@ -5,9 +5,9 @@
  * @package TinySolutions\boilerplate
  */
 
-namespace TinySolutions\MFWOO\Hooks;
+namespace TinySolutions\boilerplate\Hooks;
 
-use TinySolutions\MFWOO\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 defined( 'ABSPATH' ) || exit();
 

@@ -5,7 +5,7 @@
  * @package TinySolutions\boilerplate
  */
 
-namespace TinySolutions\MFWOO\Hooks;
+namespace TinySolutions\boilerplate\Hooks;
 
 defined( 'ABSPATH' ) || exit();
 

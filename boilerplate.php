@@ -40,9 +40,9 @@ define( 'MFWOO_PATH', plugin_dir_path( __FILE__ ) );
 require_once MFWOO_PATH . 'vendor/autoload.php';
 
 /**
- * @return \TinySolutions\MFWOO\MFWOO_Main
+ * @return \TinySolutions\boilerplate\MFWOO_Main
  */
 function boilerplate_main() {
-	return TinySolutions\MFWOO\MFWOO_Main::instance();
+	return TinySolutions\boilerplate\MFWOO_Main::instance();
 }
 boilerplate_main();
