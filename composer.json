@@ -8,7 +8,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "TinySolutions\\MFWOO\\": "includes"
+      "TinySolutions\\boilerplate\\": "includes"
     }
   },
   "description": ""

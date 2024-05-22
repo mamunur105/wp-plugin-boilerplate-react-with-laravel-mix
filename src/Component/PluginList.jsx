@@ -11,7 +11,10 @@ import {
 
 const { Title, Paragraph  } = Typography;
 
+const { Sider, Content } = Layout;
+
 import {getPluginList} from "../Utils/Data";
+import MainHeader from "./MainHeader";
 
 function PluginList() {
 
@@ -29,6 +32,10 @@ function PluginList() {
 
     { console.log( pluginList ) }
     return (
+        <>
+        <Sider style={{ borderRadius: '5px' }}>
+            <MainHeader/>
+        </Sider>
         <Layout style={{
             position: 'relative',
             height:'85vh',
@@ -67,10 +74,8 @@ function PluginList() {
                         </Card>
                     )) :  <Loader/>
             }
-
         </Layout>
-
-
+        </>
     );
 };
 

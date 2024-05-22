@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Link, useLocation} from "react-router-dom";
+
 import { Menu, Layout } from 'antd';
 
 import { SettingOutlined, ContactsOutlined } from '@ant-design/icons';
@@ -9,6 +11,7 @@ import useStore from "../Utils/StateProvider";
 import * as Types from "../Utils/actionType";
 
 const { Header } = Layout;
+
 
 function MainHeader() {
 
@@ -44,19 +47,19 @@ function MainHeader() {
                 items={[
                     {
                         key: 'modules',
-                        label: 'Modules',
+                        label: <Link to={`/`}> Modules </Link>,
                         icon: <SettingOutlined />,
                         style: menuItemStyle
                     },
                     {
                         key: 'usefulPlugins',
-                        label: 'Useful Plugins',
+                        label: <Link to={`/usefulPlugins`}> Useful Plugins </Link>,
                         icon: <ContactsOutlined />,
                         style: menuItemStyle,
                     },
                     {
                         key: 'needsupport',
-                        label: 'Support',
+                        label: <Link to={`/support`}> Support </Link>,
                         icon: <ContactsOutlined />,
                         style: menuItemStyle,
                     }
