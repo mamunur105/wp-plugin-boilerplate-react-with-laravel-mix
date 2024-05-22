@@ -80,16 +80,6 @@ function App() {
                     <Route path="*" element={<Navigate to="/" replace/>}/>
                 </Routes>
             </HashRouter>
-
-            {/*<Sider style={{ borderRadius: '5px' }}>*/}
-            {/*    <MainHeader/>*/}
-            {/*</Sider>*/}
-            {/*<Layout className="layout" style={{ padding: '10px', overflowY: 'auto' }} >*/}
-            {/*    { 'modules' === generalData.selectedMenu && <Modules/>  }*/}
-            {/*    { 'usefulPlugins' === generalData.selectedMenu && <PluginList/> }*/}
-            {/*    { 'needsupport' === generalData.selectedMenu && <NeedSupport/> }*/}
-            {/*</Layout>*/}
-
             <SettingsDrawer/>
         </Layout>
     );

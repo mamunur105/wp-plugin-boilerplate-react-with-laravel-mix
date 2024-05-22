@@ -33,7 +33,7 @@ function NeedSupport() {
         <Sider style={{ borderRadius: '5px' }}>
             <MainHeader/>
         </Sider>
-        <Layout style={{ position: 'relative' }}>
+            <Layout style={{ padding: '10px', overflowY: 'auto', position: 'relative' }}>
             <Content style={{
                 padding: '150px',
                 background: 'rgb(255 255 255 / 35%)',

@@ -57,10 +57,15 @@ function PluginList() {
                                 alignSelf: 'flex-start'
                             }}
                             actions={[
-                                <Button type="link" size={`large`}>
-                                    <a className="thickbox open-plugin-details-modal"
-                                       href={plugin.TB_iframe}> Install </a>
-                                </Button>
+                                <a className="thickbox open-plugin-details-modal"
+                                   href={plugin.TB_iframe}>
+                                    <Button type="link" size={`large`}>
+                                        Install
+                                    </Button>
+                                </a>,
+                                <a target={`_blank`} href={`#`}>
+                                    <Button type="link" size={`large`}>  Visit Website </Button>
+                                </a>
                             ]}
                         >
                             <Meta

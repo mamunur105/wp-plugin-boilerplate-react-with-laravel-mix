@@ -41,7 +41,7 @@ function Modules() {
         <Sider style={{ borderRadius: '5px' }}>
             <MainHeader/>
         </Sider>
-        <Layout style={{ position: 'relative' }}>
+        <Layout style={{ padding: '10px', overflowY: 'auto', position: 'relative' }}>
             <Content style={{
                 padding: '15px',
                 background: 'rgb(255 255 255 / 35%)',
