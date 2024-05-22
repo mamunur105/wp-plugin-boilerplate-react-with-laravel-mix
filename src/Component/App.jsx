@@ -18,6 +18,7 @@ import NeedSupport from "./NeedSupport";
 import MainHeader from "./MainHeader";
 
 import { useStateValue } from "../Utils/StateProvider";
+import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
 
 function App() {
 
@@ -69,13 +70,17 @@ function App() {
                 boxShadow: '0 4px 40px rgb(0 0 0 / 5%)',
                 height: 'calc( 100vh - 110px )',
             }}>
-                <Sider style={{ borderRadius: '5px' }}>
-                    <MainHeader/>
-                </Sider>
-                <Layout className="layout" style={{ padding: '10px', overflowY: 'auto' }} >
-                    { 'settings' === stateValue.generalData.selectedMenu && <Settings/>  }
-                    { 'needsupport' === stateValue.generalData.selectedMenu && <NeedSupport/> }
-                </Layout>
+                {/*<Layout className="layout" style={{ padding: '10px', overflowY: 'auto' }} >*/}
+                {/*    { 'settings' === stateValue.generalData.selectedMenu && <Settings/>  }*/}
+                {/*    { 'needsupport' === stateValue.generalData.selectedMenu && <NeedSupport/> }*/}
+                {/*</Layout>*/}
+                <HashRouter>
+                    <Routes>
+                        <Route path="/" element={<Settings/>}/>
+                        <Route path="/support" element={<NeedSupport/>}/>
+                        <Route path="*" element={<Navigate to="/" replace/>}/>
+                    </Routes>
+                </HashRouter>
             </Layout>
     );
 }

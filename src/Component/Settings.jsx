@@ -15,17 +15,22 @@ import {
 
 const { TextArea } = Input;
 
-const { Content } = Layout;
+const { Sider, Content } = Layout;
 
 const { Title, Text } = Typography;
 
 import * as Types from "../Utils/actionType";
+import MainHeader from "./MainHeader";
 
 function Settings() {
 
     const [stateValue, dispatch] = useStateValue();
 
     return (
+        <>
+        <Sider style={{ borderRadius: '5px' }}>
+            <MainHeader/>
+        </Sider>
         <Layout style={{ position: 'relative' }}>
             <Form
                 labelCol={{
@@ -93,8 +98,7 @@ function Settings() {
                 }) } >
                 Save Settings
             </Button>
-        </Layout>
-
+        </Layout></>
     );
 };
 

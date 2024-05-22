@@ -2,6 +2,8 @@ import React from "react";
 
 import { Menu, Layout } from 'antd';
 
+import {Link, useLocation} from "react-router-dom";
+
 import { SettingOutlined, ContactsOutlined } from '@ant-design/icons';
 
 import {useStateValue} from "../Utils/StateProvider";
@@ -11,6 +13,7 @@ import * as Types from "../Utils/actionType";
 const { Header } = Layout;
 
 function MainHeader() {
+    //const {pathname} = useLocation();
 
     const [stateValue, dispatch] = useStateValue();
 
@@ -29,6 +32,14 @@ function MainHeader() {
                 margin: '10px',
                 background: 'rgba(255, 255, 255, 0.2)'
             }}/>
+            {/*<ul className='rtcl-fb-top-nav'>*/}
+            {/*    <li>*/}
+            {/*        <Link to={`/`}> Settings</Link>*/}
+            {/*    </li>*/}
+            {/*    <li>*/}
+            {/*        <Link to="/support">Support</Link>*/}
+            {/*    </li>*/}
+            {/*</ul>*/}
             <Menu
                 style={{
                     borderRadius: '0px',
@@ -39,13 +50,13 @@ function MainHeader() {
                 items={[
                     {
                         key: 'settings',
-                        label: 'Media Settings',
+                        label: <Link to={`/`}> Media Settings </Link>,
                         icon: <SettingOutlined />,
                         style: menuItemStyle
                     },
                     {
                         key: 'needsupport',
-                        label: 'Need Support',
+                        label: <Link to="/support">Need Support</Link>,
                         icon: <ContactsOutlined />,
                         style: menuItemStyle,
                     }
