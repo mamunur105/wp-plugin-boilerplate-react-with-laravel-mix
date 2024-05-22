@@ -15,6 +15,8 @@ const { Header } = Layout;
 
 function MainHeader() {
 
+    let { pathname } = useLocation();
+
     const {
         options,
         generalData,
@@ -26,7 +28,7 @@ function MainHeader() {
         borderRadius: 0,
         paddingInline: '10px',
     }
-
+    console.log( pathname )
     return (
 
         <Header className="header" style={{
@@ -43,37 +45,27 @@ function MainHeader() {
                 }}
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={[generalData.selectedMenu]}
+                defaultSelectedKeys={[ pathname ]}
                 items={[
                     {
-                        key: 'modules',
+                        key: '/',
                         label: <Link to={`/`}> Modules </Link>,
                         icon: <SettingOutlined />,
                         style: menuItemStyle
                     },
                     {
-                        key: 'usefulPlugins',
+                        key: '/usefulPlugins',
                         label: <Link to={`/usefulPlugins`}> Useful Plugins </Link>,
                         icon: <ContactsOutlined />,
                         style: menuItemStyle,
                     },
                     {
-                        key: 'needsupport',
+                        key: '/support',
                         label: <Link to={`/support`}> Support </Link>,
                         icon: <ContactsOutlined />,
                         style: menuItemStyle,
                     }
                 ]}
-                onSelect={ ({ item, key, keyPath, selectedKeys, domEvent }) => {
-                    dispatch({
-                        type: Types.GENERAL_DATA,
-                        generalData:{
-                            ...generalData,
-                            selectedMenu : key
-                        }
-                    });
-                    localStorage.setItem( "mfwoo_current_menu", key );
-                } }
             />
         </Header>
     );

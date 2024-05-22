@@ -10,7 +10,7 @@ export const initialState = {
 	},
 	generalData:{
 		isLoading: true,
-		selectedMenu: localStorage.getItem("mfwoo_current_menu") || 'modules',
+		selectedMenu: '/',
 	},
 };
 
