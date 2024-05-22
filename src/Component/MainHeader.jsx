@@ -13,7 +13,7 @@ import * as Types from "../Utils/actionType";
 const { Header } = Layout;
 
 function MainHeader() {
-    //const {pathname} = useLocation();
+    const {pathname} = useLocation();
 
     const [stateValue, dispatch] = useStateValue();
 
@@ -32,14 +32,6 @@ function MainHeader() {
                 margin: '10px',
                 background: 'rgba(255, 255, 255, 0.2)'
             }}/>
-            {/*<ul className='rtcl-fb-top-nav'>*/}
-            {/*    <li>*/}
-            {/*        <Link to={`/`}> Settings</Link>*/}
-            {/*    </li>*/}
-            {/*    <li>*/}
-            {/*        <Link to="/support">Support</Link>*/}
-            {/*    </li>*/}
-            {/*</ul>*/}
             <Menu
                 style={{
                     borderRadius: '0px',
