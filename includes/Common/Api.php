@@ -1,9 +1,9 @@
 <?php
 
-namespace TinySolutions\ANCENTER\Common;
+namespace TinySolutions\boilerplate\Common;
 
-use TinySolutions\ANCENTER\Helpers\Fns;
-use TinySolutions\ANCENTER\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Helpers\Fns;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 use WP_Error;
 
 /**

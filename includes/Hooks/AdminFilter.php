@@ -5,11 +5,11 @@
  * @package TinySolutions\WM
  */
 
-namespace TinySolutions\ANCENTER\Hooks;
+namespace TinySolutions\boilerplate\Hooks;
 
-use TinySolutions\ANCENTER\Common\Loader;
-use TinySolutions\ANCENTER\Helpers\Fns;
-use TinySolutions\ANCENTER\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Common\Loader;
+use TinySolutions\boilerplate\Helpers\Fns;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 defined( 'ABSPATH' ) || exit();
 

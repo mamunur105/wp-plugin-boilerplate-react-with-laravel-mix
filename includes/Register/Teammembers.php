@@ -1,8 +1,8 @@
 <?php
 
-namespace TinySolutions\ANCENTER\Register;
+namespace TinySolutions\boilerplate\Register;
 
-use TinySolutions\ANCENTER\Abs\CustomPostType;
+use TinySolutions\boilerplate\Abs\CustomPostType;
 
 class Teammembers extends CustomPostType {
 	public function initposttype() {

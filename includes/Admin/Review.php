@@ -1,9 +1,9 @@
 <?php
 
-namespace TinySolutions\ANCENTER\Admin;
+namespace TinySolutions\boilerplate\Admin;
 
-use TinySolutions\ANCENTER\Common\Loader;
-use TinySolutions\ANCENTER\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Common\Loader;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 /**
  * Review class

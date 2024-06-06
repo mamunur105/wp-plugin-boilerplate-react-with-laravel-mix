@@ -2,13 +2,13 @@
 /**
  * Main ActionHooks class.
  *
- * @package TinySolutions\ancenter
+ * @package TinySolutions\boilerplate
  */
 
-namespace TinySolutions\ANCENTER\Hooks;
+namespace TinySolutions\boilerplate\Hooks;
 
-use TinySolutions\ANCENTER\Common\Loader;
-use TinySolutions\ANCENTER\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Common\Loader;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 defined( 'ABSPATH' ) || exit();
 

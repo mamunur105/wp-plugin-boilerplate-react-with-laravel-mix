@@ -3,10 +3,10 @@
  *
  */
 
-namespace TinySolutions\ANCENTER\Traits;
+namespace TinySolutions\boilerplate\Traits;
 
 // Do not allow directly accessing this file.
-use TinySolutions\ANCENTER\Common\Loader;
+use TinySolutions\boilerplate\Common\Loader;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace TinySolutions\ANCENTER\Admin;
+namespace TinySolutions\boilerplate\Admin;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {

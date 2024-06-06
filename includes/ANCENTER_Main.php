@@ -2,25 +2,25 @@
 /**
  * Main initialization class.
  *
- * @package TinySolutions\ancenter
+ * @package TinySolutions\boilerplate
  */
 
-namespace TinySolutions\ANCENTER;
+namespace TinySolutions\boilerplate;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }
 
-use TinySolutions\ANCENTER\Common\Loader;
-use TinySolutions\ANCENTER\Traits\SingletonTrait;
-use TinySolutions\ANCENTER\Admin\Installation;
-use TinySolutions\ANCENTER\Admin\Dependencies;
-use TinySolutions\ANCENTER\Common\Assets;
-use TinySolutions\ANCENTER\Hooks\MainHooks;
-use TinySolutions\ANCENTER\Admin\AdminMenu;
-use TinySolutions\ANCENTER\Common\Api;
-use TinySolutions\ANCENTER\Admin\Review;
+use TinySolutions\boilerplate\Common\Loader;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Admin\Installation;
+use TinySolutions\boilerplate\Admin\Dependencies;
+use TinySolutions\boilerplate\Common\Assets;
+use TinySolutions\boilerplate\Hooks\MainHooks;
+use TinySolutions\boilerplate\Admin\AdminMenu;
+use TinySolutions\boilerplate\Common\Api;
+use TinySolutions\boilerplate\Admin\Review;
 
 /**
  * Main initialization class.

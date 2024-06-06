@@ -1,5 +1,5 @@
 {
-  "name": "tinysolutions/admin-notice-centralization",
+  "name": "tinysolutions/wp-plugin-boilerplate-react-with-mix",
   "authors": [
     {
       "name": "TinySolutions",
@@ -8,7 +8,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "TinySolutions\\ANCENTER\\": "includes"
+      "TinySolutions\\boilerplate\\": "includes"
     }
   },
   "description": ""

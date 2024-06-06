@@ -1,8 +1,8 @@
 <?php
 
-namespace TinySolutions\ANCENTER\Common;
+namespace TinySolutions\boilerplate\Common;
 
-use TinySolutions\ANCENTER\Traits\SingletonTrait;
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {

@@ -2,7 +2,7 @@
 /**
  *
  */
-namespace TinySolutions\ANCENTER\Common;
+namespace TinySolutions\boilerplate\Common;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {

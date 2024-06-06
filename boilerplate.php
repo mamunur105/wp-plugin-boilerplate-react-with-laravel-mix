@@ -15,7 +15,7 @@
  */
 
 // Do not allow directly accessing this file.
-use TinySolutions\ANCENTER\ANCENTER_Main;
+use TinySolutions\boilerplate\ANCENTER_Main;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
@@ -46,6 +46,6 @@ require_once ANCENTER_PATH . 'vendor/autoload.php';
  * @return ANCENTER_Main
  */
 function ancenter_main() {
-	return TinySolutions\ANCENTER\ANCENTER_Main::instance();
+	return TinySolutions\boilerplate\ANCENTER_Main::instance();
 }
 ancenter_main();
