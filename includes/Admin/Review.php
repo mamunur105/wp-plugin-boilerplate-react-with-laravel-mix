@@ -1,13 +1,19 @@
 <?php
 
-namespace TinySolutions\boilerplate\Admin;
+namespace TinySolutions\ANCENTER\Admin;
 
-use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\ANCENTER\Common\Loader;
+use TinySolutions\ANCENTER\Traits\SingletonTrait;
 
 /**
  * Review class
  */
 class Review {
+	/**
+	 * @var object
+	 */
+	protected $loader;
+
 	/**
 	 * Singleton
 	 */
@@ -18,18 +24,19 @@ class Review {
 	 *
 	 * @var string
 	 */
-	public string $textdomain = 'boilerplate';
+	public string $textdomain = 'ancenter';
 
 	/**
 	 * Init
 	 *
 	 * @return void
 	 */
-	private function __construct() {
-		add_action( 'admin_init', [ $this, 'boilerplate_check_installation_time' ] );
-		add_action( 'admin_init', [ $this, 'boilerplate_spare_me' ], 5 );
+	private function __construct( Loader $loader ) {
+		$this->loader = $loader;
+		$this->loader->add_action( 'admin_init', $this, 'ancenter_check_installation_time' );
+		$this->loader->add_action( 'admin_init', $this, 'ancenter_spare_me', 5 );
 		if ( true ) {
-			add_action( 'admin_footer', [ $this, 'deactivation_popup' ], 99 ); // Remove the hooks if no longer need.
+			$this->loader->add_action( 'admin_footer', $this, 'deactivation_popup', 99 ); // Remove the hooks if no longer need.
 		}
 	}
 
@@ -38,12 +45,12 @@ class Review {
 	 *
 	 * @return void
 	 */
-	public function boilerplate_check_installation_time() {
+	public function ancenter_check_installation_time() {
 
 		// Added Lines Start
-		$nobug = get_option( 'boilerplate_spare_me' );
+		$nobug = get_option( 'ancenter_spare_me' );
 
-		$rated = get_option( 'boilerplate_rated' );
+		$rated = get_option( 'ancenter_rated' );
 
 		if ( '1' == $nobug || 'yes' == $rated ) {
 			return;
@@ -51,11 +58,11 @@ class Review {
 
 		$now = strtotime( 'now' );
 
-		$install_date = get_option( 'boilerplate_plugin_activation_time' );
+		$install_date = get_option( 'ancenter_plugin_activation_time' );
 
 		$past_date = strtotime( '+10 days', $install_date );
 
-		$remind_time = get_option( 'boilerplate_remind_me' );
+		$remind_time = get_option( 'ancenter_remind_me' );
 
 		if ( ! $remind_time ) {
 			$remind_time = $install_date;
@@ -68,8 +75,8 @@ class Review {
 		if ( ! $now > $past_date || $now < $remind_due ) {
 			return;
 		}
-
-		add_action( 'admin_notices', [ $this, 'boilerplate_display_admin_notice' ] );
+		
+		$this->loader->add_action( 'admin_notices', $this, 'ancenter_display_admin_notice' );
 	}
 
 	/**
@@ -77,36 +84,36 @@ class Review {
 	 *
 	 * @return void
 	 */
-	public function boilerplate_spare_me() {
+	public function ancenter_spare_me() {
 
-		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'boilerplate_notice_nonce' ) ) {
+		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'ancenter_notice_nonce' ) ) {
 			return;
 		}
 
-		if ( isset( $_GET['boilerplate_spare_me'] ) && ! empty( $_GET['boilerplate_spare_me'] ) ) {
-			$spare_me = absint( $_GET['boilerplate_spare_me'] );
+		if ( isset( $_GET['ancenter_spare_me'] ) && ! empty( $_GET['ancenter_spare_me'] ) ) {
+			$spare_me = absint( $_GET['ancenter_spare_me'] );
 			if ( 1 == $spare_me ) {
-				update_option( 'boilerplate_spare_me', '1' );
+				update_option( 'ancenter_spare_me', '1' );
 			}
 		}
 
-		if ( isset( $_GET['boilerplate_remind_me'] ) && ! empty( $_GET['boilerplate_remind_me'] ) ) {
-			$remind_me = absint( $_GET['boilerplate_remind_me'] );
+		if ( isset( $_GET['ancenter_remind_me'] ) && ! empty( $_GET['ancenter_remind_me'] ) ) {
+			$remind_me = absint( $_GET['ancenter_remind_me'] );
 			if ( 1 == $remind_me ) {
 				$get_activation_time = strtotime( 'now' );
-				update_option( 'boilerplate_remind_me', $get_activation_time );
+				update_option( 'ancenter_remind_me', $get_activation_time );
 			}
 		}
 
-		if ( isset( $_GET['boilerplate_rated'] ) && ! empty( $_GET['boilerplate_rated'] ) ) {
-			$boilerplate_rated = absint( $_GET['boilerplate_rated'] );
-			if ( 1 == $boilerplate_rated ) {
-				update_option( 'boilerplate_rated', 'yes' );
+		if ( isset( $_GET['ancenter_rated'] ) && ! empty( $_GET['ancenter_rated'] ) ) {
+			$ancenter_rated = absint( $_GET['ancenter_rated'] );
+			if ( 1 == $ancenter_rated ) {
+				update_option( 'ancenter_rated', 'yes' );
 			}
 		}
 	}
 
-	protected function boilerplate_current_admin_url() {
+	protected function ancenter_current_admin_url() {
 		$uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 		$uri = preg_replace( '|^.*/wp-admin/|i', '', $uri );
 
@@ -121,9 +128,9 @@ class Review {
 				'wc_db_update',
 				'wc_db_update_nonce',
 				'wc-hide-notice',
-				'boilerplate_spare_me',
-				'boilerplate_remind_me',
-				'boilerplate_rated',
+				'ancenter_spare_me',
+				'ancenter_remind_me',
+				'ancenter_rated',
 			],
 			admin_url( $uri )
 		);
@@ -132,7 +139,7 @@ class Review {
 	/**
 	 * Display Admin Notice, asking for a review
 	 **/
-	public function boilerplate_display_admin_notice() {
+	public function ancenter_display_admin_notice() {
 		// WordPress global variable
 		global $pagenow;
 		$exclude = [
@@ -156,35 +163,35 @@ class Review {
 
 		if ( ! in_array( $pagenow, $exclude ) ) {
 
-			$args = [ '_wpnonce' => wp_create_nonce( 'boilerplate_notice_nonce' ) ];
+			$args = [ '_wpnonce' => wp_create_nonce( 'ancenter_notice_nonce' ) ];
 
-			$dont_disturb = add_query_arg( $args + [ 'boilerplate_spare_me' => '1' ], $this->boilerplate_current_admin_url() );
-			$remind_me    = add_query_arg( $args + [ 'boilerplate_remind_me' => '1' ], $this->boilerplate_current_admin_url() );
-			$rated        = add_query_arg( $args + [ 'boilerplate_rated' => '1' ], $this->boilerplate_current_admin_url() );
-			$reviewurl    = 'https://wordpress.org/support/plugin/boilerplate/reviews/?filter=5#new-post';
+			$dont_disturb = add_query_arg( $args + [ 'ancenter_spare_me' => '1' ], $this->ancenter_current_admin_url() );
+			$remind_me    = add_query_arg( $args + [ 'ancenter_remind_me' => '1' ], $this->ancenter_current_admin_url() );
+			$rated        = add_query_arg( $args + [ 'ancenter_rated' => '1' ], $this->ancenter_current_admin_url() );
+			$reviewurl    = 'https://wordpress.org/support/plugin/ancenter/reviews/?filter=5#new-post';
 			$plugin_name  = 'Modules For Woocommerce';
 			?>
-			<div class="notice boilerplate-review-notice boilerplate-review-notice--extended">
-				<div class="boilerplate-review-notice_content">
+			<div class="notice ancenter-review-notice ancenter-review-notice--extended">
+				<div class="ancenter-review-notice_content">
 					<h3>Enjoying "<?php echo $plugin_name; ?>"? </h3>
 					<p>Thank you for choosing "<string><?php echo $plugin_name; ?></string>". If you found our plugin useful, please consider giving us a 5-star rating on WordPress.org. Your feedback will motivate us to grow.</p>
-					<div class="boilerplate-review-notice_actions">
-						<a href="<?php echo esc_url( $reviewurl ); ?>" class="boilerplate-review-button boilerplate-review-button--cta" target="_blank"><span>⭐ Yes, You Deserve It!</span></a>
-						<a href="<?php echo esc_url( $rated ); ?>" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--outline"><span>😀 Already Rated!</span></a>
-						<a href="<?php echo esc_url( $remind_me ); ?>" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--outline"><span>🔔 Remind Me Later</span></a>
-                        <!-- <a href="--><?php //echo esc_url( $dont_disturb ); ?><!--" class="boilerplate-review-button boilerplate-review-button--cta boilerplate-review-button--error boilerplate-review-button--outline"><span>😐 No Thanks </span></a>-->
+					<div class="ancenter-review-notice_actions">
+						<a href="<?php echo esc_url( $reviewurl ); ?>" class="ancenter-review-button ancenter-review-button--cta" target="_blank"><span>⭐ Yes, You Deserve It!</span></a>
+						<a href="<?php echo esc_url( $rated ); ?>" class="ancenter-review-button ancenter-review-button--cta ancenter-review-button--outline"><span>😀 Already Rated!</span></a>
+						<a href="<?php echo esc_url( $remind_me ); ?>" class="ancenter-review-button ancenter-review-button--cta ancenter-review-button--outline"><span>🔔 Remind Me Later</span></a>
+						<!-- <a href="--><?php // echo esc_url( $dont_disturb ); ?><!--" class="ancenter-review-button ancenter-review-button--cta ancenter-review-button--error ancenter-review-button--outline"><span>😐 No Thanks </span></a>-->
 					</div>
 				</div>
 			</div>
 			<style>
-				.boilerplate-review-button--cta {
+				.ancenter-review-button--cta {
 					--e-button-context-color: #5d3dfd;
 					--e-button-context-color-dark: #5d3dfd;
 					--e-button-context-tint: rgb(75 47 157/4%);
 					--e-focus-color: rgb(75 47 157/40%);
 				}
 
-				.boilerplate-review-notice {
+				.ancenter-review-notice {
 					position: relative;
 					margin: 5px 20px 5px 2px;
 					border: 1px solid #ccd0d4;
@@ -194,11 +201,11 @@ class Review {
 					border-inline-start-width: 4px;
 				}
 
-				.boilerplate-review-notice.notice {
+				.ancenter-review-notice.notice {
 					padding: 0;
 				}
 
-				.boilerplate-review-notice:before {
+				.ancenter-review-notice:before {
 					position: absolute;
 					top: -1px;
 					bottom: -1px;
@@ -210,37 +217,37 @@ class Review {
 					content: "";
 				}
 
-				.boilerplate-review-notice_content {
+				.ancenter-review-notice_content {
 					padding: 20px;
 				}
 
-				.boilerplate-review-notice_actions > * + * {
+				.ancenter-review-notice_actions > * + * {
 					margin-inline-start: 8px;
 					-webkit-margin-start: 8px;
 					-moz-margin-start: 8px;
 				}
 
-				.boilerplate-review-notice p {
+				.ancenter-review-notice p {
 					margin: 0;
 					padding: 0;
 					line-height: 1.5;
 				}
 
-				p + .boilerplate-review-notice_actions {
+				p + .ancenter-review-notice_actions {
 					margin-top: 1rem;
 				}
 
-				.boilerplate-review-notice h3 {
+				.ancenter-review-notice h3 {
 					margin: 0;
 					font-size: 1.0625rem;
 					line-height: 1.2;
 				}
 
-				.boilerplate-review-notice h3 + p {
+				.ancenter-review-notice h3 + p {
 					margin-top: 8px;
 				}
 
-				.boilerplate-review-button {
+				.ancenter-review-button {
 					display: inline-block;
 					padding: 0.4375rem 0.75rem;
 					border: 0;
@@ -253,13 +260,13 @@ class Review {
 					white-space: nowrap;
 				}
 
-				.boilerplate-review-button:active {
+				.ancenter-review-button:active {
 					background: var(--e-button-context-color-dark);
 					color: #fff;
 					text-decoration: none;
 				}
 
-				.boilerplate-review-button:focus {
+				.ancenter-review-button:focus {
 					outline: 0;
 					background: var(--e-button-context-color-dark);
 					box-shadow: 0 0 0 2px var(--e-focus-color);
@@ -267,36 +274,36 @@ class Review {
 					text-decoration: none;
 				}
 
-				.boilerplate-review-button:hover {
+				.ancenter-review-button:hover {
 					background: var(--e-button-context-color-dark);
 					color: #fff;
 					text-decoration: none;
 				}
 
-				.boilerplate-review-button.focus {
+				.ancenter-review-button.focus {
 					outline: 0;
 					box-shadow: 0 0 0 2px var(--e-focus-color);
 				}
 
-				.boilerplate-review-button--error {
+				.ancenter-review-button--error {
 					--e-button-context-color: #682e36;
 					--e-button-context-color-dark: #ae2131;
 					--e-button-context-tint: rgba(215, 43, 63, 0.04);
 					--e-focus-color: rgba(215, 43, 63, 0.4);
 				}
 
-				.boilerplate-review-button.boilerplate-review-button--outline {
+				.ancenter-review-button.ancenter-review-button--outline {
 					border: 1px solid;
 					background: 0 0;
 					color: var(--e-button-context-color);
 				}
 
-				.boilerplate-review-button.boilerplate-review-button--outline:focus {
+				.ancenter-review-button.ancenter-review-button--outline:focus {
 					background: var(--e-button-context-tint);
 					color: var(--e-button-context-color-dark);
 				}
 
-				.boilerplate-review-button.boilerplate-review-button--outline:hover {
+				.ancenter-review-button.ancenter-review-button--outline:hover {
 					background: var(--e-button-context-tint);
 					color: var(--e-button-context-color-dark);
 				}
@@ -511,18 +518,18 @@ class Review {
 				color: #fff;
 			}
 
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-dialog-buttonset{
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] .ui-dialog-buttonset{
 				background-color: #fefefe;
 				box-shadow: none;
 				z-index: 99;
 			}
 
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-dialog-buttonpane ,
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-widget-content {
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] .ui-dialog-buttonpane ,
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] .ui-widget-content {
 				border: 0;
 			}
 
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-resizable-handle {
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] .ui-resizable-handle {
 				display: none;
 			}
 
@@ -552,23 +559,23 @@ class Review {
 				z-index: 9;
 				background-color: rgba(0, 0, 0, 0.5);
 			}
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] {
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] {
 				background-color: #fefefe;
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 				z-index: 99;
 			}
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-dialog-buttonset{
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] .ui-dialog-buttonset{
 				background-color: #fefefe;
 				box-shadow: none;
 				z-index: 99;
 			}
 
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-dialog-buttonpane ,
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-widget-content {
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] .ui-dialog-buttonpane ,
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] .ui-widget-content {
 				border: 0;
 			}
 
-			.ui-dialog[aria-describedby="deactivation-dialog-boilerplate"] .ui-resizable-handle {
+			.ui-dialog[aria-describedby="deactivation-dialog-ancenter"] .ui-resizable-handle {
 				display: none !important;
 			}
 
@@ -590,9 +597,9 @@ class Review {
 			jQuery(document).ready(function ($) {
 
 				// Open the deactivation dialog when the 'Deactivate' link is clicked
-				$('.deactivate #deactivate-cpt-boilerplate').on('click', function (e) {
+				$('.deactivate #deactivate-cpt-ancenter').on('click', function (e) {
 					e.preventDefault();
-					var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
+					var href = $('.deactivate #deactivate-cpt-ancenter').attr('href');
 					$('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?> .modal-content input[name="reason_found_a_better_plugin"]').hide();
 					var dialogbox = $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?>').dialog({
 						modal: true,
@@ -641,7 +648,7 @@ class Review {
 
 				// Submit the feedback
 				function submitFeedback() {
-					var href = $('.deactivate #deactivate-cpt-boilerplate').attr('href');
+					var href = $('.deactivate #deactivate-cpt-ancenter').attr('href');
 					var reasons = $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?> input[type="radio"]:checked').val();
 					var feedback = $('#deactivation-feedback-<?php echo esc_attr( $this->textdomain ); ?>').val();
 					var better_plugin = $('#deactivation-dialog-<?php echo esc_attr( $this->textdomain ); ?> .modal-content input[name="reason_found_a_better_plugin"]').val();
@@ -667,7 +674,7 @@ class Review {
 							reasons: reasons ? reasons : '',
 							better_plugin: better_plugin,
 							feedback: feedback,
-							wpplugin: 'plugin-boilerplate',
+							wpplugin: 'plugin-ancenter',
 						},
 						success: function (response) {
 						},

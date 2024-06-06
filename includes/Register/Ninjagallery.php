@@ -1,9 +1,9 @@
 <?php
 
-namespace TinySolutions\boilerplate\Register;
+namespace TinySolutions\ANCENTER\Register;
 
-use TinySolutions\boilerplate\Abs\CustomPostType;
-use TinySolutions\boilerplate\Traits\Taxonomies;
+use TinySolutions\ANCENTER\Abs\CustomPostType;
+use TinySolutions\ANCENTER\Traits\Taxonomies;
 
 class Ninjagallery extends CustomPostType {
 

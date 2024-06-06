@@ -2,10 +2,13 @@
 /**
  * Main ActionHooks class.
  *
- * @package TinySolutions\boilerplate
+ * @package TinySolutions\ancenter
  */
 
-namespace TinySolutions\boilerplate\Hooks;
+namespace TinySolutions\ANCENTER\Hooks;
+
+use TinySolutions\ANCENTER\Common\Loader;
+use TinySolutions\ANCENTER\Traits\SingletonTrait;
 
 defined( 'ABSPATH' ) || exit();
 
@@ -14,10 +17,18 @@ defined( 'ABSPATH' ) || exit();
  */
 class PublicAction {
 	/**
-	 * Init Hooks.
-	 *
-	 * @return void
+	 * @var object
 	 */
-	public static function trigger() {}
+	protected $loader;
+	/**
+	 * Singleton
+	 */
+	use SingletonTrait;
 
+	/**
+	 * Class Constructor
+	 */
+	private function __construct( Loader $loader ) {
+		$this->loader = $loader;
+	}
 }

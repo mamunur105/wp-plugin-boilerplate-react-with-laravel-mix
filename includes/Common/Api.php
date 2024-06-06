@@ -1,11 +1,14 @@
 <?php
 
-namespace TinySolutions\boilerplate\Common;
+namespace TinySolutions\ANCENTER\Common;
 
-use TinySolutions\boilerplate\Helpers\Fns;
-use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\ANCENTER\Helpers\Fns;
+use TinySolutions\ANCENTER\Traits\SingletonTrait;
 use WP_Error;
 
+/**
+* API Class
+ */
 class Api {
 
 	/**
@@ -14,18 +17,26 @@ class Api {
 	use SingletonTrait;
 
 	/**
-	 * @var string
+	 * @var object
 	 */
-	private $namespacev1 = 'TinySolutions/boilerplate/v1';
+	protected $loader;
+
 	/**
 	 * @var string
 	 */
-	private $resource_name = '/boilerplate';
+	private $namespacev1 = 'TinySolutions/ancenter/v1';
+
+	/**
+	 * @var string
+	 */
+	private $resource_name = '/api';
+
 	/**
 	 * Construct
 	 */
-	private function __construct() {
-		add_action( 'rest_api_init', [ $this, 'register_routes' ] );
+	private function __construct( Loader $loader ) {
+		$this->loader = $loader;
+		$this->loader->add_action( 'rest_api_init', $this, 'register_routes' );
 	}
 
 	/**
@@ -52,7 +63,6 @@ class Api {
 				'permission_callback' => [ $this, 'login_permission_callback' ],
 			]
 		);
-
 		register_rest_route(
 			$this->namespacev1,
 			$this->resource_name . '/getPluginList',
@@ -70,17 +80,21 @@ class Api {
 	public function login_permission_callback() {
 		return current_user_can( 'manage_options' );
 	}
+
 	/**
 	 * @return false|string
 	 */
 	public function get_plugin_list() {
 		// Define a unique key for the transient.
-		$transient_key = 'get_plugin_list_use_cache';
+		$transient_key = 'get_plugin_list_use_cache_' . ANCENTER_VERSION;
 		// Try to get the cached data.
 		$cached_data = get_transient( $transient_key );
-		if ( false !== $cached_data ) {
+		if ( ! empty( $cached_data ) ) {
+			$is_empty = json_decode( $cached_data );
 			// Return the cached data if it exists.
-			return $cached_data;
+			if ( ! empty( $is_empty ) ) {
+				return $cached_data;
+			}
 		}
 		// Initialize the result array.
 		$result = [];
@@ -108,15 +122,16 @@ class Api {
 		} catch ( \Exception $ex ) {
 			// Handle exception (optional logging or error handling can be added here).
 		}
-		
+
 		// Encode the result to JSON.
 		$json_result = wp_json_encode( $result );
-		
+
 		// Cache the result for 1 day (24 hours * 60 minutes * 60 seconds).
-		set_transient( $transient_key, $json_result, 30 * DAY_IN_SECONDS );
-		
+		set_transient( $transient_key, $json_result, 7 * DAY_IN_SECONDS );
+
 		return $json_result;
 	}
+
 
 	/**
 	 * @return false|string
@@ -124,21 +139,21 @@ class Api {
 	public function update_option( $request_data ) {
 		$result = [
 			'updated' => false,
-			'message' => esc_html__( 'Update failed. Maybe change not found. ', 'boilerplate-media-tools' ),
+			'message' => esc_html__( 'Update failed. Maybe change not found. ', 'ancenter-media-tools' ),
 		];
 
 		$parameters = $request_data->get_params();
 
-		$the_settings = get_option( 'boilerplate_settings', [] );
+		$the_settings = get_option( 'ancenter_settings', [] );
 
 		$the_settings['default_demo_text'] = ! empty( $parameters['default_demo_text'] ) ? $parameters['default_demo_text'] : '';
 
-		$options = update_option( 'boilerplate_settings', $the_settings );
+		$options = update_option( 'ancenter_settings', $the_settings );
 
 		$result['updated'] = boolval( $options );
 
 		if ( $result['updated'] ) {
-			$result['message'] = esc_html__( 'Updated.', 'boilerplate-media-tools' );
+			$result['message'] = esc_html__( 'Updated.', 'ancenter' );
 		}
 		return $result;
 	}

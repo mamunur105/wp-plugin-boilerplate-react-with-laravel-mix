@@ -2,10 +2,10 @@
 /**
  *
  */
-namespace TinySolutions\boilerplate\Abs;
+namespace TinySolutions\ANCENTER\Abs;
 
 // Do not allow directly accessing this file.
-use TinySolutions\boilerplate\Helpers\Fns;
+use TinySolutions\ANCENTER\Helpers\Fns;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );

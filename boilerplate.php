@@ -1,19 +1,22 @@
 <?php
 /**
  * @wordpress-plugin
- * Plugin Name:       BoilerPlate
- * Plugin URI:        #
- * Description:       Modules For Woocommerce
+ * Plugin Name:       Boiler Plate ( Only For Developer )
+ * Plugin URI:        https://wordpress.org/plugins/admin-notice-centralization
+ * Description:       Boiler
  * Version:           0.0.1
- * Author:            Boilerplate
- * Author URI:        https://boilerplate.com/
- * Text Domain:       mfwoo
+ * Author:            Tiny Solutions
+ * Author URI:        https://www.wptinysolutions.com/
+ * Text Domain:       ancenter
  * Domain Path:       /languages
- *
- * @package TinySolutions\WM
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * @package TinySolutions\mlt
  */
 
 // Do not allow directly accessing this file.
+use TinySolutions\ANCENTER\ANCENTER_Main;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }
@@ -21,28 +24,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define media edit Constant.
  */
-define( 'MFWOO_VERSION', '0.0.1' );
+define( 'ANCENTER_VERSION', '0.0.1' );
 
-define( 'MFWOO_FILE', __FILE__ );
+define( 'ANCENTER_FILE', __FILE__ );
 
-define( 'MFWOO_BASENAME', plugin_basename( MFWOO_FILE ) );
+define( 'ANCENTER_BASENAME', plugin_basename( ANCENTER_FILE ) );
 
-define( 'MFWOO_URL', plugins_url( '', MFWOO_FILE ) );
+define( 'ANCENTER_URL', plugins_url( '', ANCENTER_FILE ) );
 
-define( 'MFWOO_ABSPATH', dirname( MFWOO_FILE ) );
+define( 'ANCENTER_ABSPATH', dirname( ANCENTER_FILE ) );
 
-define( 'MFWOO_PATH', plugin_dir_path( __FILE__ ) );
+define( 'ANCENTER_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
  * App Init.
  */
 
-require_once MFWOO_PATH . 'vendor/autoload.php';
+require_once ANCENTER_PATH . 'vendor/autoload.php';
 
 /**
- * @return \TinySolutions\boilerplate\MFWOO_Main
+ * @return ANCENTER_Main
  */
-function boilerplate_main() {
-	return TinySolutions\boilerplate\MFWOO_Main::instance();
+function ancenter_main() {
+	return TinySolutions\ANCENTER\ANCENTER_Main::instance();
 }
-boilerplate_main();
+ancenter_main();

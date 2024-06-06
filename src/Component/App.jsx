@@ -10,13 +10,10 @@ import {
 
 import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
 
-const { Sider } = Layout;
-
 import Modules from "./Modules";
 import NeedSupport from "./NeedSupport";
-import PluginList from "./PluginList";
-// import MainHeader from "./MainHeader";
 import SettingsDrawer from "./SettingsDrawer";
+import PluginList from "./PluginList";
 
 function App() {
     const {
@@ -75,7 +72,7 @@ function App() {
             <HashRouter>
                 <Routes>
                     <Route path="/" element={<Modules/>}/>
-                    <Route path="/usefulPlugins" element={<PluginList/>}/>
+                    <Route path="/plugins" element={<PluginList/>}/>
                     <Route path="/support" element={<NeedSupport/>}/>
                     <Route path="*" element={<Navigate to="/" replace/>}/>
                 </Routes>

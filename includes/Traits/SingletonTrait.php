@@ -3,9 +3,11 @@
  *
  */
 
-namespace TinySolutions\boilerplate\Traits;
+namespace TinySolutions\ANCENTER\Traits;
 
 // Do not allow directly accessing this file.
+use TinySolutions\ANCENTER\Common\Loader;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }
@@ -28,7 +30,17 @@ trait SingletonTrait {
 
 		return self::$instance;
 	}
-
+	
+	/**
+	 * @return self
+	 */
+	final public static function loader_instance( Loader $loader ) {
+		if ( null === self::$instance ) {
+			self::$instance = new self( $loader );
+		}
+		
+		return self::$instance;
+	}
 
 	/**
 	 * Prevent cloning.
@@ -38,7 +50,7 @@ trait SingletonTrait {
 
 	// Prevent serialization of the instance
 	public function __sleep() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'boilerplate' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'ancenter' ), '1.0' );
 		die();
 	}
 
@@ -47,7 +59,7 @@ trait SingletonTrait {
 	 * Prevent unserializing.
 	 */
 	final public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'boilerplate' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'ancenter' ), '1.0' );
 		die();
 	}
 }

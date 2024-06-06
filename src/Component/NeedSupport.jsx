@@ -13,12 +13,11 @@ import {
     Checkbox,
     Typography
 } from 'antd';
-import MainHeader from "./MainHeader";
 
-const { Sider, Content } = Layout;
+const { Content } = Layout;
 
 const { Title, Paragraph  } = Typography;
-
+import MainHeader from "./MainHeader";
 function NeedSupport() {
 
     const {
@@ -29,11 +28,8 @@ function NeedSupport() {
     } = useStore();
 
     return (
-        <>
-        <Sider style={{ borderRadius: '5px' }}>
-            <MainHeader/>
-        </Sider>
-            <Layout style={{ padding: '10px', overflowY: 'auto', position: 'relative' }}>
+        <><MainHeader/>
+        <Layout style={{ position: 'relative' }}>
             <Content style={{
                 padding: '150px',
                 background: 'rgb(255 255 255 / 35%)',
@@ -55,7 +51,7 @@ function NeedSupport() {
                 </Content>
             </Content>
         </Layout>
-        </>
+    </>
     );
 };
 

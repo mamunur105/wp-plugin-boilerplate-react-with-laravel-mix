@@ -1,94 +1,118 @@
 <?php
 
-namespace TinySolutions\boilerplate\Common;
+namespace TinySolutions\ANCENTER\Common;
 
-use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\ANCENTER\Traits\SingletonTrait;
 
 // Do not allow directly accessing this file.
-if (!defined('ABSPATH')) {
-    exit('This script cannot be accessed directly.');
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'This script cannot be accessed directly.' );
 }
 
 /**
  * AssetsController
  */
-class Assets
-{
-    /**
-     * Singleton
-     */
-    use SingletonTrait;
+class Assets {
 
-    /**
-     * Plugin version
-     *
-     * @var string
-     */
-    private $version;
+	/**
+	 * Singleton
+	 */
+	use SingletonTrait;
+	
+	/**
+	 * @var object
+	 */
+	protected $loader;
 
-    /**
-     * Ajax URL
-     *
-     * @var string
-     */
-    private $ajaxurl;
+	/**
+	 * Plugin version
+	 *
+	 * @var string
+	 */
+	private $version;
 
-    /**
-     * Class Constructor
-     */
-    public function __construct() {
-        $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : MFWOO_VERSION;
-        /**
-         * Admin scripts.
-         */
-        add_action('admin_enqueue_scripts', [$this, 'backend_assets'], 1);
-    }
+	/**
+	 * Ajax URL
+	 *
+	 * @var string
+	 */
+	private $ajaxurl;
 
+	/**
+	 * Class Constructor
+	 */
 
-    /**
-     * Registers Admin scripts.
-     *
-     * @return void
-     */
-    public function backend_assets( $hook ) {
-
-        $scripts = [
-            [
-                'handle' => 'boilerplate-settings',
-                'src' => boilerplate_main()->get_assets_uri('js/backend/admin-settings.js'),
-                'deps' => [],
-                'footer' => true,
-            ]
-        ];
-
-        // Register public scripts.
-        foreach ($scripts as $script) {
-            wp_register_script($script['handle'], $script['src'], $script['deps'], $this->version, $script['footer']);
-        }
-
-        $current_screen =  get_current_screen() ;
-
-        if ( isset( $current_screen->id ) && 'toplevel_page_boilerplate-admin' === $current_screen->id ){
-
-            wp_enqueue_style('boilerplate-settings');
-            wp_enqueue_script('boilerplate-settings');
-
-            wp_localize_script(
-                'boilerplate-settings',
-                'boilerplateParams',
-                [
-                    'ajaxUrl' => esc_url(admin_url('admin-ajax.php')),
-                    'adminUrl' => esc_url(admin_url()),
-                    'restApiUrl' => esc_url_raw(rest_url()), // site_url(rest_get_url_prefix()),
-                    'rest_nonce' => wp_create_nonce( 'wp_rest' ),
-					boilerplate_main()->nonceId => wp_create_nonce(boilerplate_main()->nonceId),
-                ]
-            );
-
-        }
-
-    }
+	/**
+	 * @return void
+	 */
+	private function __construct( Loader $loader ) {
+		$this->loader  = $loader;
+		$this->version = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? time() : ANCENTER_VERSION;
+		/**
+		 * Admin scripts.
+		 */
+		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'backend_assets', 1 );
+	}
 
 
+	/**
+	 * Registers Admin scripts.
+	 *
+	 * @return void
+	 */
+	public function backend_assets( $hook ) {
 
+		$styles = [
+			[
+				'handle' => 'ancenter-settings',
+				'src'    => ancenter_main()->get_assets_uri( 'css/backend/admin-settings.css' ),
+			],
+		];
+
+		// Register public styles.
+		foreach ( $styles as $style ) {
+			wp_register_style( $style['handle'], $style['src'], '', $this->version );
+		}
+
+		$scripts = [
+			[
+				'handle' => 'ancenter-settings',
+				'src'    => ancenter_main()->get_assets_uri( 'js/backend/admin-settings.js' ),
+				'deps'   => [],
+				'footer' => true,
+			],
+		];
+
+		// Register public scripts.
+		foreach ( $scripts as $script ) {
+			wp_register_script( $script['handle'], $script['src'], $script['deps'], $this->version, $script['footer'] );
+		}
+
+		$current_screen = get_current_screen();
+
+		if ( isset( $current_screen->id ) && 'toplevel_page_ancenter-admin' === $current_screen->id ) {
+			// Enqueue ThickBox scripts and styles.
+			wp_enqueue_script( 'thickbox' );
+			wp_enqueue_style( 'thickbox' );
+			// WPml Create Issue
+			wp_dequeue_style( 'wpml-tm-styles' );
+			wp_dequeue_script( 'wpml-tm-scripts' );
+
+			wp_enqueue_style( 'ancenter-settings' );
+			wp_enqueue_script( 'ancenter-settings' );
+
+			wp_localize_script(
+				'ancenter-settings',
+				'ancenterParams',
+				[
+					'ajaxUrl'                => esc_url( admin_url( 'admin-ajax.php' ) ),
+					'adminUrl'               => esc_url( admin_url() ),
+					'restApiUrl'             => esc_url_raw( rest_url() ), // site_url(rest_get_url_prefix()),
+					'rest_nonce'             => wp_create_nonce( 'wp_rest' ),
+					ancenter_main()->nonceId => wp_create_nonce( ancenter_main()->nonceId ),
+				]
+			);
+
+		}
+	}
 }

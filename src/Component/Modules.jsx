@@ -17,16 +17,14 @@ import {
 
 const { TextArea } = Input;
 
-const { Sider, Content } = Layout;
+const { Content } = Layout;
 
 const { Title, Text } = Typography;
 
 import * as Types from "../Utils/actionType";
 
 import ModuleItem from './ModuleItem';
-
 import MainHeader from "./MainHeader";
-
 function Modules() {
 
     const {
@@ -37,11 +35,8 @@ function Modules() {
     } = useStore();
 
     return (
-        <>
-        <Sider style={{ borderRadius: '5px' }}>
-            <MainHeader/>
-        </Sider>
-        <Layout style={{ padding: '10px', overflowY: 'auto', position: 'relative' }}>
+        <><MainHeader/>
+        <Layout style={{ position: 'relative' }}>
             <Content style={{
                 padding: '15px',
                 background: 'rgb(255 255 255 / 35%)',
@@ -63,9 +58,9 @@ function Modules() {
                     </>
                 }
             </Content>
-
         </Layout>
         </>
+
     );
 };
 

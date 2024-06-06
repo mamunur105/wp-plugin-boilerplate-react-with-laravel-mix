@@ -5,7 +5,8 @@
 import Axios from 'axios';
 import { notification } from 'antd';
 
-const apibaseUrl = `${boilerplateParams.restApiUrl}TinySolutions/boilerplate/v1/boilerplate`;
+const apibaseUrl = `${ancenterParams.restApiUrl}TinySolutions/ancenter/v1/api`;
+
 
 /*
  * Create a Api object with Axios and
@@ -14,7 +15,7 @@ const apibaseUrl = `${boilerplateParams.restApiUrl}TinySolutions/boilerplate/v1/
 const Api = Axios.create({
     baseURL: apibaseUrl,
     headers: {
-        'X-WP-Nonce': boilerplateParams.rest_nonce
+        'X-WP-Nonce': ancenterParams.rest_nonce
     }
 });
 
@@ -46,3 +47,4 @@ export const getOptions = async () => {
 export const getPluginList = async () => {
     return await Api.get(`/getPluginList`);
 }
+

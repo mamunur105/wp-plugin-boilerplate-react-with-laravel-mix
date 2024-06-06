@@ -2,12 +2,13 @@
 /**
  * Main ActionHooks class.
  *
- * @package TinySolutions\boilerplate
+ * @package TinySolutions\ancenter
  */
 
-namespace TinySolutions\boilerplate\Hooks;
+namespace TinySolutions\ANCENTER\Hooks;
 
-use TinySolutions\boilerplate\Traits\SingletonTrait;
+use TinySolutions\ANCENTER\Common\Loader;
+use TinySolutions\ANCENTER\Traits\SingletonTrait;
 
 defined( 'ABSPATH' ) || exit();
 
@@ -25,14 +26,14 @@ class MainHooks {
 	 *
 	 * @return void
 	 */
-	private function __construct() {
+	private function __construct( Loader $loader ) {
 		if ( is_admin() ) {
-			AdminAction::trigger();
-			PublicFilter::trigger();
+			AdminAction::loader_instance( $loader );
+			AdminFilter::loader_instance( $loader );
 		} else {
-			PublicAction::trigger();
-			PublicFilter::trigger();
+			PublicAction::loader_instance( $loader );
+			PublicFilter::loader_instance( $loader );
 		}
-		Ajax::trigger();
+		Ajax::loader_instance( $loader );
 	}
 }

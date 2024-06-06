@@ -2,10 +2,10 @@
 /**
  * Fns Helpers class
  *
- * @package  TinySolutions\boilerplate
+ * @package  TinySolutions\ancenter
  */
 
-namespace TinySolutions\boilerplate\Helpers;
+namespace TinySolutions\ANCENTER\Helpers;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,8 +23,8 @@ class Fns {
 	 * @return bool
 	 */
 	public static function verify_nonce() {
-		$nonce = isset( $_REQUEST[ boilerplate_main()->nonceId ] ) ? $_REQUEST[ boilerplate_main()->nonceId ] : null;
-		if ( wp_verify_nonce( $nonce, boilerplate_main()->nonceId ) ) {
+		$nonce = isset( $_REQUEST[ ancenter_main()->nonceId ] ) ? $_REQUEST[ ancenter_main()->nonceId ] : null;
+		if ( wp_verify_nonce( $nonce, ancenter_main()->nonceId ) ) {
 			return true;
 		}
 
@@ -48,7 +48,7 @@ class Fns {
 	 */
 	public static function get_options() {
 		$defaults = [];
-		$options  = get_option( 'boilerplate_settings' );
+		$options  = get_option( 'ancenter_settings' );
 		return wp_parse_args( $options, $defaults );
 	}
 

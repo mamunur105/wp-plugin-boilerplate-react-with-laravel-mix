@@ -2,7 +2,7 @@
 /**
  * Discount
  */
-namespace TinySolutions\boilerplate\Abs;
+namespace TinySolutions\ANCENTER\Abs;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,9 +39,9 @@ abstract class Discount {
 		$defaults      = [
 			'is_condition'   => true,
 			'check_pro'      => true,
-			'download_link'  => 'https://www.wptinysolutions.com/tiny-products/cpt-woo-integration/',
+			'download_link'  => 'https://www.wptinysolutions.com/tiny-products/admin-notice-centralization/',
 			'plugin_name'    => 'Custom Post Type Woocommerce Integration Pro',
-			'image_url'      => boilerplate_main()->get_assets_uri( 'images/cpt-woo-icon-150x150.png' ),
+			'image_url'      => ancenter_main()->get_assets_uri( 'images/cpt-woo-icon-150x150.png' ),
 			'option_name'    => '',
 			'start_date'     => '',
 			'end_date'       => '',
@@ -49,7 +49,7 @@ abstract class Discount {
 			'notice_message' => '',
 			'show_by_button' => true,
 		];
-		$options       = apply_filters( 'mfwoo_offer_notice', $this->the_options() );
+		$options       = apply_filters( 'ancenter_offer_notice', $this->the_options() );
 		$this->options = wp_parse_args( $options, $defaults );
 		$current       = time();
 		$start         = strtotime( $this->options['start_date'] );
@@ -57,14 +57,14 @@ abstract class Discount {
 		if ( ! ( $this->options['is_condition'] ?? false ) ) {
 			return;
 		}
-		if ( ( $this->options['check_pro'] ?? false ) && cptwooint()->has_pro() ) {
+		if ( ( $this->options['check_pro'] ?? false ) && ancenter()->has_pro() ) {
 			return;
 		}
 		// Black Friday Notice.
 		if ( $start <= $current && $current <= $end ) {
 			if ( get_option( $this->options['option_name'] ) != '1' ) {
-				if ( ! isset( $GLOBALS['mfwoo__notice'] ) ) {
-					$GLOBALS['mfwoo__notice'] = 'mfwoo__notice';
+				if ( ! isset( $GLOBALS['ancenter__notice'] ) ) {
+					$GLOBALS['ancenter__notice'] = 'ancenter__notice';
 					$this->offer_notice();
 				}
 			}
@@ -89,7 +89,7 @@ abstract class Discount {
 			function () {
 				?>
 				<style>
-					.mfwoooffer-notice {
+					.ancenteroffer-notice {
 						--e-button-context-color: #2179c0;
 						--e-button-context-color-dark: #2271b1;
 						--e-button-context-tint: rgb(75 47 157/4%);
@@ -101,26 +101,26 @@ abstract class Discount {
 						column-gap: 15px;
 					}
 
-					.mfwoooffer-notice img {
+					.ancenteroffer-notice img {
 						grid-row: 1 / 4;
 						align-self: center;
 						justify-self: center;
 					}
 
-					.mfwoooffer-notice h3,
-					.mfwoooffer-notice p {
+					.ancenteroffer-notice h3,
+					.ancenteroffer-notice p {
 						margin: 0 !important;
 					}
 
-					.mfwoooffer-notice .notice-text {
+					.ancenteroffer-notice .notice-text {
 						margin: 0 0 2px;
 						padding: 5px 0;
 						max-width: 100%;
 						font-size: 14px;
 					}
 
-					.mfwoooffer-notice .button-primary,
-					.mfwoooffer-notice .button-dismiss {
+					.ancenteroffer-notice .button-primary,
+					.ancenteroffer-notice .button-dismiss {
 						display: inline-block;
 						border: 0;
 						border-radius: 3px;
@@ -134,29 +134,29 @@ abstract class Discount {
 						transition: all 0.3s;
 					}
 
-					.mfwoooffer-notice .button-primary:hover,
-					.mfwoooffer-notice .button-dismiss:hover {
+					.ancenteroffer-notice .button-primary:hover,
+					.ancenteroffer-notice .button-dismiss:hover {
 						background: var(--e-button-context-color);
 						border-color: var(--e-button-context-color);
 						color: #fff;
 					}
 
-					.mfwoooffer-notice .button-primary:focus,
-					.mfwoooffer-notice .button-dismiss:focus {
+					.ancenteroffer-notice .button-primary:focus,
+					.ancenteroffer-notice .button-dismiss:focus {
 						box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--e-button-context-color);
 						background: var(--e-button-context-color);
 						color: #fff;
 					}
 
-					.mfwoooffer-notice .button-dismiss {
+					.ancenteroffer-notice .button-dismiss {
 						border: 1px solid;
 						background: 0 0;
 						color: var(--e-button-context-color);
 						background: #fff;
 					}
 				</style>
-				<div class="mfwoooffer-notice notice notice-info is-dismissible"
-					 data-cptwoointdismissable="mfwoo_offer">
+				<div class="ancenteroffer-notice notice notice-info is-dismissible"
+					 data-ancenterdismissable="ancenter_offer">
 					<img alt="<?php echo esc_attr( $this->options['plugin_name'] ); ?>"
 						 src="<?php echo esc_url( $this->options['image_url'] ); ?>"
 						 width="100px"
@@ -186,12 +186,12 @@ abstract class Discount {
 					(function ($) {
 						$(function () {
 							setTimeout(function () {
-								$('div[data-cptwoointdismissable] .notice-dismiss, div[data-cptwoointdismissable] .button-dismiss')
+								$('div[data-ancenterdismissable] .notice-dismiss, div[data-ancenterdismissable] .button-dismiss')
 									.on('click', function (e) {
 										e.preventDefault();
 										$.post(ajaxurl, {
-											'action': 'mfwoo_dismiss_offer_admin_notice',
-											'nonce': <?php echo wp_json_encode( wp_create_nonce( 'mfwoooffer-dismissible-notice' ) ); ?>
+											'action': 'ancenter_dismiss_offer_admin_notice',
+											'nonce': <?php echo wp_json_encode( wp_create_nonce( 'ancenteroffer-dismissible-notice' ) ); ?>
 										});
 										$(e.target).closest('.is-dismissible').remove();
 									});
@@ -204,9 +204,9 @@ abstract class Discount {
 		);
 
 		add_action(
-			'wp_ajax_mfwoo_dismiss_offer_admin_notice',
+			'wp_ajax_ancenter_dismiss_offer_admin_notice',
 			function () {
-				check_ajax_referer( 'mfwoooffer-dismissible-notice', 'nonce' );
+				check_ajax_referer( 'ancenteroffer-dismissible-notice', 'nonce' );
 				if ( ! empty( $this->options['option_name'] ) ) {
 					update_option( $this->options['option_name'], '1' );
 				}
