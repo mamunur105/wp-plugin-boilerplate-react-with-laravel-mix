@@ -34,7 +34,7 @@ class AdminFilter {
 	private function __construct( Loader $loader ) {
 		$this->loader = $loader;
 		// Plugins Setting Page.
-		$this->loader->add_filter( 'plugin_action_links_' . ANCENTER_BASENAME, $this, 'plugins_setting_links' );
+		$this->loader->add_filter( 'plugin_action_links_' . BOILERPLATE_BASENAME, $this, 'plugins_setting_links' );
 		$this->loader->add_filter( 'plugin_row_meta', $this, 'plugin_row_meta', 10, 2 );
 	}
 
@@ -54,7 +54,7 @@ class AdminFilter {
 	 * @return array
 	 */
 	public function plugin_row_meta( $links, $file ) {
-		if ( ANCENTER_BASENAME === $file ) {
+		if ( BOILERPLATE_BASENAME === $file ) {
 			$report_url         = 'https://www.wptinysolutions.com/contact';
 			$row_meta['issues'] = sprintf( '%2$s <a target="_blank" href="%1$s">%3$s</a>', esc_url( $report_url ), esc_html__( 'Facing issue?', 'ancenter' ), '<span style="color: red">' . esc_html__( 'Please open a support ticket.', 'ancenter' ) . '</span>' );
 			return array_merge( $links, $row_meta );

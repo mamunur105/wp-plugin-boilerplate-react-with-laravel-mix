@@ -25,7 +25,7 @@ use TinySolutions\boilerplate\Admin\Review;
 /**
  * Main initialization class.
  */
-final class ANCENTER_Main {
+final class BOILERPLATE_Main {
 
 	/**
 	 * @var object
@@ -65,9 +65,9 @@ final class ANCENTER_Main {
 		$this->loader->add_action( 'init', $this, 'language' );
 		$this->loader->add_action( 'plugins_loaded', $this, 'plugins_loaded' );
 		// Register Plugin Active Hook.
-		register_activation_hook( ANCENTER_FILE, [ Installation::class, 'activate' ] );
+		register_activation_hook( BOILERPLATE_FILE, [ Installation::class, 'activate' ] );
 		// Register Plugin Deactivate Hook.
-		register_deactivation_hook( ANCENTER_FILE, [ Installation::class, 'deactivation' ] );
+		register_deactivation_hook( BOILERPLATE_FILE, [ Installation::class, 'deactivation' ] );
 		$this->run();
 	}
 	/**
@@ -85,7 +85,7 @@ final class ANCENTER_Main {
 	 */
 	public function get_assets_uri( $file ) {
 		$file = ltrim( $file, '/' );
-		return trailingslashit( ANCENTER_URL . '/assets' ) . $file;
+		return trailingslashit( BOILERPLATE_URL . '/assets' ) . $file;
 	}
 
 	/**
@@ -103,14 +103,14 @@ final class ANCENTER_Main {
 	 * @return string
 	 */
 	public function plugin_path() {
-		return untrailingslashit( plugin_dir_path( ANCENTER_FILE ) );
+		return untrailingslashit( plugin_dir_path( BOILERPLATE_FILE ) );
 	}
 
 	/**
 	 * Load Text Domain
 	 */
 	public function language() {
-		load_plugin_textdomain( 'ancenter', false, ANCENTER_ABSPATH . '/languages/' );
+		load_plugin_textdomain( 'ancenter', false, BOILERPLATE_ABSPATH . '/languages/' );
 	}
 
 	/**

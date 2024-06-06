@@ -47,7 +47,7 @@ class Assets {
 	 */
 	private function __construct( Loader $loader ) {
 		$this->loader  = $loader;
-		$this->version = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? time() : ANCENTER_VERSION;
+		$this->version = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? time() : BOILERPLATE_VERSION;
 		/**
 		 * Admin scripts.
 		 */

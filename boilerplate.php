@@ -23,28 +23,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define media edit Constant.
  */
-define( 'ANCENTER_VERSION', '0.0.1' );
+define( 'BOILERPLATE_VERSION', '0.0.1' );
 
-define( 'ANCENTER_FILE', __FILE__ );
+define( 'BOILERPLATE_FILE', __FILE__ );
 
-define( 'ANCENTER_BASENAME', plugin_basename( ANCENTER_FILE ) );
+define( 'BOILERPLATE_BASENAME', plugin_basename( BOILERPLATE_FILE ) );
 
-define( 'ANCENTER_URL', plugins_url( '', ANCENTER_FILE ) );
+define( 'BOILERPLATE_URL', plugins_url( '', BOILERPLATE_FILE ) );
 
-define( 'ANCENTER_ABSPATH', dirname( ANCENTER_FILE ) );
+define( 'BOILERPLATE_ABSPATH', dirname( BOILERPLATE_FILE ) );
 
-define( 'ANCENTER_PATH', plugin_dir_path( __FILE__ ) );
+define( 'BOILERPLATE_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
  * App Init.
  */
 
-require_once ANCENTER_PATH . 'vendor/autoload.php';
+require_once BOILERPLATE_PATH . 'vendor/autoload.php';
 
 /**
- * @return ANCENTER_Main
+ * @return \TinySolutions\boilerplate\BOILERPLATE_Main
  */
 function boilerplate_main() {
-	return TinySolutions\boilerplate\ANCENTER_Main::instance();
+	return TinySolutions\boilerplate\BOILERPLATE_Main::instance();
 }
 boilerplate_main();

@@ -32,7 +32,7 @@ class Dependencies {
 	/**
 	 * Main Plugin Version
 	 */
-	const MINIMUM_ANCENTER_VERSION = '0.0.1';
+	const MINIMUM_BOILERPLATE_VERSION = '0.0.1';
 	/**
 	 * Statur
 	 *
@@ -94,7 +94,7 @@ class Dependencies {
 	 * @return bool
 	 */
 	public function is_version_compatibile() {
-		if ( defined( 'ANCENTER_VERSION' ) && version_compare( ANCENTER_VERSION, self::MINIMUM_ANCENTER_VERSION, '<' ) ) {
+		if ( defined( 'BOILERPLATE_VERSION' ) && version_compare( BOILERPLATE_VERSION, self::MINIMUM_BOILERPLATE_VERSION, '<' ) ) {
 			return false;
 		}
 		return true;
@@ -137,7 +137,7 @@ class Dependencies {
                 <a class="thickbox open-plugin-details-modal" href="<?php echo esc_url( $link ); ?>">
                     <strong>Custom Post Type Woocommerce Integration</strong>
                 </a> free,
-                <strong>Minimum version <?php echo esc_html( self::MINIMUM_ANCENTER_VERSION ); ?></strong>.
+                <strong>Minimum version <?php echo esc_html( self::MINIMUM_BOILERPLATE_VERSION ); ?></strong>.
             </p>
         </div>
 		<?php

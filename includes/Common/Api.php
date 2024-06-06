@@ -86,7 +86,7 @@ class Api {
 	 */
 	public function get_plugin_list() {
 		// Define a unique key for the transient.
-		$transient_key = 'get_plugin_list_use_cache_' . ANCENTER_VERSION;
+		$transient_key = 'get_plugin_list_use_cache_' . BOILERPLATE_VERSION;
 		// Try to get the cached data.
 		$cached_data = get_transient( $transient_key );
 		if ( ! empty( $cached_data ) ) {
