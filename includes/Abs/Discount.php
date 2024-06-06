@@ -41,7 +41,7 @@ abstract class Discount {
 			'check_pro'      => true,
 			'download_link'  => 'https://www.wptinysolutions.com/tiny-products/admin-notice-centralization/',
 			'plugin_name'    => 'Custom Post Type Woocommerce Integration Pro',
-			'image_url'      => ancenter_main()->get_assets_uri( 'images/cpt-woo-icon-150x150.png' ),
+			'image_url'      => boilerplate_main()->get_assets_uri( 'images/cpt-woo-icon-150x150.png' ),
 			'option_name'    => '',
 			'start_date'     => '',
 			'end_date'       => '',

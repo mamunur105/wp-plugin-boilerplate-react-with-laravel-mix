@@ -65,7 +65,7 @@ class Assets {
 		$styles = [
 			[
 				'handle' => 'ancenter-settings',
-				'src'    => ancenter_main()->get_assets_uri( 'css/backend/admin-settings.css' ),
+				'src'    => boilerplate_main()->get_assets_uri( 'css/backend/admin-settings.css' ),
 			],
 		];
 
@@ -77,7 +77,7 @@ class Assets {
 		$scripts = [
 			[
 				'handle' => 'ancenter-settings',
-				'src'    => ancenter_main()->get_assets_uri( 'js/backend/admin-settings.js' ),
+				'src'    => boilerplate_main()->get_assets_uri( 'js/backend/admin-settings.js' ),
 				'deps'   => [],
 				'footer' => true,
 			],
@@ -109,7 +109,7 @@ class Assets {
 					'adminUrl'               => esc_url( admin_url() ),
 					'restApiUrl'             => esc_url_raw( rest_url() ), // site_url(rest_get_url_prefix()),
 					'rest_nonce'             => wp_create_nonce( 'wp_rest' ),
-					ancenter_main()->nonceId => wp_create_nonce( ancenter_main()->nonceId ),
+					boilerplate_main()->nonceId => wp_create_nonce( boilerplate_main()->nonceId ),
 				]
 			);
 
