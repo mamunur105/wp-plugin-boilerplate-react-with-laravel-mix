@@ -127,14 +127,14 @@ final class BOILERPLATE_Main {
 	 * @return void
 	 */
 	public function init() {
-		do_action( 'ancenter/before_init', $this->loader );
+		do_action( 'ancenter/before_init' );
 		Review::instance();
 		// Include File.
 		Assets::instance();
 		AdminMenu::instance();
 		MainHooks::instance();
 		Api::instance();
-		do_action( 'ancenter/after_init', $this->loader );
+		do_action( 'ancenter/after_init' );
 	}
 
 	/**
