@@ -161,7 +161,7 @@ final class BOILERPLATE_Main {
 	private function run() {
 		if ( Dependencies::instance()->check() ) {
 			$this->init();
-			do_action( 'ancenter/after_run', $this->loader );
+			do_action( 'ancenter/after_run' );
 		}
 		$this->loader->run();
 	}
