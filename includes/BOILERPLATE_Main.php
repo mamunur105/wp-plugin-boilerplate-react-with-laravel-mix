@@ -70,6 +70,14 @@ final class BOILERPLATE_Main {
 		register_deactivation_hook( BOILERPLATE_FILE, [ Installation::class, 'deactivation' ] );
 		$this->run();
 	}
+
+	/**
+	 * Load Text Domain
+	 */
+	public function loader() {
+		return $this->loader;
+	}
+
 	/**
 	 * Load Text Domain
 	 */
@@ -120,12 +128,12 @@ final class BOILERPLATE_Main {
 	 */
 	public function init() {
 		do_action( 'ancenter/before_init', $this->loader );
-		Review::loader_instance( $this->loader );
+		Review::instance();
 		// Include File.
-		Assets::loader_instance( $this->loader );
-		AdminMenu::loader_instance( $this->loader );
-		MainHooks::loader_instance( $this->loader );
-		Api::loader_instance( $this->loader );
+		Assets::instance();
+		AdminMenu::instance();
+		MainHooks::instance();
+		Api::instance();
 		do_action( 'ancenter/after_init', $this->loader );
 	}
 
@@ -151,11 +159,10 @@ final class BOILERPLATE_Main {
 	 * @return void
 	 */
 	private function run() {
-		if ( Dependencies::loader_instance( $this->loader )->check() ) {
+		if ( Dependencies::instance()->check() ) {
 			$this->init();
 			do_action( 'ancenter/after_run', $this->loader );
 		}
 		$this->loader->run();
 	}
-
 }

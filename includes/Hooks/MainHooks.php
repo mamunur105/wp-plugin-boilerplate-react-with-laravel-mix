@@ -7,7 +7,7 @@
 
 namespace TinySolutions\boilerplate\Hooks;
 
-use TinySolutions\boilerplate\Common\Loader;
+
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 defined( 'ABSPATH' ) || exit();
@@ -20,20 +20,19 @@ class MainHooks {
 	 * Singleton
 	 */
 	use SingletonTrait;
-	
 	/**
 	 * Init Hooks.
 	 *
 	 * @return void
 	 */
-	private function __construct( Loader $loader ) {
+	private function __construct() {
 		if ( is_admin() ) {
-			AdminAction::loader_instance( $loader );
-			AdminFilter::loader_instance( $loader );
+			AdminAction::instance();
+			AdminFilter::instance();
 		} else {
-			PublicAction::loader_instance( $loader );
-			PublicFilter::loader_instance( $loader );
+			PublicAction::instance();
+			PublicFilter::instance();
 		}
-		Ajax::loader_instance( $loader );
+		Ajax::instance();
 	}
 }

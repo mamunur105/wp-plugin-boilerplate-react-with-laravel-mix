@@ -6,7 +6,7 @@
 namespace TinySolutions\boilerplate\Traits;
 
 // Do not allow directly accessing this file.
-use TinySolutions\boilerplate\Common\Loader;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
@@ -28,17 +28,6 @@ trait SingletonTrait {
 			self::$instance = new self();
 		}
 
-		return self::$instance;
-	}
-	
-	/**
-	 * @return self
-	 */
-	final public static function loader_instance( Loader $loader ) {
-		if ( null === self::$instance ) {
-			self::$instance = new self( $loader );
-		}
-		
 		return self::$instance;
 	}
 

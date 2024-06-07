@@ -7,7 +7,7 @@
 
 namespace TinySolutions\boilerplate\Hooks;
 
-use TinySolutions\boilerplate\Common\Loader;
+
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 defined( 'ABSPATH' ) || exit();
@@ -28,7 +28,7 @@ class PublicFilter {
 	/**
 	 * Class Constructor
 	 */
-	private function __construct( Loader $loader ) {
-		$this->loader = $loader;
+	private function __construct() {
+		$this->loader = boilerplate_main()->loader();
 	}
 }

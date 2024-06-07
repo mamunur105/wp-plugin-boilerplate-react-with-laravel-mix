@@ -2,7 +2,7 @@
 
 namespace TinySolutions\boilerplate\Admin;
 
-use TinySolutions\boilerplate\Common\Loader;
+
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 /**
@@ -31,8 +31,8 @@ class Review {
 	 *
 	 * @return void
 	 */
-	private function __construct( Loader $loader ) {
-		$this->loader = $loader;
+	private function __construct() {
+		$this->loader = boilerplate_main()->loader();
 		$this->loader->add_action( 'admin_init', $this, 'ancenter_check_installation_time' );
 		$this->loader->add_action( 'admin_init', $this, 'ancenter_spare_me', 5 );
 		if ( true ) {

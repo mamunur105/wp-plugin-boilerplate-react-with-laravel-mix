@@ -34,8 +34,8 @@ class Api {
 	/**
 	 * Construct
 	 */
-	private function __construct( Loader $loader ) {
-		$this->loader = $loader;
+	private function __construct() {
+		$this->loader = boilerplate_main()->loader();
 		$this->loader->add_action( 'rest_api_init', $this, 'register_routes' );
 	}
 
