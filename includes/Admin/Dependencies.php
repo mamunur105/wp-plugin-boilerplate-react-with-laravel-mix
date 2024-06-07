@@ -3,6 +3,7 @@
 namespace TinySolutions\boilerplate\Admin;
 
 
+use TinySolutions\boilerplate\Common\Loader;
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 // Do not allow directly accessing this file.
@@ -60,7 +61,7 @@ class Dependencies {
 	 * Class Constructor
 	 */
 	private function __construct() {
-		$this->loader = boilerplate_main()->loader();
+        $this->loader        = Loader::instance();
 	}
 	/**
 	 * Checking Status

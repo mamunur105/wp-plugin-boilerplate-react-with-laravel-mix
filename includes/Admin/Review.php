@@ -2,7 +2,7 @@
 
 namespace TinySolutions\boilerplate\Admin;
 
-
+use TinySolutions\boilerplate\Common\Loader;
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 /**
@@ -32,7 +32,7 @@ class Review {
 	 * @return void
 	 */
 	private function __construct() {
-		$this->loader = boilerplate_main()->loader();
+		$this->loader = Loader::instance();
 		$this->loader->add_action( 'admin_init', $this, 'ancenter_check_installation_time' );
 		$this->loader->add_action( 'admin_init', $this, 'ancenter_spare_me', 5 );
 		if ( true ) {
@@ -75,7 +75,7 @@ class Review {
 		if ( ! $now > $past_date || $now < $remind_due ) {
 			return;
 		}
-		
+
 		$this->loader->add_action( 'admin_notices', $this, 'ancenter_display_admin_notice' );
 	}
 

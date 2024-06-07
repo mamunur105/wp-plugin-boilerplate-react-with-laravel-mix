@@ -63,7 +63,6 @@ final class BOILERPLATE_Main {
 		$this->loader        = Loader::instance();
 		$this->current_theme = wp_get_theme()->get( 'TextDomain' );
 		$this->loader->add_action( 'init', $this, 'language' );
-		$this->loader->add_action( 'plugins_loaded', $this, 'plugins_loaded' );
 		// Register Plugin Active Hook.
 		register_activation_hook( BOILERPLATE_FILE, [ Installation::class, 'activate' ] );
 		// Register Plugin Deactivate Hook.
@@ -71,12 +70,6 @@ final class BOILERPLATE_Main {
 		$this->run();
 	}
 
-	/**
-	 * Load Text Domain
-	 */
-	public function loader() {
-		return $this->loader;
-	}
 
 	/**
 	 * Load Text Domain
@@ -160,7 +153,7 @@ final class BOILERPLATE_Main {
 	 */
 	private function run() {
 		if ( Dependencies::instance()->check() ) {
-			$this->init();
+            $this->init();
 			do_action( 'ancenter/after_run' );
 		}
 		$this->loader->run();

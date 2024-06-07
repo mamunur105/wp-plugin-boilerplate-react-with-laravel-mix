@@ -47,4 +47,5 @@ require_once BOILERPLATE_PATH . 'vendor/autoload.php';
 function boilerplate_main() {
 	return TinySolutions\boilerplate\BOILERPLATE_Main::instance();
 }
-boilerplate_main();
+
+add_action( 'plugins_loaded', 'boilerplate_main' );

@@ -46,7 +46,7 @@ class Assets {
 	 * @return void
 	 */
 	private function __construct() {
-		$this->loader  = boilerplate_main()->loader();
+        $this->loader = Loader::instance();
 		$this->version = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? time() : BOILERPLATE_VERSION;
 		/**
 		 * Admin scripts.

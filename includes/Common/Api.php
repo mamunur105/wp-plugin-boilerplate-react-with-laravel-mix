@@ -7,7 +7,7 @@ use TinySolutions\boilerplate\Traits\SingletonTrait;
 use WP_Error;
 
 /**
-* API Class
+ * API Class
  */
 class Api {
 
@@ -35,7 +35,7 @@ class Api {
 	 * Construct
 	 */
 	private function __construct() {
-		$this->loader = boilerplate_main()->loader();
+		$this->loader = Loader::instance();
 		$this->loader->add_action( 'rest_api_init', $this, 'register_routes' );
 	}
 

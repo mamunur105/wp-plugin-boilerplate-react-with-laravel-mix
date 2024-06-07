@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }
 
+use TinySolutions\boilerplate\Common\Loader;
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 /**
@@ -40,7 +41,7 @@ class AdminMenu {
 	 * @return void
 	 */
 	private function __construct() {
-		$this->loader = boilerplate_main()->loader();
+		$this->loader = Loader::instance();
 		$this->loader->add_action( 'admin_menu', $this, 'register_sub_menu' );
 	}
 
