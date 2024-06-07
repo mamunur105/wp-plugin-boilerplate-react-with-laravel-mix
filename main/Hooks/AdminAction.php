@@ -7,7 +7,6 @@
 
 namespace TinySolutions\boilerplate\Hooks;
 
-
 use TinySolutions\boilerplate\Common\Loader;
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
@@ -32,6 +31,6 @@ class AdminAction {
 	 * Class Constructor
 	 */
 	private function __construct() {
-		$this->loader        = Loader::instance();
+		$this->loader = Loader::instance();
 	}
 }

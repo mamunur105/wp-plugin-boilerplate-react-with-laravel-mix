@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use TinySolutions\boilerplate\Common\Loader;
+use TinySolutions\boilerplate\Register\Ninjagallery;
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 use TinySolutions\boilerplate\Admin\Installation;
 use TinySolutions\boilerplate\Admin\Dependencies;
@@ -25,7 +26,7 @@ use TinySolutions\boilerplate\Admin\Review;
 /**
  * Main initialization class.
  */
-final class BOILERPLATE_Main {
+final class Plugin {
 
 	/**
 	 * @var object
@@ -121,6 +122,7 @@ final class BOILERPLATE_Main {
 	 */
 	public function init() {
 		do_action( 'ancenter/before_init' );
+		Ninjagallery::instance();
 		Review::instance();
 		// Include File.
 		Assets::instance();

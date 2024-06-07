@@ -8,7 +8,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "TinySolutions\\boilerplate\\": "includes"
+      "TinySolutions\\boilerplate\\": "main"
     }
   },
   "description": ""

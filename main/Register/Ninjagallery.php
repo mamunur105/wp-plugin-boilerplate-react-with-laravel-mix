@@ -2,11 +2,20 @@
 
 namespace TinySolutions\boilerplate\Register;
 
+use TinySolutions\boilerplate\Traits\SingletonTrait;
 use TinySolutions\boilerplate\Abs\CustomPostType;
 use TinySolutions\boilerplate\Traits\Taxonomies;
 
 class Ninjagallery extends CustomPostType {
-
+	
+	/**
+	 * Singleton
+	 */
+	use SingletonTrait;
+	
+	/**
+	 * Register Taxonomies
+	 */
 	use Taxonomies;
 
 	/**
@@ -14,7 +23,7 @@ class Ninjagallery extends CustomPostType {
 	 *
 	 * @return Post type name And taxonomy init
 	 */
-	public function initposttype() {
+	public function init_post_type() {
 		$this->register_post_type();
 		$this->add_taxonomy();
 	}

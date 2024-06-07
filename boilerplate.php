@@ -16,6 +16,8 @@
 
 // Do not allow directly accessing this file.
 
+use TinySolutions\boilerplate\Plugin;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }
@@ -42,10 +44,10 @@ define( 'BOILERPLATE_PATH', plugin_dir_path( __FILE__ ) );
 require_once BOILERPLATE_PATH . 'vendor/autoload.php';
 
 /**
- * @return \TinySolutions\boilerplate\BOILERPLATE_Main
+ * @return Plugin
  */
 function boilerplate_main() {
-	return TinySolutions\boilerplate\BOILERPLATE_Main::instance();
+	return Plugin::instance();
 }
 
 add_action( 'plugins_loaded', 'boilerplate_main' );

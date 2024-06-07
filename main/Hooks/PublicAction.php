@@ -7,7 +7,6 @@
 
 namespace TinySolutions\boilerplate\Hooks;
 
-
 use TinySolutions\boilerplate\Common\Loader;
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
@@ -16,13 +15,11 @@ defined( 'ABSPATH' ) || exit();
 /**
  * Main ActionHooks class.
  */
-class Ajax {
-
+class PublicAction {
 	/**
 	 * @var object
 	 */
 	protected $loader;
-
 	/**
 	 * Singleton
 	 */
@@ -32,6 +29,6 @@ class Ajax {
 	 * Class Constructor
 	 */
 	private function __construct() {
-		$this->loader        = Loader::instance();
+		$this->loader = Loader::instance();
 	}
 }

@@ -7,7 +7,6 @@
 
 namespace TinySolutions\boilerplate\Hooks;
 
-
 use TinySolutions\boilerplate\Common\Loader;
 use TinySolutions\boilerplate\Helpers\Fns;
 use TinySolutions\boilerplate\Traits\SingletonTrait;
@@ -33,7 +32,7 @@ class AdminFilter {
 	 * Class Constructor
 	 */
 	private function __construct() {
-		$this->loader        = Loader::instance();
+		$this->loader = Loader::instance();
 		// Plugins Setting Page.
 		$this->loader->add_filter( 'plugin_action_links_' . BOILERPLATE_BASENAME, $this, 'plugins_setting_links' );
 		$this->loader->add_filter( 'plugin_row_meta', $this, 'plugin_row_meta', 10, 2 );

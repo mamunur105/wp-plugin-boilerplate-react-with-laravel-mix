@@ -5,6 +5,8 @@
 namespace TinySolutions\boilerplate\Abs;
 
 // Do not allow directly accessing this file.
+use TinySolutions\boilerplate\Common\Loader;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }
@@ -17,14 +19,19 @@ abstract class Discount {
 	 * @var
 	 */
 	protected $options = [];
-
+	/**
+	 * @var object
+	 */
+	protected $loader;
+	
 	/**
 	 * Class Constructor.
 	 *
 	 * @return void
 	 */
 	public function __construct() {
-		add_action( 'admin_init', [ $this, 'show_notice' ] );
+		$this->loader = Loader::instance();
+		$this->loader->add_action( 'admin_init', $this, 'show_notice' );
 	}
 
 	/**

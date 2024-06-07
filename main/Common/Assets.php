@@ -18,7 +18,7 @@ class Assets {
 	 * Singleton
 	 */
 	use SingletonTrait;
-	
+
 	/**
 	 * @var object
 	 */
@@ -46,7 +46,7 @@ class Assets {
 	 * @return void
 	 */
 	private function __construct() {
-        $this->loader = Loader::instance();
+		$this->loader  = Loader::instance();
 		$this->version = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? time() : BOILERPLATE_VERSION;
 		/**
 		 * Admin scripts.
@@ -105,10 +105,10 @@ class Assets {
 				'ancenter-settings',
 				'ancenterParams',
 				[
-					'ajaxUrl'                => esc_url( admin_url( 'admin-ajax.php' ) ),
-					'adminUrl'               => esc_url( admin_url() ),
-					'restApiUrl'             => esc_url_raw( rest_url() ), // site_url(rest_get_url_prefix()),
-					'rest_nonce'             => wp_create_nonce( 'wp_rest' ),
+					'ajaxUrl'                   => esc_url( admin_url( 'admin-ajax.php' ) ),
+					'adminUrl'                  => esc_url( admin_url() ),
+					'restApiUrl'                => esc_url_raw( rest_url() ), // site_url(rest_get_url_prefix()),
+					'rest_nonce'                => wp_create_nonce( 'wp_rest' ),
 					boilerplate_main()->nonceId => wp_create_nonce( boilerplate_main()->nonceId ),
 				]
 			);
