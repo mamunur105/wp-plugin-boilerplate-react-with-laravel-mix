@@ -7,7 +7,7 @@
 
 namespace TinySolutions\boilerplate\Hooks;
 
-
+use TinySolutions\boilerplate\Admin\Upgrade;
 use TinySolutions\boilerplate\Traits\SingletonTrait;
 
 defined( 'ABSPATH' ) || exit();
@@ -20,6 +20,7 @@ class MainHooks {
 	 * Singleton
 	 */
 	use SingletonTrait;
+
 	/**
 	 * Init Hooks.
 	 *
@@ -29,6 +30,7 @@ class MainHooks {
 		if ( is_admin() ) {
 			AdminAction::instance();
 			AdminFilter::instance();
+			Upgrade::instance();
 		} else {
 			PublicAction::instance();
 			PublicFilter::instance();
