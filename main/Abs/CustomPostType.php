@@ -68,7 +68,7 @@ abstract class CustomPostType {
 		$post_type_name   = Fns::uglify( $this->set_post_type_name() );
 		$post_type_args   = $this->set_post_type_args() ?? [];
 		$post_type_labels = $this->set_post_type_labels() ?? [];
-		// Capitilize the words and make it plural.
+		// Capitalize the words and make it plural.
 		$name   = Fns::beautify( $post_type_name );
 		$plural = Fns::pluralize( $name );
 		// We set the default labels based on the post type name and plural. We overwrite them with the given labels.
