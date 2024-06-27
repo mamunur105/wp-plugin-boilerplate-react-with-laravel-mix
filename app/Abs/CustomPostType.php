@@ -1,107 +1,103 @@
 <?php
+/**
+ *
+ */
 namespace TinySolutions\boilerplate\Abs;
 
+// Do not allow directly accessing this file.
+use TinySolutions\boilerplate\Common\Loader;
+use TinySolutions\boilerplate\Helpers\Fns;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'This script cannot be accessed directly.' );
+}
+/**
+ * Custom Post Type
+ */
 abstract class CustomPostType {
 
 	/**
-	 * init RUn $this->register_post_type and  $this->and add_taxonomy
-	 *
-	 * @return initialize post type and texonomy
+	 * @var object
 	 */
-	abstract function initposttype();
+	protected $loader;
+
 	/**
-	 * init $post_type_name
-	 *
-	 * @return set $post_type_name
+	 * Class Constructor
 	 */
-	abstract function set_post_type_name();
+	protected function __construct() {
+		$this->loader = Loader::instance();
+		$this->loader->add_action( 'init', $this, 'init_post_type' );
+	}
 	/**
-	 * set_post_type_args
+	 * Init Run $this->register_post_type and $this->add_taxonomy()
 	 *
-	 * @param [type] array
-	 * @return set post_type_args
+	 * @return void
 	 */
-	protected function set_post_type_args() {}
+	public function init_post_type() {
+		$this->register_post_type();
+		if ( method_exists( $this, 'add_taxonomy' ) ) {
+			$this->add_taxonomy();
+		}
+	}
 	/**
-	 * post_type_labels
+	 * Init $post_type_name
 	 *
-	 * @param [type] array
-	 * @return set $post_type_labels;
-	 */
-	protected function set_post_type_labels() {}
-	/**
-	 * Beautify string
-	 *
-	 * @param [type] $string
 	 * @return string
 	 */
-	public static function beautify( $string ) {
-		return ucwords( str_replace( '_', ' ', $string ) );
+	abstract public function set_post_type_name();
+	/**
+	 * Set_post_type_args
+	 *
+	 * @return array
+	 */
+	protected function set_post_type_args() {
+		return [];
 	}
 	/**
-	 * Beautify string
+	 * Post_type_labels
 	 *
-	 * @param [type] $string
-	 * @return $string
+	 * @return array;
 	 */
-	public static function uglify( $string ) {
-		return strtolower( str_replace( ' ', '_', $string ) );
+	protected function set_post_type_labels() {
+		return [];
 	}
-
 	/**
-	 * Pluralize String
-	 *
-	 * @param [type] $string
-	 * @return $Plural_string
+	 * @return void
 	 */
-	public static function pluralize( $string = '' ) {
-		$last = $string[ strlen( $string ) - 1 ];
-		if ( $last == 'y' ) {
-			$cut = substr( $string, 0, -1 );
-			// convert y to ies
-			$plural = $cut . 'ies';
-		} else {
-			// just attach an s
-			$plural = $string . 's';
-		}
-		return $plural;
-	}
-
-	// function
-	/* Method which registers the post type */
-	public function register_post_type() {
-
-		$post_type_name   = self::uglify( $this->set_post_type_name() );
+	private function register_post_type() {
+		$post_type_name   = Fns::uglify( $this->set_post_type_name() );
 		$post_type_args   = $this->set_post_type_args() ?? [];
 		$post_type_labels = $this->set_post_type_labels() ?? [];
-
-		// Capitilize the words and make it plural
-		$name   = self::beautify( $post_type_name );// ucwords( str_replace( '_', ' ', $this->post_type_name ) );
-		$plural = self::pluralize( $name );
+		// Capitalize the words and make it plural.
+		$name   = Fns::beautify( $post_type_name );
+		$plural = Fns::pluralize( $name );
 		// We set the default labels based on the post type name and plural. We overwrite them with the given labels.
 		$defaults_labels = [
-			// 'name'                  => _x( $plural, 'post type general name' ),
-			'name'               => _x( $plural, 'post type general name' ),
-			'singular_name'      => _x( $name, 'post type singular name' ),
-			'add_new'            => _x( 'Add New', strtolower( $name ) ),
-			'add_new_item'       => __( 'Add New ' . $name ),
-			'edit_item'          => __( 'Edit ' . $name ),
-			'new_item'           => __( 'New ' . $name ),
-			'all_items'          => __( 'All ' . $plural ),
-			'view_item'          => __( 'View ' . $name ),
-			'search_items'       => __( 'Search ' . $plural ),
-			'not_found'          => __( 'No ' . strtolower( $plural ) . ' found' ),
-			'not_found_in_trash' => __( 'No ' . strtolower( $plural ) . ' found in Trash' ),
-			'parent_item_colon'  => '',
-			'menu_name'          => $plural,
+			/* translators: %s: post-type name */
+			'add_new'            => sprintf( esc_html_x( 'Add New', '%s', 'ancenter' ), strtolower( $name ) ),
+			/* translators: %s: post-type name */
+			'add_new_item'       => sprintf( esc_html__( 'Add New %s', 'ancenter' ), $name ),
+			/* translators: %s: post-type name */
+			'edit_item'          => sprintf( esc_html__( 'Edit %s', 'ancenter' ), $name ),
+			/* translators: %s: post-type name */
+			'new_item'           => sprintf( esc_html__( 'New %s', 'ancenter' ), $name ),
+			/* translators: %s: post-type plural name */
+			'all_items'          => sprintf( esc_html__( 'All %s', 'ancenter' ), $plural ),
+			/* translators: %s: post-type name */
+			'view_item'          => sprintf( esc_html__( 'View %s', 'ancenter' ), $name ),
+			/* translators: %s: post-type plural name */
+			'search_items'       => sprintf( esc_html__( 'Search %s', 'ancenter' ), $plural ),
+			/* translators: %s: post-type plural name */
+			'not_found'          => sprintf( esc_html__( 'No %s found', 'ancenter' ), strtolower( $plural ) ),
+			/* translators: %s: post-type plural name */
+			'not_found_in_trash' => sprintf( esc_html__( 'No %s found in Trash', 'ancenter' ), strtolower( $plural ) ),
+			/* translators: %s: post-type plural name */
+			'parent_item_colon'  => sprintf( esc_html__( 'Parent %s: ', 'ancenter' ), $plural ),
+			'menu_name'          => $name,
 		];
-
-		$labels = wp_parse_args( $post_type_labels, $defaults_labels );
-		// $labels = wp_parse_args( $this->set_post_type_labels( ), $defaults_labels );
+		$labels          = wp_parse_args( $post_type_labels, $defaults_labels );
 		// Same principle as the labels. We set some defaults and overwrite them with the given arguments.
 		$defaults_args  = [
-			// 'label'                 => $plural,
-			// 'labels'                => $labels,
 			'public'            => true,
 			'show_ui'           => true,
 			'supports'          => [ 'title', 'editor' ],
@@ -110,8 +106,7 @@ abstract class CustomPostType {
 		];
 		$args           = wp_parse_args( $post_type_args, $defaults_args );
 		$args['labels'] = $labels;
-		// Register the post type
+		// Register the post type.
 		register_post_type( $post_type_name, $args );
 	}
-	
 }
