@@ -19,15 +19,6 @@ class Ninjagallery extends CustomPostType {
 	use Taxonomies;
 
 	/**
-	 * Run post type and taxonomy
-	 *
-	 * @return Post type name And taxonomy init
-	 */
-	public function init_post_type() {
-		$this->register_post_type();
-		$this->add_taxonomy();
-	}
-	/**
 	 * Post type name
 	 *
 	 * @return Post type name

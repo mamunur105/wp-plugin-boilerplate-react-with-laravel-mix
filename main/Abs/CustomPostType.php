@@ -12,16 +12,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }
 /**
-* Custom Post Type
-*/
+ * Custom Post Type
+ */
 abstract class CustomPostType {
-	
-	
+
 	/**
 	 * @var object
 	 */
 	protected $loader;
-	
+
 	/**
 	 * Class Constructor
 	 */
@@ -30,61 +29,73 @@ abstract class CustomPostType {
 		$this->loader->add_action( 'init', $this, 'init_post_type' );
 	}
 	/**
-	 * init RUn $this->register_post_type and  $this->and add_taxonomy
+	 * Init Run $this->register_post_type and $this->add_taxonomy()
 	 *
-	 * @return initialize post type and texonomy
+	 * @return void
 	 */
-	abstract function init_post_type();
+	public function init_post_type() {
+		$this->register_post_type();
+		if ( method_exists( $this, 'add_taxonomy' ) ) {
+			$this->add_taxonomy();
+		}
+	}
 	/**
-	 * init $post_type_name
+	 * Init $post_type_name
 	 *
-	 * @return set $post_type_name
+	 * @return string
 	 */
-	abstract function set_post_type_name();
+	abstract public function set_post_type_name();
 	/**
-	 * set_post_type_args
+	 * Set_post_type_args
 	 *
-	 * @param [type] array
-	 * @return set post_type_args
+	 * @return array
 	 */
-	protected function set_post_type_args() {}
+	protected function set_post_type_args() {
+		return [];
+	}
 	/**
-	 * post_type_labels
+	 * Post_type_labels
 	 *
-	 * @param [type] array
-	 * @return set $post_type_labels;
+	 * @return array;
 	 */
-	protected function set_post_type_labels() {}
-	
-	/* Method which registers the post type */
-	public function register_post_type() {
-
+	protected function set_post_type_labels() {
+		return [];
+	}
+	/**
+	 * @return void
+	 */
+	private function register_post_type() {
 		$post_type_name   = Fns::uglify( $this->set_post_type_name() );
 		$post_type_args   = $this->set_post_type_args() ?? [];
 		$post_type_labels = $this->set_post_type_labels() ?? [];
-
 		// Capitilize the words and make it plural.
 		$name   = Fns::beautify( $post_type_name );
 		$plural = Fns::pluralize( $name );
 		// We set the default labels based on the post type name and plural. We overwrite them with the given labels.
 		$defaults_labels = [
-			'name'               => _x( $plural, 'post type general name', 'ancenter' ),
-			'singular_name'      => _x( $name, 'post type singular name', 'ancenter' ),
-			'add_new'            => _x( 'Add New', strtolower( $name ), 'ancenter' ),
-			'add_new_item'       => __( 'Add New ' . $name, 'ancenter' ),
-			'edit_item'          => __( 'Edit ' . $name, 'ancenter' ),
-			'new_item'           => __( 'New ' . $name, 'ancenter' ),
-			'all_items'          => __( 'All ' . $plural, 'ancenter' ),
-			'view_item'          => __( 'View ' . $name, 'ancenter' ),
-			'search_items'       => __( 'Search ' . $plural, 'ancenter' ),
-			'not_found'          => __( 'No ' . strtolower( $plural ) . ' found', 'ancenter' ),
-			'not_found_in_trash' => __( 'No ' . strtolower( $plural ) . ' found in Trash', 'ancenter' ),
-			'parent_item_colon'  => '',
-			'menu_name'          => $plural,
+			/* translators: %s: post-type name */
+			'add_new'            => sprintf( esc_html_x( 'Add New', '%s', 'ancenter' ), strtolower( $name ) ),
+			/* translators: %s: post-type name */
+			'add_new_item'       => sprintf( esc_html__( 'Add New %s', 'ancenter' ), $name ),
+			/* translators: %s: post-type name */
+			'edit_item'          => sprintf( esc_html__( 'Edit %s', 'ancenter' ), $name ),
+			/* translators: %s: post-type name */
+			'new_item'           => sprintf( esc_html__( 'New %s', 'ancenter' ), $name ),
+			/* translators: %s: post-type plural name */
+			'all_items'          => sprintf( esc_html__( 'All %s', 'ancenter' ), $plural ),
+			/* translators: %s: post-type name */
+			'view_item'          => sprintf( esc_html__( 'View %s', 'ancenter' ), $name ),
+			/* translators: %s: post-type plural name */
+			'search_items'       => sprintf( esc_html__( 'Search %s', 'ancenter' ), $plural ),
+			/* translators: %s: post-type plural name */
+			'not_found'          => sprintf( esc_html__( 'No %s found', 'ancenter' ), strtolower( $plural ) ),
+			/* translators: %s: post-type plural name */
+			'not_found_in_trash' => sprintf( esc_html__( 'No %s found in Trash', 'ancenter' ), strtolower( $plural ) ),
+			/* translators: %s: post-type plural name */
+			'parent_item_colon'  => sprintf( esc_html__( 'Parent %s: ', 'ancenter' ), $plural ),
+			'menu_name'          => $name,
 		];
-
-
-		$labels = wp_parse_args( $post_type_labels, $defaults_labels );
+		$labels          = wp_parse_args( $post_type_labels, $defaults_labels );
 		// Same principle as the labels. We set some defaults and overwrite them with the given arguments.
 		$defaults_args  = [
 			'public'            => true,
