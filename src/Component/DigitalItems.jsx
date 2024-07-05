@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import useStore from '../Utils/StateProvider';
 
 import Loader from '../Utils/Loader';
-
-import {modulesList} from '../Utils/modules';
 
 import {
     Form,
@@ -21,18 +19,20 @@ const { Content } = Layout;
 
 const { Title, Text } = Typography;
 
-import * as Types from "../Utils/actionType";
-
-import ModuleItem from './ModuleItem';
+import DigitalItem from './DigitalItem';
 import MainHeader from "./MainHeader";
-function Modules() {
+function DigitalItems() {
 
     const {
         options,
+        fetchOptions,
         generalData,
-        saveType,
-        dispatch
+        modulesList
     } = useStore();
+
+    useEffect(() => {
+        fetchOptions();
+    }, []);
 
     return (
         <><MainHeader/>
@@ -52,7 +52,7 @@ function Modules() {
                     <>
                     {
                         modulesList.map( (item, index) =>  {
-                            return <ModuleItem  key={ index } {...item} />;
+                            return <DigitalItem key={ index } {...item} />;
                         } )
                     }
                     </>
@@ -64,4 +64,4 @@ function Modules() {
     );
 };
 
-export default Modules;
+export default DigitalItems;

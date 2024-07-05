@@ -1,39 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Drawer, Space } from 'antd';
-import * as Types from "../Utils/actionType";
 import useStore from "../Utils/StateProvider";
-import {modulesList} from '../Utils/modules';
 
 const SettingsDrawer = () => {
 
     const {
         options,
         generalData,
-        dispatch
+        modulesList,
+        updateGeneralData
     } = useStore();
+
 
     const { modules } = options;
 
     const onClose = () => {
-        dispatch({
-            type: Types.GENERAL_DATA,
-            generalData:{
-                ...generalData,
-                module: false,
-                showDrawer : false,
-                drawerLoading: true
-            }
+        updateGeneralData({
+            ...generalData,
+            showDrawer : false,
+            drawerLoading: true
         });
     };
 
     const afterOpenChange = ( visible ) => {
         setTimeout(() => {
-            dispatch({
-                type: Types.GENERAL_DATA,
-                generalData:{
-                    ...generalData,
-                    drawerLoading: ! visible
-                }
+            updateGeneralData({
+                ...generalData,
+                drawerLoading: ! visible
             });
         }, 300);
     };
@@ -42,12 +35,15 @@ const SettingsDrawer = () => {
         return modulesList.find(module => module.id === id);
     };
 
-   const Module = generalData.module ? findById(generalData.module) : {};
+    const Module = generalData.module ? findById(generalData.module) : {};
+
+
+
 
     return (
         <>
             <Drawer
-                width={720}
+                width={900}
                 zIndex={99999}
                 title="Basic Drawer"
                 placement="right"
@@ -57,25 +53,9 @@ const SettingsDrawer = () => {
                 loading={generalData?.drawerLoading}
                 afterOpenChange={afterOpenChange}
                 className='mfwoo-drawer-wrapper'
-                footer={
-                    <Button
-                        type="primary"
-                        onClick={onClose}
-                        style={{
-                            height: '55px',
-                            margin: '15px 0',
-                            minWidth: '200px'
-                        }}
-                    >
-                        Save Settings
-                    </Button>
-                }
+
             >
-                { generalData.showDrawer ? <>
-                    {
-                        generalData?.module ? <Module.settings.type {...Module?.settings.props} /> : 'No Setting'
-                    }
-                </> : 'No Settings' }
+                Lorem Text
             </Drawer>
         </>
     );

@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card, Switch, Tooltip } from 'antd';
 import useStore from "../Utils/StateProvider";
-import * as Types from "../Utils/actionType";
 const { Meta } = Card;
-const ModuleItem = ( props ) => {
+const DigitalItem = (props ) => {
 
     const {
         options,
         generalData,
-        saveType,
-        dispatch
+        updateGeneralData
     } = useStore();
     const { modules } = options;
     const {
@@ -21,13 +19,14 @@ const ModuleItem = ( props ) => {
         id
     } = props;
 
+    const theTollTips = tollTips ? tollTips : name;
+
     const onChange = (checked) => {
-        dispatch({
-            type: Types.UPDATE_MODULES,
+        updateGeneralData({
             modules: {
-                ...modules,
+                ...generalData.modules,
                 [id] : {
-                    ...modules?.[id],
+                    ...generalData.modules?.[id],
                     active: !!checked
                 }
             }
@@ -35,31 +34,24 @@ const ModuleItem = ( props ) => {
     };
 
     const showDrawer = () => {
-        dispatch({
-            type: Types.GENERAL_DATA,
-            generalData:{
-                ...generalData,
-                module : id,
-                showDrawer : true,
-                drawerLoading: true
-            }
+        updateGeneralData({
+            ...generalData,
+            module : id,
+            showDrawer : true,
+            drawerLoading: true
         });
         onChange( modules?.[id]?.active );
     };
 
-    const theTollTips = tollTips ? tollTips : name;
-
     return(
         <Card
-            style={{
-                flex: ' 0 0 calc(33.33% - 15px)'
-            }}
+            className={`category-list-wrapper`}
             actions={[
-                <SettingOutlined
+                <><SettingOutlined
                     key="setting"
                     onClick={showDrawer}
                     style={{ fontSize: '20px' }}
-                />,
+                /> Report </>,
                 <Tooltip placement="top" title={ theTollTips } >
                     <Switch onChange={onChange} />
                 </Tooltip>,
@@ -73,4 +65,4 @@ const ModuleItem = ( props ) => {
         </Card>
     )
 };
-export default ModuleItem;
+export default DigitalItem;

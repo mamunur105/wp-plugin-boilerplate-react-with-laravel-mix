@@ -89,7 +89,6 @@ class Assets {
 		}
 
 		$current_screen = get_current_screen();
-
 		if ( isset( $current_screen->id ) && 'toplevel_page_ancenter-admin' === $current_screen->id ) {
 			// Enqueue ThickBox scripts and styles.
 			wp_enqueue_script( 'thickbox' );

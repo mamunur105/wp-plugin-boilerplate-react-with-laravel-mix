@@ -1,15 +1,8 @@
 import React from "react";
-
 import { Menu, Layout } from 'antd';
-
 import { SettingOutlined, ContactsOutlined, LikeOutlined } from '@ant-design/icons';
-
 import {Link, useLocation} from "react-router-dom";
-
 import useStore from "../Utils/StateProvider";
-
-import * as Types from "../Utils/actionType";
-
 const { Header } = Layout;
 
 function MainHeader() {
@@ -53,7 +46,7 @@ function MainHeader() {
                 items={[
                     {
                         key: '/',
-                        label: <Link to={`/`}> Modules </Link>,
+                        label: <Link to={`/`}> Digital Items </Link>,
                         icon: <SettingOutlined style={iconStyle} />,
                         style: menuItemStyle
                     },

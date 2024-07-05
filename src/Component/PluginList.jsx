@@ -11,16 +11,17 @@ import {
 
 import {getPluginList} from "../Utils/Data";
 import MainHeader from "./MainHeader";
+import useStore from "../Utils/StateProvider";
 
 function PluginList() {
 
-    const [ pluginList, setPluginList ] = useState( [] );
-
-    const getThePluginList = async () => {
-        const response = await getPluginList();
-        const preparedData =  await JSON.parse( response.data );
-        await setPluginList( preparedData );
-    }
+    const {
+        options,
+        pluginList,
+        fetchPluginList,
+        saveType,
+        dispatch
+    } = useStore();
 
     const decodeHTMLEntities = (text) => {
         const textArea = document.createElement('textarea');
@@ -29,9 +30,8 @@ function PluginList() {
     };
 
     useEffect(() => {
-        getThePluginList();
-    }, [] );
-
+        fetchPluginList();
+    }, []);
     return ( <>
         <MainHeader/>
         <Layout style={{
