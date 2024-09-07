@@ -1,4 +1,4 @@
-# Wp Plugin Boilerplate React Js With Mix And Composer Autoload Php
+# Wp Plugin Boilerplate React Js, zustand compile with Mix And Composer Autoload for PHP
 
 ***Composer Command***
 
@@ -7,7 +7,7 @@
 
 ***Js Compiler Laravel mix***
 
-* ```yarn install``` OR ```npm install```  To install package 
+```npm install```  To install package 
 * ```yarn watch``` OR ```npm run watch``` to compile js file
 * ```yarn zip``` OR ```npm run zip``` to create a package with production zip file ready
 
