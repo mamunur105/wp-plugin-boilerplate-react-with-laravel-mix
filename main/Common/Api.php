@@ -139,7 +139,7 @@ class Api {
 	public function update_option( $request_data ) {
 		$result = [
 			'updated' => false,
-			'message' => esc_html__( 'Update failed. Maybe change not found. ', 'ancenter-media-tools' ),
+			'message' => esc_html__( 'Update failed. Maybe change not found. ', 'textdomain' ),
 		];
 
 		$parameters = $request_data->get_params();
@@ -151,7 +151,7 @@ class Api {
 		$options = update_option( 'ancenter_settings', $the_settings );
 
 		$result['updated'] = boolval( $options );
-
+	
 		if ( $result['updated'] ) {
 			$result['message'] = esc_html__( 'Updated.', 'ancenter' );
 		}
