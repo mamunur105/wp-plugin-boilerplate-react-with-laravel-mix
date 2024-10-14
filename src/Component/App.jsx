@@ -21,7 +21,6 @@ function App() {
         saveType,
         dispatch
     } = useStore();
-
     return (
         <Layout className="tttme-App" style={{
             padding: '10px',

@@ -20,6 +20,7 @@ export function setupNavigation() {
                     parentLi.classList.add('current');
                 }
             }
+
         }
 
         // Initial setting of active link
