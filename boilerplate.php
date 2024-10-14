@@ -4,13 +4,13 @@
  * Plugin Name:       Boiler Plate ( Only For Developer )
  * Plugin URI:        https://wordpress.org/plugins/admin-notice-centralization
  * Description:       Boiler
- * Version:           0.0.1
+ * Version:           0.0.2
  * Author:            Tiny Solutions
  * Author URI:        https://www.wptinysolutions.com/
  * Text Domain:       ancenter
  * Domain Path:       /languages
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * License:                    GPLv3
+ * License URI:                http://www.gnu.org/licenses/gpl-3.0.html
  * @package TinySolutions\mlt
  */
 
