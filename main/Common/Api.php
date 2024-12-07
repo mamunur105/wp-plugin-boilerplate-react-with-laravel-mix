@@ -47,7 +47,7 @@ class Api {
 	public function register_routes() {
 		register_rest_route(
 			$this->namespacev1,
-			$this->resource_name . '/getoptions',
+			$this->resource_name . '/getOptions',
 			[
 				'methods'             => 'GET',
 				'callback'            => [ $this, 'get_options' ],
@@ -56,7 +56,7 @@ class Api {
 		);
 		register_rest_route(
 			$this->namespacev1,
-			$this->resource_name . '/updateoptins',
+			$this->resource_name . '/updateOptions',
 			[
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'update_option' ],

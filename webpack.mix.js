@@ -1,3 +1,6 @@
+/**
+ * Laravel Mix Configuration File.
+ */
 const mix = require("laravel-mix");
 const fs = require("fs-extra");
 const path = require("path");
@@ -10,6 +13,7 @@ const min = mix.inProduction() ? ".min" : "";
 const package_path = path.resolve(__dirname);
 const package_slug = path.basename(path.resolve(package_path));
 const temDirectory = package_path + "/dist";
+require('mix-tailwindcss');
 
 mix.options({
 	terser: {
@@ -18,20 +22,32 @@ mix.options({
 	processCssUrls: false,
 });
 
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src'),
+        },
+        extensions: ['.js', '.jsx', '.tsx', '.json']
+    }
+});
+
+
 if (process.env.npm_config_package) {
 	mix.then(function () {
 		const copyTo = path.resolve(`${temDirectory}/${package_slug}`);
+
 		// Select All file then paste on list
 		let includes = [
-			"main",
 			"assets",
+			"includes",
 			"languages",
 			"vendor",
+			"views",
 			"index.php",
-			"README.txt",
-			"uninstall.php",
+			"readme.txt",
 			`${package_slug}.php`,
 		];
+
 		fs.ensureDir(copyTo, function (err) {
 			if (err) return console.error(err);
 			includes.map((include) => {
@@ -46,6 +62,7 @@ if (process.env.npm_config_package) {
 					}
 				);
 			});
+
 			console.log(
 				cliColor.white(`=> ${emojic.whiteCheckMark}  Build directory created`)
 			);
@@ -66,46 +83,55 @@ if (
 		fs.ensureDir(languages, function (err) {
 			if (err) return console.error(err); // if file or folder does not exist
 			wpPot({
-				package: "Modules For Woocommerce",
-				bugReport: "",
+				package: "My Plugin Boilerplate - A modern WordPress plugin boilerplate.",
+				bugReport: "https://github.com/smrafiz/wp-epo",
 				src: "**/*.php",
-				domain: "mfwoo",
-				destFile: `languages/${package_slug}.pot`,
+				domain: "my-plugin-text-domain",
+				destFile: "languages/wp-epo.pot",
 			});
 		});
 	}
 
-	// Frontend CSS
+	/**
+	 * JS
+	 */
+	mix
+		// Backend JS
+		.js('src/js/backend.jsx', 'assets/js/backend/admin-settings.js').react().sourceMaps(true, 'source-map')
+		// Frontend JS
+		.js("src/js/frontend.js", "assets/js/backend/frontend.js").sourceMaps(true, 'source-map');
+
+    mix.sass('src/scss/backend.scss', 'assets/css/backend/admin-settings.css').tailwind('./tailwind.config.js');
+	/**
+	 * CSS
+	 */
 	if (!mix.inProduction()) {
-		/**
-		 * JS
-		 */
-		mix
-			// Backend JS
-			.js("src/admin-settings.jsx", "assets/js/backend/")
-			.react()
-			// Backend CSS
-			.sass('src/admin-settings.scss', 'assets/css/backend/').sourceMaps(true, 'source-map');
+		// Frontend CSS
+		mix.sass("src/scss/frontend.scss", "assets/css/frontend.min.css",).sourceMaps(true, 'source-map');
+		mix.sass("src/scss/frontend-rtl.scss", "assets/css/rtl/frontend-rtl.min.css").sourceMaps(true, 'source-map');
 	} else {
-		/**
-		 * JS
-		 */
-		mix
-			// Backend JS
-			.js("src/admin-settings.jsx", "assets/backend/")
-			.react();
-		/**
-		 * CSS
-		 */
-		mix
-			// Backend CSS
-			.sass('src/admin-settings.scss', 'assets/css/backend/');
+		// Frontend CSS
+		mix.sass("src/scss/frontend.scss", "assets/css/frontend.min.css");
+		mix.sass("src/scss/frontend-rtl.scss", "assets/css/rtl/frontend-rtl.min.css");
 	}
 
+	// Backend CSS
+	mix.postCss('assets/css/backend/admin-settings.css', 'assets/css/rtl/compiled-backend-rtl.css', [
+		require('rtlcss'),
+	]);
+    // mix.combine([
+    //     'assets/css/rtl/compiled-backend-rtl.css',
+    //     'assets/css/rtl/backend-rtl.min.css'
+    // ], 'assets/css/backend-rtl.min.css');
 
-
-
-
+	// Frontend CSS
+	mix.postCss('assets/css/frontend.min.css', 'assets/css/rtl/compiled-frontend-rtl.css', [
+		require('rtlcss'),
+	]);
+	mix.combine([
+		'assets/css/rtl/compiled-frontend-rtl.css',
+		'assets/css/rtl/frontend-rtl.min.css'
+	], 'assets/css/frontend-rtl.min.css');
 }
 if (process.env.npm_config_zip) {
 	async function getVersion() {
@@ -133,7 +159,7 @@ if (process.env.npm_config_zip) {
 	version_get.then(function (version) {
 		const destinationPath = `${temDirectory}/${package_slug}.${version}.zip`;
 		const output = fs.createWriteStream(destinationPath);
-		const archive = archiver("zip", { zlib: { level: 9 } });
+		const archive = archiver("zip", {zlib: {level: 9}});
 		output.on("close", function () {
 			console.log(archive.pointer() + " total bytes");
 			console.log(
