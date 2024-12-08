@@ -4,7 +4,7 @@
 import Axios from 'axios';
 import TheAlerts from "@/components/CustomizeComponent/TheAlerts";
 
-const apiBaseUrl = `${ancenterParams.restApiUrl}TinySolutions/ancenter/v1`;
+const apiBaseUrl = `${ancenterParams.restApiUrl}TinySolutions/ancenter/v1/api`;
 
 /*
  * Create a Api object with Axios and

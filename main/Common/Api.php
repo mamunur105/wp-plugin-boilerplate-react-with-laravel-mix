@@ -26,7 +26,7 @@ class Api {
 	 */
 	private $namespacev1 = 'TinySolutions/ancenter/v1';
 
-	/**
+	/**TinySolutions/ancenter/v1/updateOptions
 	 * @var string
 	 */
 	private $resource_name = '/api';
@@ -63,6 +63,7 @@ class Api {
 				'permission_callback' => [ $this, 'login_permission_callback' ],
 			]
 		);
+		
 		register_rest_route(
 			$this->namespacev1,
 			$this->resource_name . '/getPluginList',
@@ -145,9 +146,11 @@ class Api {
 		$parameters = $request_data->get_params();
 
 		$the_settings = get_option( 'ancenter_settings', [] );
-
-		$the_settings['default_demo_text'] = ! empty( $parameters['default_demo_text'] ) ? $parameters['default_demo_text'] : '';
-
+		
+		if ( isset( $parameters['allGroups'] ) && is_array( $parameters['allGroups'] ) ) {
+			$the_settings['allGroups'] = $parameters['allGroups'];
+		}
+		
 		$options = update_option( 'ancenter_settings', $the_settings );
 
 		$result['updated'] = boolval( $options );

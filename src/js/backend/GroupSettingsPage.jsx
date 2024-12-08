@@ -8,7 +8,6 @@ import { DndContext, closestCenter } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import TextareaField from "@/components/Fields/TextareaField";
 import {ItemForwardRef} from "@/components/CustomizeComponent/ItemForwardRef";
-import GroupFields from "@/js/backend/GroupFields";
 import useStore from "@/js/backend/Utils/StateProvider";
 
 /**
@@ -163,7 +162,7 @@ function GroupSettingsPage() {
                                             checked={item.displayGroupDesc}
                                             onCheckedChange={(value) => onChangeGroup(item.id, "displayGroupDesc", value)}
                                         />
-                                        <GroupFields id={item.id}/>
+
                                     </GroupAccordion>
                                 </ItemForwardRef>)
                         }) :

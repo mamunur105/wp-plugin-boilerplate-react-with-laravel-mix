@@ -7,8 +7,6 @@ export default create((set, get) => ({
     generalData:{},
     options: {
         allGroups: [],
-        allFields: {},
-        fieldOptions: [],
     },
     scrollToID: null,
     pluginList: [],
@@ -22,17 +20,9 @@ export default create((set, get) => ({
        set((state) => ({ notice: { ...state.notice, ...theNotice } }));
     },
     setOptions: async ( theOption ) => {
-        set((state) => ({ options: { ...state.options, ...theOption } }));
+        set((state) => ({ options: { ...state.options, ...theOption },  scrollToID: null }));
     },
-    updateFields: async ( groupId, theFields ) => {
-        const state = get(); // Retrieve the current state.
-        let allFields = state.options?.allFields || {};
-        allFields[groupId] = theFields;
-        set((state) => ({
-            scrollToID: null,
-            options: { ...state.options, allFields: allFields }
-        }));
-    },
+
     resetScrollToID: async () => {
         set((state) => ({ scrollToID:null }));
     },
@@ -77,27 +67,6 @@ export default create((set, get) => ({
             options: { ...state.options, allGroups: newGroup },
             scrollToID: newGroupId
         }));
-    },
-    addNewField: async (groupId) => {
-        const state = get(); // Retrieve the current state.
-        const newFieldId = uid();
-        let allFields = state.options?.allFields || {}; // Check if the groupId exists in allFields.
-        const newField = {
-           id: newFieldId,
-           enable_field: false,
-           title: 'Field Added',
-           type: 'text',
-           options:[]
-        }
-        const oldFields = allFields[groupId] ? allFields[groupId] : [];
-        const allNewFields = [ ...oldFields, { ...newField } ];
-        allFields = { ...allFields, [groupId]: allNewFields }
-        const allOptions = { ...state.options, allFields: allFields };
-        set((state) => ({
-            options: allOptions,
-            scrollToID: newFieldId
-        }));
     }
-
 
 }))
