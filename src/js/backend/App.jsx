@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
 
-import GroupSettingsPage from "@/js/backend/GroupSettingsPage";
+import Bundle from "@/js/backend/Bundle";
 import Page from "@/js/backend/Page";
 import TheAlerts from "@/components/CustomizeComponent/TheAlerts";
 import useStore from "@/js/backend/Utils/StateProvider";
@@ -12,12 +12,12 @@ const App = () => {
         notice,
         options
     } = useStore();
-    console.log( 'options ' , options )
+
     return (
         <div className="border border-sky-500 p-1.5 rounded">
             <HashRouter>
                 <Routes>
-                    <Route path="/" element={<GroupSettingsPage/>}/>
+                    <Route path="/" element={<Bundle/>}/>
                     <Route path="/page" element={<Page/>}/>
                     <Route path="*" element={<Navigate to="/" replace/>}/>
                 </Routes>

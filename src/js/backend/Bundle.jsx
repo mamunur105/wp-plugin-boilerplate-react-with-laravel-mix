@@ -14,7 +14,7 @@ import useStore from "@/js/backend/Utils/StateProvider";
  * SortableItem component to make each group draggable.
  * SettingsPage Component with DnD support.
  */
-function GroupSettingsPage() {
+function Bundle() {
     const {
         addNewField,
         setOptions,
@@ -97,37 +97,37 @@ function GroupSettingsPage() {
                                         nested={'first'}
                                     >
                                         <SwitchField
-                                            label="Enable Group"
-                                            desc="Group Enable Or disable"
+                                            label="Enable Bundle"
+                                            desc="Bundle Enable Or disable"
                                             checked={item.enable_group}
                                             onCheckedChange={(value) => onChangeGroup(item.id, "enable_group", value)}
                                         />
                                         <InputField
-                                            label="Group Name"
-                                            desc="Group Name description"
+                                            label="Bundle Name"
+                                            desc="Bundle Name description"
                                             defaultValue={item.title}
                                             onChange={(e) => onChangeGroup(item.id, "title", e.target.value)}
                                         />
                                         <TextareaField
-                                            label="Group Description"
-                                            desc="Group description"
+                                            label="Bundle Description"
+                                            desc="Bundle description"
                                             defaultValue={item.description}
                                             onChange={(e) => onChangeGroup(item.id, "description", e.target.value)}
                                         />
                                         <SelectField
-                                            label="Group By"
+                                            label="Bundle By"
                                             desc="Select your desired field type."
                                             options={{
                                                 'category': 'Category',
                                                 'product': 'Product',
                                             }}
-                                            defaultValue={item?.groupBy || 'category'}
+                                            defaultValue={item?.groupBy || 'product'}
                                             onValueChange={(value) => onChangeGroup(item.id, "groupBy", value)}
                                         />
                                         {
                                             'category' === item?.groupBy ?
                                                 <SelectField
-                                                    label="Group By Category"
+                                                    label="Bundle By Category"
                                                     desc="Choose Category to include. Leave blank to apply in all category.."
                                                     options={{
                                                         'cat-1': 'Cat 1',
@@ -140,7 +140,7 @@ function GroupSettingsPage() {
                                         {
                                             'product' === item?.groupBy ?
                                                 <SelectField
-                                                    label="Group By Product"
+                                                    label="Bundle By Product"
                                                     desc="Choose products to include. Leave blank to apply in all product.."
                                                     options={{
                                                         'product-1': 'Product 1',
@@ -151,14 +151,14 @@ function GroupSettingsPage() {
                                                 /> : null
                                         }
                                         <SwitchField
-                                           label="Display Group Name"
+                                           label="Display Bundle Name"
                                             desc="Switch on to show group name in the frontend."
                                             checked={item?.displayGroupName}
                                             onCheckedChange={(value) => onChangeGroup(item.id, "displayGroupName", value)}
                                         />
                                         <SwitchField
-                                            label="Display Group Description"
-                                            desc="Switch on to show group description in the frontend."
+                                            label="Display Bundle Description"
+                                            desc="Switch on to show Bundle description in the frontend."
                                             checked={item.displayGroupDesc}
                                             onCheckedChange={(value) => onChangeGroup(item.id, "displayGroupDesc", value)}
                                         />
@@ -166,7 +166,7 @@ function GroupSettingsPage() {
                                     </GroupAccordion>
                                 </ItemForwardRef>)
                         }) :
-                        <h3 className='p-4 border'> No Group Added </h3>
+                        <h3 className='font-bold text-lg p-4 border text-center'> No Bundle Added </h3>
                     }
                 </SortableContext>
             </DndContext>
@@ -174,4 +174,4 @@ function GroupSettingsPage() {
     );
 }
 
-export default GroupSettingsPage;
+export default Bundle;
