@@ -25,11 +25,20 @@ mix.options({
 mix.webpackConfig({
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'src'),
+            '@': path.resolve(__dirname, 'src/js'),
         },
-        extensions: ['.js', '.jsx', '.tsx', '.json']
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
     }
 });
+
+// mix.alias({
+//     '@': 'src/js',
+// });
+/**
+ * Backend JS
+ */
+mix.ts('src/js/backend.tsx', 'assets/js/backend/admin-settings.js').react().sourceMaps(true, 'source-map');
+
 
 
 if (process.env.npm_config_package) {
@@ -91,47 +100,6 @@ if (
 			});
 		});
 	}
-
-	/**
-	 * JS
-	 */
-	mix
-		// Backend JS
-		.js('src/js/backend.jsx', 'assets/js/backend/admin-settings.js').react().sourceMaps(true, 'source-map')
-		// Frontend JS
-		.js("src/js/frontend.js", "assets/js/backend/frontend.js").sourceMaps(true, 'source-map');
-
-    mix.sass('src/scss/backend.scss', 'assets/css/backend/admin-settings.css').tailwind('./tailwind.config.js');
-	/**
-	 * CSS
-	 */
-	if (!mix.inProduction()) {
-		// Frontend CSS
-		mix.sass("src/scss/frontend.scss", "assets/css/frontend.min.css",).sourceMaps(true, 'source-map');
-		mix.sass("src/scss/frontend-rtl.scss", "assets/css/rtl/frontend-rtl.min.css").sourceMaps(true, 'source-map');
-	} else {
-		// Frontend CSS
-		mix.sass("src/scss/frontend.scss", "assets/css/frontend.min.css");
-		mix.sass("src/scss/frontend-rtl.scss", "assets/css/rtl/frontend-rtl.min.css");
-	}
-
-	// Backend CSS
-	mix.postCss('assets/css/backend/admin-settings.css', 'assets/css/rtl/compiled-backend-rtl.css', [
-		require('rtlcss'),
-	]);
-    // mix.combine([
-    //     'assets/css/rtl/compiled-backend-rtl.css',
-    //     'assets/css/rtl/backend-rtl.min.css'
-    // ], 'assets/css/backend-rtl.min.css');
-
-	// Frontend CSS
-	mix.postCss('assets/css/frontend.min.css', 'assets/css/rtl/compiled-frontend-rtl.css', [
-		require('rtlcss'),
-	]);
-	mix.combine([
-		'assets/css/rtl/compiled-frontend-rtl.css',
-		'assets/css/rtl/frontend-rtl.min.css'
-	], 'assets/css/frontend-rtl.min.css');
 }
 if (process.env.npm_config_zip) {
 	async function getVersion() {
