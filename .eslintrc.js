@@ -8,38 +8,32 @@
  * @since 1.0.0
  */
 module.exports = {
-	parser: '@babel/eslint-parser',
-	env: {
-		es6: true,
-		browser: true,
-		node: true,
-		jquery: true,
-		amd: true,
-	},
-	extends: [
-		'eslint:recommended',
-		'plugin:@wordpress/eslint-plugin/recommended',
-	],
-	rules: {
-		'prettier/prettier': [
-			'error',
-			{
-				endOfLine: 'auto',
-			},
-		],
-	},
-	globals: {
-		wp: true,
-		jQuery: true,
-	},
-	ignorePatterns: [
-		'assets/**/*.js',
-		'dist/**/*.js',
-		'tests/**/*.js',
-		'temp.js',
-		'webpack.config.js',
-		'/vendor/**/**/*.js',
-		'/webpack/**/*.js',
-		'/node_modules/**/**/*.js',
-	],
+    parser: '@typescript-eslint/parser', // Use the TypeScript parser
+    parserOptions: {
+        ecmaVersion: 2020, // Use modern ECMAScript features
+        sourceType: 'module', // Allow imports
+        ecmaFeatures: {
+            jsx: true, // Enable JSX if using React
+        },
+        project: './tsconfig.json', // Specify your TypeScript config
+    },
+    plugins: ['@typescript-eslint', 'react', 'react-hooks'],
+    extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:prettier/recommended', // Optional: Integrates Prettier with ESLint
+    ],
+    settings: {
+        react: {
+            version: 'detect', // Automatically detect React version
+        },
+    },
+    rules: {
+        // Customize your linting rules here
+        '@typescript-eslint/no-explicit-any': 'warn', // Avoid using 'any'
+        '@typescript-eslint/explicit-function-return-type': 'off', // Disable forcing return types
+    },
 };
