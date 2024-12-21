@@ -73,7 +73,6 @@
     "@typescript-eslint/eslint-plugin": "^8.18.1",
     "@typescript-eslint/parser": "^8.18.1",
     "archiver": "^7.0.1",
-    "babel-loader": "^9.2.1",
     "cli-color": "^2.0.4",
     "emojic": "^1.1.17",
     "laravel-mix": "^6.0.49",
