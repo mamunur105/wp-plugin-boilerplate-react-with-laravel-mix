@@ -56,7 +56,7 @@ abstract class Discount {
 			'notice_message' => '',
 			'show_by_button' => true,
 		];
-		$options       = apply_filters( 'ancenter_offer_notice', $this->the_options() );
+		$options       = apply_filters( 'boilerplate_offer_notice', $this->the_options() );
 		$this->options = wp_parse_args( $options, $defaults );
 		$current       = time();
 		$start         = strtotime( $this->options['start_date'] );
@@ -64,14 +64,14 @@ abstract class Discount {
 		if ( ! ( $this->options['is_condition'] ?? false ) ) {
 			return;
 		}
-		if ( ( $this->options['check_pro'] ?? false ) && ancenter()->has_pro() ) {
+		if ( ( $this->options['check_pro'] ?? false ) && boilerplate()->has_pro() ) {
 			return;
 		}
 		// Black Friday Notice.
 		if ( $start <= $current && $current <= $end ) {
 			if ( get_option( $this->options['option_name'] ) != '1' ) {
-				if ( ! isset( $GLOBALS['ancenter__notice'] ) ) {
-					$GLOBALS['ancenter__notice'] = 'ancenter__notice';
+				if ( ! isset( $GLOBALS['boilerplate__notice'] ) ) {
+					$GLOBALS['boilerplate__notice'] = 'boilerplate__notice';
 					$this->offer_notice();
 				}
 			}
@@ -96,7 +96,7 @@ abstract class Discount {
 			function () {
 				?>
 				<style>
-					.ancenteroffer-notice {
+					.boilerplateoffer-notice {
 						--e-button-context-color: #2179c0;
 						--e-button-context-color-dark: #2271b1;
 						--e-button-context-tint: rgb(75 47 157/4%);
@@ -108,26 +108,26 @@ abstract class Discount {
 						column-gap: 15px;
 					}
 
-					.ancenteroffer-notice img {
+					.boilerplateoffer-notice img {
 						grid-row: 1 / 4;
 						align-self: center;
 						justify-self: center;
 					}
 
-					.ancenteroffer-notice h3,
-					.ancenteroffer-notice p {
+					.boilerplateoffer-notice h3,
+					.boilerplateoffer-notice p {
 						margin: 0 !important;
 					}
 
-					.ancenteroffer-notice .notice-text {
+					.boilerplateoffer-notice .notice-text {
 						margin: 0 0 2px;
 						padding: 5px 0;
 						max-width: 100%;
 						font-size: 14px;
 					}
 
-					.ancenteroffer-notice .button-primary,
-					.ancenteroffer-notice .button-dismiss {
+					.boilerplateoffer-notice .button-primary,
+					.boilerplateoffer-notice .button-dismiss {
 						display: inline-block;
 						border: 0;
 						border-radius: 3px;
@@ -141,29 +141,29 @@ abstract class Discount {
 						transition: all 0.3s;
 					}
 
-					.ancenteroffer-notice .button-primary:hover,
-					.ancenteroffer-notice .button-dismiss:hover {
+					.boilerplateoffer-notice .button-primary:hover,
+					.boilerplateoffer-notice .button-dismiss:hover {
 						background: var(--e-button-context-color);
 						border-color: var(--e-button-context-color);
 						color: #fff;
 					}
 
-					.ancenteroffer-notice .button-primary:focus,
-					.ancenteroffer-notice .button-dismiss:focus {
+					.boilerplateoffer-notice .button-primary:focus,
+					.boilerplateoffer-notice .button-dismiss:focus {
 						box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--e-button-context-color);
 						background: var(--e-button-context-color);
 						color: #fff;
 					}
 
-					.ancenteroffer-notice .button-dismiss {
+					.boilerplateoffer-notice .button-dismiss {
 						border: 1px solid;
 						background: 0 0;
 						color: var(--e-button-context-color);
 						background: #fff;
 					}
 				</style>
-				<div class="ancenteroffer-notice notice notice-info is-dismissible"
-					 data-ancenterdismissable="ancenter_offer">
+				<div class="boilerplateoffer-notice notice notice-info is-dismissible"
+					 data-boilerplatedismissable="boilerplate_offer">
 					<img alt="<?php echo esc_attr( $this->options['plugin_name'] ); ?>"
 						 src="<?php echo esc_url( $this->options['image_url'] ); ?>"
 						 width="100px"
@@ -193,11 +193,11 @@ abstract class Discount {
 					(function ($) {
 						$(function () {
 							setTimeout(function () {
-								$('div[data-ancenterdismissable] .notice-dismiss, div[data-ancenterdismissable] .button-dismiss')
+								$('div[data-boilerplatedismissable] .notice-dismiss, div[data-boilerplatedismissable] .button-dismiss')
 									.on('click', function (e) {
 										e.preventDefault();
 										$.post(ajaxurl, {
-											'action': 'ancenter_dismiss_offer_admin_notice',
+											'action': 'boilerplate_dismiss_offer_admin_notice',
 											'nonce': <?php echo wp_json_encode( wp_create_nonce( 'ancenteroffer-dismissible-notice' ) ); ?>
 										});
 										$(e.target).closest('.is-dismissible').remove();

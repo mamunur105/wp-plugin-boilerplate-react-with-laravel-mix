@@ -44,7 +44,7 @@ class AdminFilter {
 	 * @return array [array] plugin action link
 	 */
 	public function plugins_setting_links( $links ) {
-		$links['cancenter_settings'] = '<a href="' . admin_url( 'admin.php?page=ancenter-admin' ) . '">' . esc_html__( 'Settings', 'ancenter' ) . '</a>';
+		$links['cboilerplate_settings'] = '<a href="' . admin_url( 'admin.php?page=boilerplate-admin' ) . '">' . esc_html__( 'Settings', 'boilerplate' ) . '</a>';
 		return $links;
 	}
 	/**
@@ -56,7 +56,7 @@ class AdminFilter {
 	public function plugin_row_meta( $links, $file ) {
 		if ( BOILERPLATE_BASENAME === $file ) {
 			$report_url         = 'https://www.wptinysolutions.com/contact';
-			$row_meta['issues'] = sprintf( '%2$s <a target="_blank" href="%1$s">%3$s</a>', esc_url( $report_url ), esc_html__( 'Facing issue?', 'ancenter' ), '<span style="color: red">' . esc_html__( 'Please open a support ticket.', 'ancenter' ) . '</span>' );
+			$row_meta['issues'] = sprintf( '%2$s <a target="_blank" href="%1$s">%3$s</a>', esc_url( $report_url ), esc_html__( 'Facing issue?', 'boilerplate' ), '<span style="color: red">' . esc_html__( 'Please open a support ticket.', 'boilerplate' ) . '</span>' );
 			return array_merge( $links, $row_meta );
 		}
 		return (array) $links;

@@ -64,7 +64,7 @@ class Assets {
 
 		$styles = [
 			[
-				'handle' => 'ancenter-settings',
+				'handle' => 'boilerplate-settings',
 				'src'    => boilerplate_main()->get_assets_uri( 'css/backend/admin-settings.css' ),
 			],
 		];
@@ -76,7 +76,7 @@ class Assets {
 
 		$scripts = [
 			[
-				'handle' => 'ancenter-settings',
+				'handle' => 'boilerplate-settings',
 				'src'    => boilerplate_main()->get_assets_uri( 'js/backend/admin-settings.js' ),
 				'deps'   => [],
 				'footer' => true,
@@ -89,7 +89,7 @@ class Assets {
 		}
 
 		$current_screen = get_current_screen();
-		if ( isset( $current_screen->id ) && 'toplevel_page_ancenter-admin' === $current_screen->id ) {
+		if ( isset( $current_screen->id ) && 'toplevel_page_boilerplate-admin' === $current_screen->id ) {
 			// Enqueue ThickBox scripts and styles.
 			wp_enqueue_script( 'thickbox' );
 			wp_enqueue_style( 'thickbox' );
@@ -97,12 +97,12 @@ class Assets {
 			wp_dequeue_style( 'wpml-tm-styles' );
 			wp_dequeue_script( 'wpml-tm-scripts' );
 
-			wp_enqueue_style( 'ancenter-settings' );
-			wp_enqueue_script( 'ancenter-settings' );
+			wp_enqueue_style( 'boilerplate-settings' );
+			wp_enqueue_script( 'boilerplate-settings' );
 
 			wp_localize_script(
-				'ancenter-settings',
-				'ancenterParams',
+				'boilerplate-settings',
+				'boilerplateParams',
 				[
 					'ajaxUrl'                   => esc_url( admin_url( 'admin-ajax.php' ) ),
 					'adminUrl'                  => esc_url( admin_url() ),

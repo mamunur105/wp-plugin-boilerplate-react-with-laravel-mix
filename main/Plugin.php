@@ -38,7 +38,7 @@ final class Plugin {
 	 *
 	 * @var string
 	 */
-	public $nonceId = 'ancenter_wpnonce';
+	public $nonceId = 'boilerplate_wpnonce';
 
 	/**
 	 * Post Type.
@@ -51,7 +51,7 @@ final class Plugin {
 	 *
 	 * @var string
 	 */
-	public $category = 'ancenter_category';
+	public $category = 'boilerplate_category';
 	/**
 	 * Singleton
 	 */
@@ -96,7 +96,7 @@ final class Plugin {
 	 * @return string
 	 */
 	public function get_template_path() {
-		return apply_filters( 'ancenter_template_path', 'templates/' );
+		return apply_filters( 'boilerplate_template_path', 'templates/' );
 	}
 
 	/**
@@ -112,7 +112,7 @@ final class Plugin {
 	 * Load Text Domain
 	 */
 	public function language() {
-		load_plugin_textdomain( 'ancenter', false, BOILERPLATE_ABSPATH . '/languages/' );
+		load_plugin_textdomain( 'boilerplate', false, BOILERPLATE_ABSPATH . '/languages/' );
 	}
 
 	/**

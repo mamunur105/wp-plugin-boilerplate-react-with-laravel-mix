@@ -7,7 +7,7 @@
  * Version:           0.0.2
  * Author:            Tiny Solutions
  * Author URI:        https://www.wptinysolutions.com/
- * Text Domain:       ancenter
+ * Text Domain:       boilerplate
  * Domain Path:       /languages
  * License:                    GPLv3
  * License URI:                http://www.gnu.org/licenses/gpl-3.0.html

@@ -74,25 +74,25 @@ abstract class CustomPostType {
 		// We set the default labels based on the post type name and plural. We overwrite them with the given labels.
 		$defaults_labels = [
 			/* translators: %s: post-type name */
-			'add_new'            => sprintf( esc_html_x( 'Add New', '%s', 'ancenter' ), strtolower( $name ) ),
+			'add_new'            => sprintf( esc_html_x( 'Add New', '%s', 'boilerplate' ), strtolower( $name ) ),
 			/* translators: %s: post-type name */
-			'add_new_item'       => sprintf( esc_html__( 'Add New %s', 'ancenter' ), $name ),
+			'add_new_item'       => sprintf( esc_html__( 'Add New %s', 'boilerplate' ), $name ),
 			/* translators: %s: post-type name */
-			'edit_item'          => sprintf( esc_html__( 'Edit %s', 'ancenter' ), $name ),
+			'edit_item'          => sprintf( esc_html__( 'Edit %s', 'boilerplate' ), $name ),
 			/* translators: %s: post-type name */
-			'new_item'           => sprintf( esc_html__( 'New %s', 'ancenter' ), $name ),
+			'new_item'           => sprintf( esc_html__( 'New %s', 'boilerplate' ), $name ),
 			/* translators: %s: post-type plural name */
-			'all_items'          => sprintf( esc_html__( 'All %s', 'ancenter' ), $plural ),
+			'all_items'          => sprintf( esc_html__( 'All %s', 'boilerplate' ), $plural ),
 			/* translators: %s: post-type name */
-			'view_item'          => sprintf( esc_html__( 'View %s', 'ancenter' ), $name ),
+			'view_item'          => sprintf( esc_html__( 'View %s', 'boilerplate' ), $name ),
 			/* translators: %s: post-type plural name */
-			'search_items'       => sprintf( esc_html__( 'Search %s', 'ancenter' ), $plural ),
+			'search_items'       => sprintf( esc_html__( 'Search %s', 'boilerplate' ), $plural ),
 			/* translators: %s: post-type plural name */
-			'not_found'          => sprintf( esc_html__( 'No %s found', 'ancenter' ), strtolower( $plural ) ),
+			'not_found'          => sprintf( esc_html__( 'No %s found', 'boilerplate' ), strtolower( $plural ) ),
 			/* translators: %s: post-type plural name */
-			'not_found_in_trash' => sprintf( esc_html__( 'No %s found in Trash', 'ancenter' ), strtolower( $plural ) ),
+			'not_found_in_trash' => sprintf( esc_html__( 'No %s found in Trash', 'boilerplate' ), strtolower( $plural ) ),
 			/* translators: %s: post-type plural name */
-			'parent_item_colon'  => sprintf( esc_html__( 'Parent %s: ', 'ancenter' ), $plural ),
+			'parent_item_colon'  => sprintf( esc_html__( 'Parent %s: ', 'boilerplate' ), $plural ),
 			'menu_name'          => $name,
 		];
 		$labels          = wp_parse_args( $post_type_labels, $defaults_labels );

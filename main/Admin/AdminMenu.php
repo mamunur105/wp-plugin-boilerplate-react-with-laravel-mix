@@ -29,7 +29,7 @@ class AdminMenu {
 	/**
 	 * Parent Menu Page Slug
 	 */
-	const MENU_PAGE_SLUG = 'ancenter-admin';
+	const MENU_PAGE_SLUG = 'boilerplate-admin';
 	/**
 	 * Menu capability
 	 */
@@ -55,31 +55,31 @@ class AdminMenu {
 			'Admin Notice',
 			'Admin Notice',
 			'manage_options',
-			'ancenter-admin',
+			'boilerplate-admin',
 			[ $this, 'module_page_callback' ],
 			'dashicons-screenoptions',
 			57
 		);
 		add_submenu_page(
 			self::MENU_PAGE_SLUG,
-			esc_html__( 'Admin Notice', 'ancenter' ),
-			'<span class="ancenter-is-submenu" ><span class="dashicons dashicons-arrow-right-alt" ></span>' . esc_html__( 'Admin Notice', 'ancenter' ) . '</span>',
+			esc_html__( 'Admin Notice', 'boilerplate' ),
+			'<span class="boilerplate-is-submenu" ><span class="dashicons dashicons-arrow-right-alt" ></span>' . esc_html__( 'Admin Notice', 'boilerplate' ) . '</span>',
 			self::MENU_CAPABILITY,
 			self::MENU_PAGE_SLUG,
 		);
-		$menu_link_part = admin_url( 'admin.php?page=ancenter-admin' );
+		$menu_link_part = admin_url( 'admin.php?page=boilerplate-admin' );
 
 		add_submenu_page(
 			self::MENU_PAGE_SLUG,
-			esc_html__( 'Useful Plugins', 'ancenter' ),
-			'<span class="ancenter-is-submenu" ><span class="dashicons dashicons-arrow-right-alt" ></span>' . esc_html__( 'Useful Plugins', 'ancenter' ) . '</span>',
+			esc_html__( 'Useful Plugins', 'boilerplate' ),
+			'<span class="boilerplate-is-submenu" ><span class="dashicons dashicons-arrow-right-alt" ></span>' . esc_html__( 'Useful Plugins', 'boilerplate' ) . '</span>',
 			self::MENU_CAPABILITY,
 			$menu_link_part . '#/plugins'
 		);
 		add_submenu_page(
 			self::MENU_PAGE_SLUG,
-			esc_html__( 'Contacts Support', 'ancenter' ),
-			'<span class="ancenter-is-submenu" ><span class="dashicons dashicons-arrow-right-alt" ></span>' . esc_html__( 'Contacts Support', 'ancenter' ) . '</span>',
+			esc_html__( 'Contacts Support', 'boilerplate' ),
+			'<span class="boilerplate-is-submenu" ><span class="dashicons dashicons-arrow-right-alt" ></span>' . esc_html__( 'Contacts Support', 'boilerplate' ) . '</span>',
 			self::MENU_CAPABILITY,
 			$menu_link_part . '#/support'
 		);
@@ -91,6 +91,6 @@ class AdminMenu {
 	 * @return void
 	 */
 	public function module_page_callback() {
-		echo '<div class="wrap"><div id="ancenter_root"></div></div>';
+		echo '<div class="wrap"><div id="boilerplate_root"></div></div>';
 	}
 }

@@ -24,7 +24,7 @@ class Review {
 	 *
 	 * @var string
 	 */
-	public string $textdomain = 'ancenter';
+	public string $textdomain = 'boilerplate';
 
 	/**
 	 * Init
@@ -33,8 +33,8 @@ class Review {
 	 */
 	private function __construct() {
 		$this->loader = Loader::instance();
-		$this->loader->add_action( 'admin_init', $this, 'ancenter_check_installation_time' );
-		$this->loader->add_action( 'admin_init', $this, 'ancenter_spare_me', 5 );
+		$this->loader->add_action( 'admin_init', $this, 'boilerplate_check_installation_time' );
+		$this->loader->add_action( 'admin_init', $this, 'boilerplate_spare_me', 5 );
 		if ( true ) {
 			$this->loader->add_action( 'admin_footer', $this, 'deactivation_popup', 99 ); // Remove the hooks if no longer need.
 		}
@@ -45,12 +45,12 @@ class Review {
 	 *
 	 * @return void
 	 */
-	public function ancenter_check_installation_time() {
+	public function boilerplate_check_installation_time() {
 
 		// Added Lines Start
-		$nobug = get_option( 'ancenter_spare_me' );
+		$nobug = get_option( 'boilerplate_spare_me' );
 
-		$rated = get_option( 'ancenter_rated' );
+		$rated = get_option( 'boilerplate_rated' );
 
 		if ( '1' == $nobug || 'yes' == $rated ) {
 			return;
@@ -58,11 +58,11 @@ class Review {
 
 		$now = strtotime( 'now' );
 
-		$install_date = get_option( 'ancenter_plugin_activation_time' );
+		$install_date = get_option( 'boilerplate_plugin_activation_time' );
 
 		$past_date = strtotime( '+10 days', $install_date );
 
-		$remind_time = get_option( 'ancenter_remind_me' );
+		$remind_time = get_option( 'boilerplate_remind_me' );
 
 		if ( ! $remind_time ) {
 			$remind_time = $install_date;
@@ -76,7 +76,7 @@ class Review {
 			return;
 		}
 
-		$this->loader->add_action( 'admin_notices', $this, 'ancenter_display_admin_notice' );
+		$this->loader->add_action( 'admin_notices', $this, 'boilerplate_display_admin_notice' );
 	}
 
 	/**
@@ -84,13 +84,13 @@ class Review {
 	 *
 	 * @return void
 	 */
-	public function ancenter_spare_me() {
+	public function boilerplate_spare_me() {
 
-		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'ancenter_notice_nonce' ) ) {
+		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'boilerplate_notice_nonce' ) ) {
 			return;
 		}
 
-		if ( isset( $_GET['ancenter_spare_me'] ) && ! empty( $_GET['ancenter_spare_me'] ) ) {
+		if ( isset( $_GET['boilerplate_spare_me'] ) && ! empty( $_GET['boilerplate_spare_me'] ) ) {
 			$spare_me = absint( $_GET['ancenter_spare_me'] );
 			if ( 1 == $spare_me ) {
 				update_option( 'ancenter_spare_me', '1' );

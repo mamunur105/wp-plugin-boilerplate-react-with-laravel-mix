@@ -24,9 +24,9 @@ class Api {
 	/**
 	 * @var string
 	 */
-	private $namespacev1 = 'TinySolutions/ancenter/v1';
+	private $namespacev1 = 'TinySolutions/boilerplate/v1';
 
-	/**TinySolutions/ancenter/v1/updateOptions
+	/**TinySolutions/boilerplate/v1/updateOptions
 	 * @var string
 	 */
 	private $resource_name = '/api';
@@ -145,18 +145,18 @@ class Api {
 
 		$parameters = $request_data->get_params();
 
-		$the_settings = get_option( 'ancenter_settings', [] );
+		$the_settings = get_option( 'boilerplate_settings', [] );
 		
 		if ( isset( $parameters['allGroups'] ) && is_array( $parameters['allGroups'] ) ) {
 			$the_settings['allGroups'] = $parameters['allGroups'];
 		}
 		
-		$options = update_option( 'ancenter_settings', $the_settings );
+		$options = update_option( 'boilerplate_settings', $the_settings );
 
 		$result['updated'] = boolval( $options );
 	
 		if ( $result['updated'] ) {
-			$result['message'] = esc_html__( 'Updated.', 'ancenter' );
+			$result['message'] = esc_html__( 'Updated.', 'boilerplate' );
 		}
 		return $result;
 	}
