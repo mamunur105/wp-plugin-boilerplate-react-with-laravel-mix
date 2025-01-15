@@ -5,6 +5,7 @@ interface FieldWrapperProps {
 	label?: string; // Optional string for the label
 	desc?: string; // Optional string for the description
 	type?: string; // Optional string for additional class names
+	wrapperClass?: string;
 }
 
 const FieldWrapper: React.FC<FieldWrapperProps> = ({
@@ -12,10 +13,11 @@ const FieldWrapper: React.FC<FieldWrapperProps> = ({
 	label,
 	desc,
 	type,
+	wrapperClass,
 }) => {
 	return (
 		<div
-			className={`field-wrapper flex justify-between text-left mb-3 ${type || ''}`}
+			className={`field-wrapper flex justify-between text-left mb-3 ${type || ''} ${wrapperClass}`}
 		>
 			<div className="field-label-wrapper w-2/5 mt-3 items-center text-base font-medium">
 				{label || 'Label'}

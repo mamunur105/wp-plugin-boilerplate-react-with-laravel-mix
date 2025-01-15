@@ -5,10 +5,16 @@ import SelectField from "@/backend/Fields/SelectField";
 import SwitchField from "@/backend/Fields/SwitchField";
 import TextareaField from "@/backend/Fields/TextareaField";
 const Settings: React.FC = () => {
-
+    
 	return (
         <PageMasterComponent>
-            <InputField/>
+            <InputField
+                wrapperClass="wrapper-class"
+                name="inputname"
+                placeholder="Enter your name"
+                value="John Doe"
+                onChange={(e) => console.log(e.target.value)}
+            />
             <SelectField
                 label="Choose an option"
                 desc="Select an option from the dropdown"
