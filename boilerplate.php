@@ -3,7 +3,7 @@
  * @wordpress-plugin
  * Plugin Name:       Boiler Plate ( Only For Developer )
  * Plugin URI:        https://wordpress.org/plugins/admin-notice-centralization
- * Description:       Boiler
+ * Description:       Plugin Boilerplate Typescripts, React Js, zustand compile with Mix And Composer Autoload for PHP
  * Version:           0.0.2
  * Author:            Tiny Solutions
  * Author URI:        https://www.wptinysolutions.com/

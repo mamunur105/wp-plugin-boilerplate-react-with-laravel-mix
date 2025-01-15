@@ -1,4 +1,4 @@
-# Wp Plugin Boilerplate React Js, zustand compile with Mix And Composer Autoload for PHP
+# Wp Plugin Boilerplate Typescripts, React Js, zustand compile with Mix And Composer Autoload for PHP
 
 ***Composer Command***
 
