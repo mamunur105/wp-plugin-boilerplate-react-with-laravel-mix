@@ -39,7 +39,7 @@ mix.webpackConfig({
  */
 mix.ts('src/js/backend.tsx', 'assets/js/backend/admin-settings.js').react().sourceMaps(true, 'source-map');
 
-
+mix.sass('src/scss/backend.scss', 'assets/css/backend/admin-settings.css').tailwind('./tailwind.config.js');
 
 if (process.env.npm_config_package) {
 	mix.then(function () {
